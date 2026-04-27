@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celeste | Contact Us</title>
+  <meta name="description" content="Contact Celeste for support, service inquiries, and general information." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-wrap">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="Celeste Logo">
+      </a>
+
+      <nav class="desktop-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="range.html">Our Range</a>
+        <a href="locations.html">Our Locations</a>
+        <a href="brand-highlights.html">Brand Highlights</a>
+        <a href="updates.html">Latest Updates</a>
+        <a href="contact.html" class="active">Contact Us</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="range.html">Our Range</a>
+      <a href="locations.html">Our Locations</a>
+      <a href="brand-highlights.html">Brand Highlights</a>
+      <a href="updates.html">Latest Updates</a>
+      <a href="contact.html" class="active">Contact Us</a>
+    </div>
+  </header>
+
+  <section class="contact-hero-banner">
+    <div class="contact-hero-media">
+      <img src="assets/images/contact-banner.jpg" alt="Celeste Contact Banner">
+      <div class="contact-hero-overlay"></div>
+    </div>
+    <div class="container contact-hero-content contact-hero-content-empty"></div>
+  </section>
+
+  <section class="contact-trust-strip">
+    <div class="container">
+      <div class="contact-trust-grid">
+        <div class="contact-trust-item">
+          <span>24/7 Availability</span>
+        </div>
+        <div class="contact-trust-item">
+          <span>Support & Service Inquiries</span>
+        </div>
+        <div class="contact-trust-item">
+          <span>Partnership Conversations</span>
+        </div>
+        <div class="contact-trust-item">
+          <span>Fast WhatsApp Access</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section contact-section-premium">
+    <div class="container">
+      <div class="contact-shell">
+        <div class="contact-grid">
+          <div class="contact-info-wrap">
+            <div class="contact-info-card">
+              <div class="contact-info-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <h3>Phone</h3>
+              <p><a href="tel:+94117509000">+94 11 750 9000</a></p>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-info-icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <h3>Email</h3>
+              <p><a href="mailto:hello@celeste.lk">hello@celeste.lk</a></p>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-info-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <h3>Availability</h3>
+              <p>Open 24/7 across all Celeste Daily locations.</p>
+            </div>
+
+            <div class="contact-whatsapp-box">
+              <p class="section-label">Quick Access</p>
+              <h3>Prefer WhatsApp?</h3>
+              <p>Reach out to us directly for faster communication and quick support.</p>
+              <a href="https://wa.me/94775882525" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-form-card">
+            <div class="contact-form-head">
+              <p class="section-label">Send a Message</p>
+              <h2>Tell us how we can help.</h2>
+              <p>
+                Share your inquiry and our team will guide you in the right direction.
+              </p>
+            </div>
+
+            <form id="contactForm" class="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6" placeholder="Write your message" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary contact-submit-btn">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="assets/images/logo.png" alt="Celeste Logo">
+          </a>
+          <p>
+            Celeste is built around convenience, speed, and modern retail access, serving customers through trusted everyday service and quick commerce.
+          </p>
+
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/CelesteDaily.lk?mibextid=kFxxJD" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/celestedaily.lk?igsh=MWViNm1teDk1YjZyag%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://lk.linkedin.com/company/celestelk" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.tiktok.com/@celestedaily.lk?_t=8qYhOnppwwe&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="range.html">Our Range</a></li>
+            <li><a href="locations.html">Our Locations</a></li>
+            <li><a href="brand-highlights.html">Brand Highlights</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="updates.html">Latest Updates</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h3>Contact</h3>
+          <ul>
+            <li><a href="tel:+94117509000">+94 11 750 9000</a></li>
+            <li><a href="mailto:hello@celeste.lk">hello@celeste.lk</a></li>
+            <li>Open 24/7 across all Celeste Daily locations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Celeste. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
