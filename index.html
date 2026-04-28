@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Celeste | Home</title>
-  <meta name="description" content="Celeste official website" />
+  <title>Celeste | Our Range</title>
+  <meta name="description" content="Explore the Celeste range across branded products, fresh produce, ice creams, desserts, drinks, and dairy." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -23,13 +22,13 @@
       </a>
 
       <nav class="desktop-nav">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="range.html">Our Range</a>
-        <a href="locations.html">Our Locations</a>
-        <a href="brand-highlights.html">Brand Highlights</a>
-        <a href="updates.html">Latest Updates</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="/index">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/range" class="active">Our Range</a>
+        <a href="/locations">Our Locations</a>
+        <a href="/brand-highlights">Brand Highlights</a>
+        <a href="/updates">Latest Updates</a>
+        <a href="/contact">Contact Us</a>
       </nav>
 
       <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
@@ -38,370 +37,447 @@
     </div>
 
     <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="range.html">Our Range</a>
-      <a href="locations.html">Our Locations</a>
-      <a href="brand-highlights.html">Brand Highlights</a>
-      <a href="updates.html">Latest Updates</a>
-      <a href="contact.html">Contact Us</a>
+      <a href="/index">Home</a>
+      <a href="/about">About Us</a>
+      <a href="/range" class="active">Our Range</a>
+      <a href="/locations">Our Locations</a>
+      <a href="/brand-highlights">Brand Highlights</a>
+      <a href="/updates">Latest Updates</a>
+      <a href="/contact">Contact Us</a>
     </div>
   </header>
 
-  <section class="hero-slider">
-    <div class="hero-slide active desktop-slide" style="background-image: url('assets/images/hero-banner-desktop.jpg');"></div>
-    <div class="hero-slide desktop-slide" style="background-image: url('assets/images/hero-banner-2-desktop.jpg');"></div>
-    <div class="hero-slide desktop-slide" style="background-image: url('assets/images/hero-banner-3-desktop.jpg');"></div>
-
-    <div class="hero-slide active mobile-slide" style="background-image: url('assets/images/hero-banner-mobile.jpg');"></div>
-    <div class="hero-slide mobile-slide" style="background-image: url('assets/images/hero-banner-2-mobile.jpg');"></div>
-    <div class="hero-slide mobile-slide" style="background-image: url('assets/images/hero-banner-3-mobile.jpg');"></div>
-
-    <div class="hero-overlay"></div>
-
-    <div class="container hero-content"></div>
-  </section>
-
-  <section class="brand-message-section">
-    <div class="container">
-      <div class="brand-message-premium">
-        <div class="brand-message-topline"></div>
-
-        <p class="brand-message-label">OUR BRAND MESSAGE</p>
-
-        <h2 class="brand-message-title">කඩේ ගාණට, ඔබේ ගාවට!</h2>
-
-        <p class="brand-message-tagline">JUST CELESTE IT!</p>
-
-        <p class="brand-message-description">
-          Bringing everyday convenience closer to you with speed, quality, and trusted service.
-        </p>
-      </div>
+  <section class="range-video-banner">
+    <div class="range-video-wrap">
+        <video autoplay muted loop playsinline preload="metadata">
+        <source src="assets/videos/range-banner.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+        <div class="range-video-overlay"></div>
     </div>
   </section>
 
-  <section class="stats-strip">
+  <section class="range-intro-strip">
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon">
-            <i class="fa-solid fa-users"></i>
-          </div>
-          <h3>100K+</h3>
-          <p>Customers</p>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon">
-            <i class="fa-solid fa-box-open"></i>
-          </div>
-          <h3>2M+</h3>
-          <p>Orders</p>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon">
-            <i class="fa-regular fa-clock"></i>
-          </div>
-          <h3>24x7</h3>
-          <p>Open</p>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon">
-            <i class="fa-solid fa-store"></i>
-          </div>
-          <h3>11+</h3>
-          <p>Locations</p>
-        </div>
-      </div>
+      <p class="section-label">Our Range</p>
+      <h1>Browse products across the Celeste experience.</h1>
+      <p class="page-hero-text">
+        Explore branded products, fresh produce, desserts, drinks, and everyday essentials available through Celeste.
+      </p>
     </div>
   </section>
 
-  <section class="brand-intro">
+  <section class="range-products-section">
     <div class="container">
-      <div class="brand-intro-grid">
-        <div class="brand-intro-text">
-          <p class="section-label">About Celeste</p>
-          <h2>Built for convenience, trusted for quality.</h2>
-          <p>
-            Celeste, Sri Lanka’s largest and fastest growing on-demand online supermarket, was first founded in 2020 during the Covid-19 pandemic to fulfil the basic requirements of the community by delivering fresh produce and essentials.
-          </p>
-          <p>
-            Celeste was founded by the visionary leader Janik Jayasuriya, introducing the on-demand grocery shopping experience to Sri Lanka and revolutionizing the quick commerce market through Uber Eats and PickMe Market. As a proud local brand, Celeste has now become the lifestyle partner of Colombo, delivering anything you need to your doorstep in under 30 minutes, any time of the day, as we are open 24/7, 365 days a year.
-          </p>
-        </div>
-
-        <div class="brand-intro-card">
-          <div class="intro-stat">
-            <h3>Quality</h3>
-            <p>Carefully selected products and a cleaner standard across every outlet.</p>
-          </div>
-
-          <div class="intro-stat">
-            <h3>Convenience</h3>
-            <p>Designed to save time with easier access, faster service, and smoother shopping.</p>
-          </div>
-
-          <div class="intro-stat">
-            <h3>Trust</h3>
-            <p>A brand experience built on consistency, reliability, and customer confidence.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="why-celeste">
-    <div class="container">
-      <div class="why-celeste-head">
-        <p class="section-label">Why Choose Celeste</p>
-        <h2>A better everyday retail experience.</h2>
+      <div class="range-products-head">
+        <p class="section-label">The Celeste Collection</p>
+        <h2>Signature products built for everyday living.</h2>
         <p>
-          We focus on the details that matter most, from product quality and convenience to service consistency and customer trust.
+          Explore a curated selection of Celeste-branded products across hydration, desserts, and everyday essentials.
         </p>
       </div>
 
-      <div class="why-celeste-grid">
-        <div class="why-card">
-          <div class="why-icon">
-            <i class="fa-solid fa-bag-shopping"></i>
-          </div>
-          <h3>Curated Product Quality</h3>
-          <p>
-            We aim to maintain a cleaner and more dependable standard across the products our customers choose every day.
-          </p>
+      <div class="range-product-group">
+        <div class="range-product-group-head">
+          <h3>Hydration</h3>
+          <p>Clean, everyday refreshment under the Celeste name.</p>
         </div>
 
-        <div class="why-card">
-          <div class="why-icon">
-            <i class="fa-solid fa-location-dot"></i>
-          </div>
-          <h3>Convenient Locations</h3>
-          <p>
-            Our locations are positioned to make shopping easier, faster, and more accessible for nearby communities.
-          </p>
+        <div class="range-products-grid">
+          <article class="range-product-card">
+            <div class="range-product-image">
+              <img src="assets/images/celeste-wathura-500ml.jpg" alt="Celeste Wathura 500Ml">
+            </div>
+            <div class="range-product-content">
+              <span class="range-product-category">Hydration</span>
+              <h4>Celeste Wathura 500Ml</h4>
+              <p class="range-product-sku">SKU 005160</p>
+              <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+            </div>
+          </article>
+
+          <article class="range-product-card">
+            <div class="range-product-image">
+              <img src="assets/images/celeste-wathura-1500ml.jpg" alt="Celeste Wathura 1500Ml">
+            </div>
+            <div class="range-product-content">
+              <span class="range-product-category">Hydration</span>
+              <h4>Celeste Wathura 1500Ml</h4>
+              <p class="range-product-sku">SKU 005162</p>
+              <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+            </div>
+          </article>
+
+          <article class="range-product-card">
+            <div class="range-product-image">
+              <img src="assets/images/celeste-ice-cubes-1kg.jpg" alt="Ice Cubes">
+            </div>
+            <div class="range-product-content">
+              <span class="range-product-category">Hydration</span>
+              <h4>Ice Cubes</h4>
+              <p class="range-product-sku">SKU 007193</p>
+              <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="range-product-group">
+        <div class="range-product-group-head">
+          <h3>Desserts</h3>
+          <p>Ready-to-enjoy sweet selections from the Celeste range.</p>
         </div>
 
-        <div class="why-card">
-          <div class="why-icon">
-            <i class="fa-solid fa-clock"></i>
-          </div>
-          <h3>Reliable Service</h3>
-          <p>
-            We are building a shopping experience that feels consistent, responsive, and dependable every time.
-          </p>
+        <div class="range-products-grid">
+          <article class="range-product-card">
+            <div class="range-product-image">
+              <img src="assets/images/celeste-chocolate-biscuit-pudding.jpg" alt="Chocolate Biscuit Pudding">
+            </div>
+            <div class="range-product-content">
+              <span class="range-product-category">Desserts</span>
+              <h4>Chocolate Biscuit Pudding</h4>
+              <p class="range-product-sku">SKU 007732</p>
+              <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+            </div>
+          </article>
+
+          <article class="range-product-card">
+            <div class="range-product-image">
+              <img src="assets/images/celeste-chocolate-mousse.jpg" alt="Chocolate Mousse">
+            </div>
+            <div class="range-product-content">
+              <span class="range-product-category">Desserts</span>
+              <h4>Chocolate Mousse</h4>
+              <p class="range-product-sku">SKU 007731</p>
+              <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="range-product-group">
+        <div class="range-product-group-head">
+          <h3>Everyday Essentials</h3>
+          <p>Simple branded products designed for daily convenience and utility.</p>
+        </div>
+
+        <div class="range-products-grid">
+          <article class="range-product-card">
+            <div class="range-product-image">
+              <img src="assets/images/celeste-hazelnut-chocolate.jpg" alt="Hazelnut Chocolate">
+            </div>
+            <div class="range-product-content">
+              <span class="range-product-category">Everyday Essentials</span>
+              <h4>Hazelnut Chocolate</h4>
+              <p class="range-product-sku">SKU 007413</p>
+              <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+            </div>
+          </article>
+
+          <article class="range-product-card">
+            <div class="range-product-image">
+              <img src="assets/images/celeste-tooth-picks.jpg" alt="Tooth Picks">
+            </div>
+            <div class="range-product-content">
+              <span class="range-product-category">Everyday Essentials</span>
+              <h4>Tooth Picks</h4>
+              <p class="range-product-sku">SKU 007612</p>
+              <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+            </div>
+          </article>
+
+          <article class="range-product-card">
+            <div class="range-product-image">
+              <img src="assets/images/celeste-toilet-paper-roll.jpg" alt="Toilet Paper Roll">
+            </div>
+            <div class="range-product-content">
+              <span class="range-product-category">Everyday Essentials</span>
+              <h4>Toilet Paper Roll</h4>
+              <p class="range-product-sku">SKU 006761</p>
+              <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+            </div>
+          </article>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="range-showcase">
+  <section class="range-products-section range-products-section-soft">
     <div class="container">
-      <div class="range-showcase-head">
-        <p class="section-label">Our Range</p>
-        <h2>Everyday essentials, curated with the Celeste touch.</h2>
+      <div class="range-products-head">
+        <p class="section-label">Fresh Produce</p>
+        <h2>Fresh picks for everyday kitchens.</h2>
         <p>
-          From pantry staples and beverages to household must-haves and signature Celeste picks, our range is built around convenience, quality, and everyday access.
+          A curated selection of fruits and vegetables chosen for freshness, convenience, and everyday use.
         </p>
       </div>
 
-      <div class="range-category-grid">
-        <a href="locations.html" class="range-category-card range-card-large" style="background-image: url('assets/images/range-beverages.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
-            <h3>Beverages</h3>
-            <p>Refreshing drinks, hydration, and ready-to-enjoy favorites.</p>
+      <div class="range-products-grid">
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/fresh-bitter-gourd.jpg" alt="Bitter Gourd Karawila">
           </div>
-        </a>
+          <div class="range-product-content">
+            <span class="range-product-category">Fresh Produce</span>
+            <h4>Bitter Gourd (Karawila) 250G - 350G</h4>
+            <p class="range-product-sku">SKU 000044</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
 
-        <a href="locations.html" class="range-category-card" style="background-image: url('assets/images/range-fresh-dairy.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
-            <h3>Fresh & Dairy</h3>
-            <p>Daily essentials including eggs, dairy alternatives, and fresh staples.</p>
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/fresh-green-apple.jpg" alt="Green Apple 1 Fruit">
           </div>
-        </a>
+          <div class="range-product-content">
+            <span class="range-product-category">Fresh Produce</span>
+            <h4>Green Apple 1 Fruit</h4>
+            <p class="range-product-sku">SKU 000249</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
 
-        <a href="locations.html" class="range-category-card" style="background-image: url('assets/images/range-pantry.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
-            <h3>Snacks & Confectionery</h3>
-            <p>Biscuits, sweets, chocolates, instant snacks, and cupboard favorites.</p>
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/fresh-greenhouse-tomatoes.jpg" alt="Greenhouse Tomatoes">
           </div>
-        </a>
+          <div class="range-product-content">
+            <span class="range-product-category">Fresh Produce</span>
+            <h4>Greenhouse Tomatoes 250G - 300G</h4>
+            <p class="range-product-sku">SKU 001405</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
 
-        <a href="locations.html" class="range-category-card" style="background-image: url('assets/images/range-desserts.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
-            <h3>Ice Cream & Desserts</h3>
-            <p>Indulgent frozen desserts, ice cream, and ready-to-enjoy sweet treats.</p>
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/fresh-kc-mango.jpg" alt="KC Mango 1 Fruit">
           </div>
-        </a>
+          <div class="range-product-content">
+            <span class="range-product-category">Fresh Produce</span>
+            <h4>KC Mango 1 Fruit</h4>
+            <p class="range-product-sku">SKU 002097</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
 
-        <a href="locations.html" class="range-category-card" style="background-image: url('assets/images/range-household.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
-            <h3>Household & Cleaning</h3>
-            <p>Functional home essentials designed for everyday convenience.</p>
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/fresh-knol-khol.jpg" alt="Knol Khol">
           </div>
-        </a>
+          <div class="range-product-content">
+            <span class="range-product-category">Fresh Produce</span>
+            <h4>Knol Khol 250G - 300G</h4>
+            <p class="range-product-sku">SKU 000291</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
 
-        <a href="locations.html" class="range-category-card" style="background-image: url('assets/images/range-essentials.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
-            <h3>Fresh Selections</h3>
-            <p>Fresh fish, seafood, and carefully selected daily essentials for everyday cooking.</p>
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/fresh-mandarin.jpg" alt="Mandarin 1 Fruit">
           </div>
-        </a>
+          <div class="range-product-content">
+            <span class="range-product-category">Fresh Produce</span>
+            <h4>Mandarin 1 Fruit</h4>
+            <p class="range-product-sku">SKU 001510</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="range-products-section">
+    <div class="container">
+      <div class="range-products-head">
+        <p class="section-label">Ice Creams & Desserts</p>
+        <h2>Indulgent picks for sweet cravings and ready-to-enjoy moments.</h2>
+        <p>
+          A curated selection of ice creams and dessert favorites chosen for everyday indulgence, quick enjoyment, and premium variety.
+        </p>
       </div>
 
-      <div class="range-featured-block">
-        <div class="range-featured-head">
-          <p class="section-label">Celeste Branded Range</p>
-          <h3>Signature products built for everyday living.</h3>
-        </div>
-
-        <div class="range-featured-grid">
-          <div class="range-feature-card">
-            <div class="range-feature-image">
-              <img src="assets/images/featured-oatside.jpg" alt="Oatside oat milk">
-            </div>
-            <div class="range-feature-content">
-              <h4>Celeste Tissue & Paper Line</h4>
-              <p>Daily care essentials designed for comfort, convenience, and everyday home use.</p>
-            </div>
+      <div class="range-products-grid">
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/icecream-heavenly-almond-nougat.jpg" alt="Almond Nougat Ice Cream 1L Tub Heavenly">
           </div>
-
-          <div class="range-feature-card">
-            <div class="range-feature-image">
-              <img src="assets/images/featured-spices.jpg" alt="Celeste spice range">
-            </div>
-            <div class="range-feature-content">
-              <h4>Celeste Spice Range</h4>
-              <p>Elevated pantry staples designed to bring richer flavor home.</p>
-            </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Ice Creams & Desserts</span>
+            <h4>Almond Nougat Ice Cream 1L Tub - Heavenly</h4>
+            <p class="range-product-sku">SKU 007983</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
           </div>
+        </article>
 
-          <div class="range-feature-card">
-            <div class="range-feature-image">
-              <img src="assets/images/featured-brownies.jpg" alt="Celeste brownie cups">
-            </div>
-            <div class="range-feature-content">
-              <h4>Celeste Dessert Cups</h4>
-              <p>Ready-to-enjoy indulgence for customers looking for a sweet finish.</p>
-            </div>
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/icecream-imorich-chocolate-peanut-butter.jpg" alt="Chocolate And Peanut Butter Ice Cream 120Ml Imorich">
           </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Ice Creams & Desserts</span>
+            <h4>Chocolate And Peanut Butter Ice Cream 120Ml - Imorich</h4>
+            <p class="range-product-sku">SKU 006781</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
 
-          <div class="range-feature-card">
-            <div class="range-feature-image">
-              <img src="assets/images/featured-water.jpg" alt="Celeste Ethura water">
-            </div>
-            <div class="range-feature-content">
-              <h4>Celeste Wathura</h4>
-              <p>Clean hydration made available in multiple convenient sizes.</p>
-            </div>
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/icecream-alerics-chunky-rocky-road.jpg" alt="Chunky Rocky Road Ice Cream Tub 1L Alerics">
           </div>
-        </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Ice Creams & Desserts</span>
+            <h4>Chunky Rocky Road Ice Cream Tub 1L - Alerics</h4>
+            <p class="range-product-sku">SKU 004624</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
+
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/icecream-imorich-rocky-road.jpg" alt="Rocky Road Ice Cream 1L Imorich">
+          </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Ice Creams & Desserts</span>
+            <h4>Rocky Road Ice Cream 1L - Imorich</h4>
+            <p class="range-product-sku">SKU 006115</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
+
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/icecream-elephant-house-wonder-bite.jpg" alt="Elephant House Wonder Bite Chocolate Ice Cream 60Ml">
+          </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Ice Creams & Desserts</span>
+            <h4>Elephant House Wonder Bite Chocolate Ice Cream 60Ml</h4>
+            <p class="range-product-sku">SKU 001539</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
+
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/icecream-magic-cappuccino-cone.jpg" alt="Magic Cappuccino Cone Ice Cream Promo Pack 120Ml">
+          </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Ice Creams & Desserts</span>
+            <h4>Magic Cappuccino Cone Ice Cream Promo Pack 120Ml</h4>
+            <p class="range-product-sku">SKU 002029</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="range-products-section range-products-section-soft">
+    <div class="container">
+      <div class="range-products-head">
+        <p class="section-label">Drinks & Dairy</p>
+        <h2>Everyday sips, refreshment, and dairy essentials in one place.</h2>
+        <p>
+          A curated mix of sparkling drinks, soft beverages, milk, yoghurt, and ready-to-enjoy dairy-based essentials for everyday convenience.
+        </p>
       </div>
 
-      <div class="range-availability-strip">
-        <div class="range-availability-text">
+      <div class="range-products-grid">
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/drinks-may-gold-red-grapes.jpg" alt="Red Grapes Sparkling Fruit Juice Non Alcoholic 750Ml May Gold">
+          </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Drinks & Dairy</span>
+            <h4>Red Grapes Sparkling Fruit Juice (Non Alcoholic) 750Ml - May Gold</h4>
+            <p class="range-product-sku">SKU 000384</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
+
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/drinks-pepsi-500ml.jpg" alt="Pepsi 500Ml">
+          </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Drinks & Dairy</span>
+            <h4>Pepsi 500Ml</h4>
+            <p class="range-product-sku">SKU 005392</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
+
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/drinks-dayfresh-full-cream-milk.jpg" alt="Full Cream UHT Milk Tetra 1L Dayfresh">
+          </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Drinks & Dairy</span>
+            <h4>Full Cream UHT Milk Tetra 1L - Dayfresh</h4>
+            <p class="range-product-sku">SKU 007681</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
+
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/drinks-kotmale-strawberry-yoghurt.jpg" alt="Strawberry Drinking Yoghurt 200Ml Kotmale">
+          </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Drinks & Dairy</span>
+            <h4>Strawberry Drinking Yoghurt 200Ml - Kotmale</h4>
+            <p class="range-product-sku">SKU 004694</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
+
+        <article class="range-product-card">
+          <div class="range-product-image">
+            <img src="assets/images/drinks-farm-lanka-goat-milk.jpg" alt="Goat Milk Chocolate Flavoured 150Ml Farm Lanka">
+          </div>
+          <div class="range-product-content">
+            <span class="range-product-category">Drinks & Dairy</span>
+            <h4>Goat Milk Chocolate Flavoured 150Ml - Farm Lanka</h4>
+            <p class="range-product-sku">SKU 007702</p>
+            <a href="#" class="range-buy-btn just-celeste-btn">Just Celeste It</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="range-platform-section">
+    <div class="container">
+      <div class="range-platform-box">
+        <div class="range-platform-text">
           <p class="section-label">Available On</p>
-          <h3>Celeste, on Uber Eats and PickMe Market.</h3>
+          <h2>Celeste, on Uber Eats and PickMe Market.</h2>
           <p>
-            Available across selected Celeste Daily locations and partner platforms for faster everyday access.
+            Our range is available across selected Celeste locations and supported partner platforms for faster everyday access.
           </p>
         </div>
 
-        <div class="range-platforms">
-          <span class="range-platform-pill">Uber Eats</span>
-          <span class="range-platform-pill">PickMe</span>
+        <div class="range-platform-pills">
+          <span class="range-platform-pill-dark">Uber Eats</span>
+          <span class="range-platform-pill-dark">PickMe</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="locations-preview">
+  <section class="range-cta-section">
     <div class="container">
-      <div class="locations-preview-head">
-        <p class="section-label">Our Locations</p>
-        <h2>Serving customers across key Colombo areas.</h2>
+      <div class="range-cta-box">
+        <h2>Find the Celeste range near you.</h2>
         <p>
-          Explore our outlet network and find the Celeste Daily location most convenient for you.
+          Explore our locations, discover platform availability, and experience a product range built around speed, convenience, and trusted everyday access.
         </p>
-      </div>
 
-      <div class="locations-preview-grid">
-        <div class="location-preview-card">
-          <h3>Celeste Daily - Colombo 06</h3>
-          <p>Convenient access for customers in the Colombo 06 area.</p>
-        </div>
-
-        <div class="location-preview-card">
-          <h3>Celeste Daily - Attidiya</h3>
-          <p>Serving the Attidiya area with reliable everyday convenience.</p>
-        </div>
-
-        <div class="location-preview-card">
-          <h3>Celeste Daily - Ethulkotte</h3>
-          <p>Supporting nearby communities with easy access and trusted service.</p>
-        </div>
-
-        <div class="location-preview-card">
-          <h3>Celeste Daily - Pannipitiya</h3>
-          <p>Built to make shopping faster and easier for customers in Pannipitiya.</p>
-        </div>
-      </div>
-
-      <div class="locations-preview-action">
-        <a href="locations.html" class="btn btn-primary">View All Locations</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="services-showcase">
-    <div class="container">
-      <div class="services-showcase-head">
-        <p class="section-label">Our Services</p>
-        <h2>Built around speed, convenience, and modern retail access.</h2>
-      </div>
-
-      <div class="services-showcase-grid">
-        <div class="service-showcase-card">
-          <div class="service-showcase-logo">
-            <img src="assets/images/logo-1.png" alt="Celeste Daily">
-          </div>
-          <h3>Celeste Daily</h3>
-          <p>
-            Delivering everything you need to your doorstep in under 30 minutes, any time of the day, 24/7 x 365 days.
-          </p>
-        </div>
-
-        <div class="service-showcase-card">
-          <div class="service-showcase-logo">
-            <img src="assets/images/logo-1.png" alt="Celeste Roots">
-          </div>
-          <h3>Celeste Roots</h3>
-          <p>
-            A platform created for small and home businesses to connect directly with potential customers more effectively.
-          </p>
-        </div>
-
-        <div class="service-showcase-card">
-          <div class="service-showcase-logo">
-            <img src="assets/images/logo-1.png" alt="Fulfilled by Celeste">
-          </div>
-          <h3>Fulfilled by Celeste</h3>
-          <p>
-            A modern business solution for brands in Sri Lanka to make their store available through quick commerce.
-          </p>
+        <div class="range-cta-actions">
+          <a href="locations.html" class="btn btn-primary">Our Locations</a>
+          <a href="contact.html" class="btn btn-outline-dark">Contact Us</a>
         </div>
       </div>
     </div>
@@ -437,14 +513,14 @@
         <div class="footer-links">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="range.html">Our Range</a></li>
-            <li><a href="locations.html">Our Locations</a></li>
-            <li><a href="brand-highlights.html">Brand Highlights</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="updates.html">Latest Updates</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="/index">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/range">Our Range</a></li>
+            <li><a href="/locations">Our Locations</a></li>
+            <li><a href="/brand-highlights">Brand Highlights</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/updates">Latest Updates</a></li>
+            <li><a href="/contact">Contact Us</a></li>
           </ul>
         </div>
 
@@ -462,7 +538,7 @@
         <p>&copy; 2026 Celeste. All Rights Reserved.</p>
       </div>
     </div>
-    </footer>
+  </footer>
 
   <script src="script.js"></script>
 </body>
