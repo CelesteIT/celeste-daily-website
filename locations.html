@@ -1,454 +1,357 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Celeste | Our Locations</title>
-  <meta name="description" content="Explore Celeste locations, fulfilled by Celeste outlets, and brand stores." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="style.css" />
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Celeste | Our Locations</title>
+<meta content="Explore Celeste locations, fulfilled by Celeste outlets, and brand stores." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet">
+</link></head>
 <body>
-
-  <header class="site-header">
-    <div class="container header-wrap">
-      <a href="index.html" class="logo">
-        <img src="assets/images/logo.png" alt="Celeste Logo">
-      </a>
-
-      <nav class="desktop-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="range.html">Our Range</a>
-        <a href="locations.html" class="active">Our Locations</a>
-        <a href="brand-highlights.html">Brand Highlights</a>
-        <a href="updates.html">Latest Updates</a>
-        <a href="contact.html">Contact Us</a>
-      </nav>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </div>
-
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="range.html">Our Range</a>
-      <a href="locations.html" class="active">Our Locations</a>
-      <a href="brand-highlights.html">Brand Highlights</a>
-      <a href="updates.html">Latest Updates</a>
-      <a href="contact.html">Contact Us</a>
-    </div>
-  </header>
-
-  <section class="locations-video-hero">
-    <div class="locations-video-wrap">
-      <iframe
-        src="https://www.youtube.com/embed/0G8Hs3mypq4?start=650&autoplay=1&mute=1&controls=0&loop=1&playlist=0G8Hs3mypq4&modestbranding=1&rel=0&playsinline=1"
-        title="Celeste Locations Video"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-      ></iframe>
-      <div class="locations-video-overlay"></div>
-    </div>
-
-    <div class="container locations-video-content"></div>
-  </section>
-
-  <section class="locations-intro-section">
-    <div class="container">
-      <div class="locations-intro-text">
-        <p class="section-label">Our Locations</p>
-        <h1>Find your nearest Celeste outlet, partner location, or brand store.</h1>
-        <p>
+<header class="site-header">
+<div class="container header-wrap">
+<a class="logo" href="index.html">
+<img alt="Celeste Logo" src="assets/images/logo.png"/>
+</a>
+<nav class="desktop-nav">
+<a href="index.html">Home</a>
+<a href="about.html">About Us</a>
+<a href="range.html">Our Range</a>
+<a class="active" href="locations.html">Our Locations</a>
+<a href="brand-highlights.html">Brand Highlights</a>
+<a href="updates.html">Latest Updates</a>
+<a href="contact.html">Contact Us</a>
+</nav>
+<button aria-label="Open Menu" class="menu-toggle" id="menuToggle">
+<i class="fa-solid fa-bars"></i>
+</button>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+<a href="index.html">Home</a>
+<a href="about.html">About Us</a>
+<a href="range.html">Our Range</a>
+<a class="active" href="locations.html">Our Locations</a>
+<a href="brand-highlights.html">Brand Highlights</a>
+<a href="updates.html">Latest Updates</a>
+<a href="contact.html">Contact Us</a>
+</div>
+</header>
+<section class="locations-video-hero">
+<div class="locations-video-wrap">
+<iframe allow="autoplay; encrypted-media" allowfullscreen="" src="https://www.youtube.com/embed/0G8Hs3mypq4?start=650&amp;autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist=0G8Hs3mypq4&amp;modestbranding=1&amp;rel=0&amp;playsinline=1" title="Celeste Locations Video"></iframe>
+<div class="locations-video-overlay"></div>
+</div>
+<div class="container locations-video-content"></div>
+</section>
+<section class="locations-intro-section">
+<div class="container">
+<div class="locations-intro-text">
+<p class="section-label">Our Locations</p>
+<h1>Find your nearest Celeste outlet, partner location, or brand store.</h1>
+<p>
           Browse our growing network of Celeste Stores, Fulfilled by Celeste outlets, and brand stores across key locations.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="locations-directory">
-    <div class="container">
-      <div class="locations-toolbar">
-        <div class="locations-search-wrap">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input
-            type="text"
-            id="locationSearch"
-            class="locations-search"
-            placeholder="Search by outlet name or area"
-          >
-        </div>
-
-        <div class="locations-filters" id="locationFilters">
-          <button class="location-filter-btn active" data-filter="all">All</button>
-          <button class="location-filter-btn" data-filter="celeste-store">Celeste Stores</button>
-          <button class="location-filter-btn" data-filter="fulfilled-by-celeste">Fulfilled by Celeste</button>
-          <button class="location-filter-btn" data-filter="brand-store">Brand Stores</button>
-        </div>
-      </div>
-
-      <div class="locations-results-meta">
-        <p id="locationsResultCount">16 locations found</p>
-      </div>
-
-      <div class="locations-directory-grid" id="locationsGrid">
-
-        <div class="location-directory-card"
-             data-category="celeste-store"
-             data-name="Celeste Daily Colombo 06"
-             data-area="Colombo 06">
-          <div class="location-directory-top">
-            <span class="location-type-badge">Celeste Store</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
-          </div>
-          <h3>Celeste Daily - Colombo 06</h3>
-          <p class="location-directory-area">Colombo 06</p>
-          <p class="location-directory-text">
+</div>
+</div>
+</section>
+<section class="locations-directory">
+<div class="container">
+<div class="locations-toolbar">
+<div class="locations-search-wrap">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input class="locations-search" id="locationSearch" placeholder="Search by outlet name or area" type="text"/>
+</div>
+<div class="locations-filters" id="locationFilters">
+<button class="location-filter-btn active" data-filter="all">All</button>
+<button class="location-filter-btn" data-filter="celeste-store">Celeste Stores</button>
+<button class="location-filter-btn" data-filter="fulfilled-by-celeste">Fulfilled by Celeste</button>
+<button class="location-filter-btn" data-filter="brand-store">Brand Stores</button>
+</div>
+</div>
+<div class="locations-results-meta">
+<p id="locationsResultCount">16 locations found</p>
+</div>
+<div class="locations-directory-grid" id="locationsGrid">
+<div class="location-directory-card" data-area="Colombo 06" data-category="celeste-store" data-name="Celeste Daily Colombo 06">
+<div class="location-directory-top">
+<span class="location-type-badge">Celeste Store</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
+</div>
+<h3>Celeste Daily - Colombo 06</h3>
+<p class="location-directory-area">Colombo 06</p>
+<p class="location-directory-text">
             A core Celeste Daily outlet serving customers in Colombo 06 with fast and reliable everyday access.
           </p>
-
-          <div class="location-order-box">
-            <p class="location-order-title">Order Now</p>
-            <div class="location-order-platforms">
-              <a href="https://www.ubereats.com/store-browse-uuid/4f15f834-7050-4adc-8a5c-dbaef8e1f000?diningMode=DELIVERY" class="location-order-btn order-logo" target="_blank" rel="noopener noreferrer">
-                <img src="assets/images/uber-eats-logo.png" alt="Uber Eats">
-              </a>
-              <a href="https://pickme-app-sl.onelink.me/Fore/23t5r204" class="location-order-btn order-logo" target="_blank" rel="noopener noreferrer">
-                <img src="assets/images/pickme-logo.png" alt="PickMe Food">
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="celeste-store"
-             data-name="Celeste Daily Attidiya"
-             data-area="Attidiya">
-          <div class="location-directory-top">
-            <span class="location-type-badge">Celeste Store</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
-          </div>
-          <h3>Celeste Daily - Attidiya</h3>
-          <p class="location-directory-area">Attidiya</p>
-          <p class="location-directory-text">
+<div class="location-order-box">
+<p class="location-order-title">Order Now</p>
+<div class="location-order-platforms">
+<a class="location-order-btn order-logo" href="https://www.ubereats.com/store-browse-uuid/4f15f834-7050-4adc-8a5c-dbaef8e1f000?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank">
+<img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/>
+</a>
+<a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore/23t5r204" rel="noopener noreferrer" target="_blank">
+<img alt="PickMe Food" src="assets/images/pickme-logo.png"/>
+</a>
+</div>
+</div>
+</div>
+<div class="location-directory-card" data-area="Attidiya" data-category="celeste-store" data-name="Celeste Daily Attidiya">
+<div class="location-directory-top">
+<span class="location-type-badge">Celeste Store</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
+</div>
+<h3>Celeste Daily - Attidiya</h3>
+<p class="location-directory-area">Attidiya</p>
+<p class="location-directory-text">
             A main Celeste outlet focused on dependable convenience and daily essentials for the Attidiya area.
           </p>
-
-          <div class="location-order-box">
-            <p class="location-order-title">Order Now</p>
-            <div class="location-order-platforms">
-              <a href="https://www.ubereats.com/store-browse-uuid/c1c99983-fd89-53fb-8bf7-f66ac4c69cbf?diningMode=DELIVERY" class="location-order-btn order-logo" target="_blank" rel="noopener noreferrer">
-                <img src="assets/images/uber-eats-logo.png" alt="Uber Eats">
-              </a>
-              <a href="https://pickme-app-sl.onelink.me/Fore/hgiiqi16" class="location-order-btn order-logo" target="_blank" rel="noopener noreferrer">
-                <img src="assets/images/pickme-logo.png" alt="PickMe Food">
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="celeste-store"
-             data-name="Celeste Daily Ethulkotte"
-             data-area="Ethulkotte">
-          <div class="location-directory-top">
-            <span class="location-type-badge">Celeste Store</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
-          </div>
-          <h3>Celeste Daily - Ethulkotte</h3>
-          <p class="location-directory-area">Ethulkotte</p>
-          <p class="location-directory-text">
+<div class="location-order-box">
+<p class="location-order-title">Order Now</p>
+<div class="location-order-platforms">
+<a class="location-order-btn order-logo" href="https://www.ubereats.com/store-browse-uuid/c1c99983-fd89-53fb-8bf7-f66ac4c69cbf?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank">
+<img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/>
+</a>
+<a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore/hgiiqi16" rel="noopener noreferrer" target="_blank">
+<img alt="PickMe Food" src="assets/images/pickme-logo.png"/>
+</a>
+</div>
+</div>
+</div>
+<div class="location-directory-card" data-area="Ethulkotte" data-category="celeste-store" data-name="Celeste Daily Ethulkotte">
+<div class="location-directory-top">
+<span class="location-type-badge">Celeste Store</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
+</div>
+<h3>Celeste Daily - Ethulkotte</h3>
+<p class="location-directory-area">Ethulkotte</p>
+<p class="location-directory-text">
             A dedicated Celeste Daily location serving nearby households with speed, convenience, and trusted service.
           </p>
-
-          <div class="location-order-box">
-            <p class="location-order-title">Order Now</p>
-            <div class="location-order-platforms">
-              <a href="https://www.ubereats.com/store-browse-uuid/430c0cae-71db-5684-9b3f-6012241c011d?diningMode=DELIVERY" class="location-order-btn order-logo" target="_blank" rel="noopener noreferrer">
-                <img src="assets/images/uber-eats-logo.png" alt="Uber Eats">
-              </a>
-              <a href="https://pickme-app-sl.onelink.me/Fore/ir86rygk" class="location-order-btn order-logo" target="_blank" rel="noopener noreferrer">
-                <img src="assets/images/pickme-logo.png" alt="PickMe Food">
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="celeste-store"
-             data-name="Celeste Daily Pannipitiya"
-             data-area="Pannipitiya">
-          <div class="location-directory-top">
-            <span class="location-type-badge">Celeste Store</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
-          </div>
-          <h3>Celeste Daily - Pannipitiya</h3>
-          <p class="location-directory-area">Pannipitiya</p>
-          <p class="location-directory-text">
+<div class="location-order-box">
+<p class="location-order-title">Order Now</p>
+<div class="location-order-platforms">
+<a class="location-order-btn order-logo" href="https://www.ubereats.com/store-browse-uuid/430c0cae-71db-5684-9b3f-6012241c011d?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank">
+<img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/>
+</a>
+<a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore/ir86rygk" rel="noopener noreferrer" target="_blank">
+<img alt="PickMe Food" src="assets/images/pickme-logo.png"/>
+</a>
+</div>
+</div>
+</div>
+<div class="location-directory-card" data-area="Pannipitiya" data-category="celeste-store" data-name="Celeste Daily Pannipitiya">
+<div class="location-directory-top">
+<span class="location-type-badge">Celeste Store</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
+</div>
+<h3>Celeste Daily - Pannipitiya</h3>
+<p class="location-directory-area">Pannipitiya</p>
+<p class="location-directory-text">
             A core Celeste Daily outlet designed to support faster and easier shopping in the Pannipitiya area.
           </p>
-
-          <div class="location-order-box">
-            <p class="location-order-title">Order Now</p>
-            <div class="location-order-platforms">
-              <a href="https://www.ubereats.com/store-browse-uuid/ae9ff179-10c6-5b81-b42d-2012ddbab1be?diningMode=DELIVERY" class="location-order-btn order-logo" target="_blank" rel="noopener noreferrer">
-                <img src="assets/images/uber-eats-logo.png" alt="Uber Eats">
-              </a>
-              <a href="https://pickme-app-sl.onelink.me/Fore/su2smnee" class="location-order-btn order-logo" target="_blank" rel="noopener noreferrer">
-                <img src="assets/images/pickme-logo.png" alt="PickMe Food">
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="fulfilled-by-celeste"
-             data-name="Celeste Daily at SPAR Union Place"
-             data-area="Union Place">
-          <div class="location-directory-top">
-            <span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
-          </div>
-          <h3>Celeste Daily at SPAR Union Place</h3>
-          <p class="location-directory-area">Union Place</p>
-          <p class="location-directory-text">
+<div class="location-order-box">
+<p class="location-order-title">Order Now</p>
+<div class="location-order-platforms">
+<a class="location-order-btn order-logo" href="https://www.ubereats.com/store-browse-uuid/ae9ff179-10c6-5b81-b42d-2012ddbab1be?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank">
+<img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/>
+</a>
+<a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore/su2smnee" rel="noopener noreferrer" target="_blank">
+<img alt="PickMe Food" src="assets/images/pickme-logo.png"/>
+</a>
+</div>
+</div>
+</div>
+<div class="location-directory-card" data-area="Union Place" data-category="fulfilled-by-celeste" data-name="Celeste Daily at SPAR Union Place">
+<div class="location-directory-top">
+<span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
+</div>
+<h3>Celeste Daily at SPAR Union Place</h3>
+<p class="location-directory-area">Union Place</p>
+<p class="location-directory-text">
             A Fulfilled by Celeste partner location supporting quicker access and order fulfilment through the Celeste network.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="fulfilled-by-celeste"
-             data-name="Celeste Daily at SPAR Malabe"
-             data-area="Malabe">
-          <div class="location-directory-top">
-            <span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
-          </div>
-          <h3>Celeste Daily at SPAR Malabe</h3>
-          <p class="location-directory-area">Malabe</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/store/celeste-daily-at-spar-union-place/CzHaOiHpXIaHX5eOhCLzYw?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a><a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore?af_xp=custom&amp;pid=custom&amp;deep_link_value=outletDetailScreen&amp;af_dp=afpickmesl%3A%2F%2F&amp;merchant_id=49823&amp;service_code=MARKETPLACE&amp;route_type=food_and_market&amp;route=outletDetailScreen" rel="noopener noreferrer" target="_blank"><img alt="PickMe Food" src="assets/images/pickme-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Malabe" data-category="fulfilled-by-celeste" data-name="Celeste Daily at SPAR Malabe">
+<div class="location-directory-top">
+<span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
+</div>
+<h3>Celeste Daily at SPAR Malabe</h3>
+<p class="location-directory-area">Malabe</p>
+<p class="location-directory-text">
             A Fulfilled by Celeste partner location expanding convenient retail access for customers in Malabe.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="fulfilled-by-celeste"
-             data-name="Celeste Daily at SPAR Kelaniya"
-             data-area="Kelaniya">
-          <div class="location-directory-top">
-            <span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
-          </div>
-          <h3>Celeste Daily at SPAR Kelaniya</h3>
-          <p class="location-directory-area">Kelaniya</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/store/celeste-daily-at-spar-malabe/yzQ7pI1DUCuDdAV3dWVqAg?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a><a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore?af_xp=custom&amp;pid=custom&amp;deep_link_value=outletDetailScreen&amp;af_dp=afpickmesl%3A%2F%2F&amp;merchant_id=50953&amp;service_code=MARKETPLACE&amp;route_type=food_and_market&amp;route=outletDetailScreen" rel="noopener noreferrer" target="_blank"><img alt="PickMe Food" src="assets/images/pickme-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Kelaniya" data-category="fulfilled-by-celeste" data-name="Celeste Daily at SPAR Kelaniya">
+<div class="location-directory-top">
+<span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
+</div>
+<h3>Celeste Daily at SPAR Kelaniya</h3>
+<p class="location-directory-area">Kelaniya</p>
+<p class="location-directory-text">
             A Fulfilled by Celeste location built to strengthen service coverage and customer reach in Kelaniya.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="fulfilled-by-celeste"
-             data-name="Celeste Daily at SPAR Pepiliyana"
-             data-area="Pepiliyana">
-          <div class="location-directory-top">
-            <span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
-          </div>
-          <h3>Celeste Daily at SPAR Pepiliyana</h3>
-          <p class="location-directory-area">Pepiliyana</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/store/celeste-daily-at-spar-kelaniya/JTtZSBHAXDaxd3R2RCyHnw?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a><a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore?af_xp=custom&amp;pid=custom&amp;deep_link_value=outletDetailScreen&amp;af_dp=afpickmesl%3A%2F%2F&amp;merchant_id=50952&amp;service_code=MARKETPLACE&amp;route_type=food_and_market&amp;route=outletDetailScreen" rel="noopener noreferrer" target="_blank"><img alt="PickMe Food" src="assets/images/pickme-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Pepiliyana" data-category="fulfilled-by-celeste" data-name="Celeste Daily at SPAR Pepiliyana">
+<div class="location-directory-top">
+<span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
+</div>
+<h3>Celeste Daily at SPAR Pepiliyana</h3>
+<p class="location-directory-area">Pepiliyana</p>
+<p class="location-directory-text">
             A Fulfilled by Celeste outlet helping deliver a smoother and more accessible customer experience in Pepiliyana.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="fulfilled-by-celeste"
-             data-name="Celeste Daily at SPAR Wattala"
-             data-area="Wattala">
-          <div class="location-directory-top">
-            <span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
-          </div>
-          <h3>Celeste Daily at SPAR Wattala</h3>
-          <p class="location-directory-area">Wattala</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/store/celeste-daily-at-spar-pepiliyana/9ymrsY7_X8-wjLRY5OJqbw?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a><a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore?af_xp=custom&amp;pid=custom&amp;deep_link_value=outletDetailScreen&amp;af_dp=afpickmesl%3A%2F%2F&amp;merchant_id=50951&amp;service_code=MARKETPLACE&amp;route_type=food_and_market&amp;route=outletDetailScreen" rel="noopener noreferrer" target="_blank"><img alt="PickMe Food" src="assets/images/pickme-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Wattala" data-category="fulfilled-by-celeste" data-name="Celeste Daily at SPAR Wattala">
+<div class="location-directory-top">
+<span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
+</div>
+<h3>Celeste Daily at SPAR Wattala</h3>
+<p class="location-directory-area">Wattala</p>
+<p class="location-directory-text">
             A Fulfilled by Celeste location extending fast-moving retail access and order fulfilment in Wattala.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="fulfilled-by-celeste"
-             data-name="Celeste Daily at SPAR Seeduwa"
-             data-area="Seeduwa">
-          <div class="location-directory-top">
-            <span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
-          </div>
-          <h3>Celeste Daily at SPAR Seeduwa</h3>
-          <p class="location-directory-area">Seeduwa</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/lk/store/celeste-daily-at-spar-wattala/CnMSD-D5Uh-iiGrToIvbOQ?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a><a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore?af_xp=custom&amp;pid=custom&amp;deep_link_value=outletDetailScreen&amp;af_dp=afpickmesl%3A%2F%2F&amp;merchant_id=53265&amp;service_code=MARKETPLACE&amp;route_type=food_and_market&amp;route=outletDetailScreen" rel="noopener noreferrer" target="_blank"><img alt="PickMe Food" src="assets/images/pickme-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Seeduwa" data-category="fulfilled-by-celeste" data-name="Celeste Daily at SPAR Seeduwa">
+<div class="location-directory-top">
+<span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
+</div>
+<h3>Celeste Daily at SPAR Seeduwa</h3>
+<p class="location-directory-area">Seeduwa</p>
+<p class="location-directory-text">
             A Fulfilled by Celeste partner outlet helping serve customers in Seeduwa with better speed and convenience.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="fulfilled-by-celeste"
-             data-name="Celeste Daily at SPAR Galle"
-             data-area="Galle">
-          <div class="location-directory-top">
-            <span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
-          </div>
-          <h3>Celeste Daily at SPAR Galle</h3>
-          <p class="location-directory-area">Galle</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/lk/store/celeste-daily-at-spar-seeduwa/G1m00ql2X5mYgiIHAALjnA?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a><a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore?af_xp=custom&amp;pid=custom&amp;deep_link_value=outletDetailScreen&amp;af_dp=afpickmesl%3A%2F%2F&amp;merchant_id=53526&amp;service_code=MARKETPLACE&amp;route_type=food_and_market&amp;route=outletDetailScreen" rel="noopener noreferrer" target="_blank"><img alt="PickMe Food" src="assets/images/pickme-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Galle" data-category="fulfilled-by-celeste" data-name="Celeste Daily at SPAR Galle">
+<div class="location-directory-top">
+<span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
+</div>
+<h3>Celeste Daily at SPAR Galle</h3>
+<p class="location-directory-area">Galle</p>
+<p class="location-directory-text">
             A Fulfilled by Celeste outlet supporting broader reach and dependable quick-commerce service in Galle.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="fulfilled-by-celeste"
-             data-name="Celeste Daily at SPAR Negombo"
-             data-area="Negombo">
-          <div class="location-directory-top">
-            <span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
-          </div>
-          <h3>Celeste Daily at SPAR Negombo</h3>
-          <p class="location-directory-area">Negombo</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/store/celeste-daily-at-spar-galle/EFBuNlkIVfiMW1V6biOD3A?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a><a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore?af_xp=custom&amp;pid=custom&amp;deep_link_value=outletDetailScreen&amp;af_dp=afpickmesl%3A%2F%2F&amp;merchant_id=53366&amp;service_code=MARKETPLACE&amp;route_type=food_and_market&amp;route=outletDetailScreen" rel="noopener noreferrer" target="_blank"><img alt="PickMe Food" src="assets/images/pickme-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Negombo" data-category="fulfilled-by-celeste" data-name="Celeste Daily at SPAR Negombo">
+<div class="location-directory-top">
+<span class="location-type-badge fulfilled">Fulfilled by Celeste</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> Open until 11:00 PM</span>
+</div>
+<h3>Celeste Daily at SPAR Negombo</h3>
+<p class="location-directory-area">Negombo</p>
+<p class="location-directory-text">
             A Fulfilled by Celeste location strengthening everyday convenience and faster customer access in Negombo.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="brand-store"
-             data-name="Red Bull Fulfilled By Celeste"
-             data-area="Colombo">
-          <div class="location-directory-top">
-            <span class="location-type-badge brand">Brand Store</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
-          </div>
-          <h3>Red Bull Fulfilled By Celeste</h3>
-          <p class="location-directory-area">Colombo</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/lk/store/celeste-daily-at-spar-negombo/76ccKBMrWwywmACrCucZLQ?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a><a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore?af_xp=custom&amp;pid=custom&amp;deep_link_value=outletDetailScreen&amp;af_dp=afpickmesl%3A%2F%2F&amp;merchant_id=54389&amp;service_code=MARKETPLACE&amp;route_type=food_and_market&amp;route=outletDetailScreen" rel="noopener noreferrer" target="_blank"><img alt="PickMe Food" src="assets/images/pickme-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Colombo" data-category="brand-store" data-name="Red Bull Fulfilled By Celeste">
+<div class="location-directory-top">
+<span class="location-type-badge brand">Brand Store</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
+</div>
+<h3>Red Bull Fulfilled By Celeste</h3>
+<p class="location-directory-area">Colombo</p>
+<p class="location-directory-text">
             A brand-focused store powered through the Celeste fulfilment ecosystem to support stronger quick-commerce access.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="brand-store"
-             data-name="Nestle Fulfilled By Celeste"
-             data-area="Colombo">
-          <div class="location-directory-top">
-            <span class="location-type-badge brand">Brand Store</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
-          </div>
-          <h3>Nestle Fulfilled By Celeste</h3>
-          <p class="location-directory-area">Colombo</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/lk/store/red-bull-fulfilled-by-celeste-colombo-06/xxf0TVDOUwGnN96Mu2CqbA?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Colombo" data-category="brand-store" data-name="Nestle Fulfilled By Celeste">
+<div class="location-directory-top">
+<span class="location-type-badge brand">Brand Store</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
+</div>
+<h3>Nestle Fulfilled By Celeste</h3>
+<p class="location-directory-area">Colombo</p>
+<p class="location-directory-text">
             A brand store supported by Celeste fulfilment to make product access easier, faster, and more visible in Colombo.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="brand-store"
-             data-name="Fonterra Fulfilled By Celeste"
-             data-area="Colombo">
-          <div class="location-directory-top">
-            <span class="location-type-badge brand">Brand Store</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
-          </div>
-          <h3>Fonterra Fulfilled By Celeste</h3>
-          <p class="location-directory-area">Colombo</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/lk/store/nestle-fulfilled-by-celeste-colombo-06/vBEPa0SsVOSUuF23sGRzSQ?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a><a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore/6sgfo9iw" rel="noopener noreferrer" target="_blank"><img alt="PickMe Food" src="assets/images/pickme-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Colombo" data-category="brand-store" data-name="Fonterra Fulfilled By Celeste">
+<div class="location-directory-top">
+<span class="location-type-badge brand">Brand Store</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
+</div>
+<h3>Fonterra Fulfilled By Celeste</h3>
+<p class="location-directory-area">Colombo</p>
+<p class="location-directory-text">
             A brand-led retail presence made available through Celeste’s fulfilment and quick-commerce support model.
           </p>
-        </div>
-
-        <div class="location-directory-card"
-             data-category="brand-store"
-             data-name="UStore Fulfilled By Celeste"
-             data-area="Colombo">
-          <div class="location-directory-top">
-            <span class="location-type-badge brand">Brand Store</span>
-            <span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
-          </div>
-          <h3>UStore Fulfilled By Celeste</h3>
-          <p class="location-directory-area">Colombo</p>
-          <p class="location-directory-text">
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/lk/store/fonterra-fulfilled-by-celeste-colombo-06/10CUqJLSVlC1mzN-yZ5Huw?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a><a class="location-order-btn order-logo" href="https://pickme-app-sl.onelink.me/Fore/01f4p2kg" rel="noopener noreferrer" target="_blank"><img alt="PickMe Food" src="assets/images/pickme-logo.png"/></a></div></div></div>
+<div class="location-directory-card" data-area="Colombo" data-category="brand-store" data-name="UStore Fulfilled By Celeste">
+<div class="location-directory-top">
+<span class="location-type-badge brand">Brand Store</span>
+<span class="location-time-badge"><i class="fa-regular fa-clock"></i> 24/7</span>
+</div>
+<h3>UStore Fulfilled By Celeste</h3>
+<p class="location-directory-area">Colombo</p>
+<p class="location-directory-text">
             A brand store operating through the Celeste network to deliver modern retail access and fulfilment support.
           </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="footer-logo">
-            <img src="assets/images/logo.png" alt="Celeste Logo">
-          </a>
-          <p>
+<div class="location-order-box"><p class="location-order-title">Order Now</p><div class="location-order-platforms"><a class="location-order-btn order-logo" href="https://www.ubereats.com/lk/store/ustorelk-fulfilled-by-celeste-colombo-06/RQugR5uqX_SLITgncFllsg?diningMode=DELIVERY" rel="noopener noreferrer" target="_blank"><img alt="Uber Eats" src="assets/images/uber-eats-logo.png"/></a></div></div></div>
+</div>
+</div>
+</section>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a class="footer-logo" href="index.html">
+<img alt="Celeste Logo" src="assets/images/logo.png"/>
+</a>
+<p>
             Celeste is built around convenience, speed, and modern retail access, serving customers through trusted everyday service and quick commerce.
           </p>
-
-          <div class="footer-socials">
-            <a href="https://www.facebook.com/CelesteDaily.lk?mibextid=kFxxJD" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/celestedaily.lk?igsh=MWViNm1teDk1YjZyag%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://lk.linkedin.com/company/celestelk" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-            <a href="https://www.tiktok.com/@celestedaily.lk?_t=8qYhOnppwwe&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-              <i class="fa-brands fa-tiktok"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="footer-links">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="range.html">Our Range</a></li>
-            <li><a href="locations.html">Our Locations</a></li>
-            <li><a href="brand-highlights.html">Brand Highlights</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="updates.html">Latest Updates</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-contact">
-          <h3>Contact</h3>
-          <ul>
-            <li><a href="tel:+94117509000">+94 11 750 9000</a></li>
-            <li><a href="mailto:hello@celeste.lk">hello@celeste.lk</a></li>
-            <li>Open 24/7 across all Celeste Daily locations.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2026 Celeste. All Rights Reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+<div class="footer-socials">
+<a aria-label="Facebook" href="https://www.facebook.com/CelesteDaily.lk?mibextid=kFxxJD" rel="noopener noreferrer" target="_blank">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+<a aria-label="Instagram" href="https://www.instagram.com/celestedaily.lk?igsh=MWViNm1teDk1YjZyag%3D%3D" rel="noopener noreferrer" target="_blank">
+<i class="fa-brands fa-instagram"></i>
+</a>
+<a aria-label="LinkedIn" href="https://lk.linkedin.com/company/celestelk" rel="noopener noreferrer" target="_blank">
+<i class="fa-brands fa-linkedin-in"></i>
+</a>
+<a aria-label="TikTok" href="https://www.tiktok.com/@celestedaily.lk?_t=8qYhOnppwwe&amp;_r=1" rel="noopener noreferrer" target="_blank">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+</div>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="range.html">Our Range</a></li>
+<li><a href="locations.html">Our Locations</a></li>
+<li><a href="brand-highlights.html">Brand Highlights</a></li>
+<li><a href="gallery.html">Gallery</a></li>
+<li><a href="updates.html">Latest Updates</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+</ul>
+</div>
+<div class="footer-contact">
+<h3>Contact</h3>
+<ul>
+<li><a href="tel:+94117509000">+94 11 750 9000</a></li>
+<li><a href="mailto:hello@celeste.lk">hello@celeste.lk</a></li>
+<li>Open 24/7 across all Celeste Daily locations.</li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 Celeste. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>
