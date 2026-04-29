@@ -300,4 +300,22 @@ if (revealCards.length) {
   revealCards.forEach((card) => {
     revealObserver.observe(card);
   });
+
+  // Mobile dropdown menus
+const mobileDropdownToggles = document.querySelectorAll(".mobile-dropdown-toggle");
+
+mobileDropdownToggles.forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    const dropdown = toggle.closest(".mobile-dropdown");
+
+    document.querySelectorAll(".mobile-dropdown").forEach((item) => {
+      if (item !== dropdown) {
+        item.classList.remove("active");
+      }
+    });
+
+    dropdown.classList.toggle("active");
+  });
+});
 }
+
