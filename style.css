@@ -3053,6 +3053,128 @@ ul {
   transform: scale(1.02);
 }
 
+/* =========================
+   Navbar Dropdowns
+========================= */
+
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-dropdown-toggle i {
+  font-size: 0.72rem;
+  transition: transform 0.25s ease;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 18px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  min-width: 230px;
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 999;
+}
+
+.nav-dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 0;
+  width: 100%;
+  height: 18px;
+}
+
+.nav-dropdown-menu a {
+  display: flex;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: #111111;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.22s ease;
+}
+
+.nav-dropdown-menu a:hover {
+  background: #f4f4f4;
+  transform: translateX(2px);
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown:hover .nav-dropdown-toggle i {
+  transform: rotate(180deg);
+}
+
+/* Mobile dropdowns */
+.mobile-dropdown {
+  width: 100%;
+}
+
+.mobile-dropdown-toggle {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #111111;
+  font: inherit;
+  font-weight: 600;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.mobile-dropdown-toggle i {
+  font-size: 0.8rem;
+  transition: transform 0.25s ease;
+}
+
+.mobile-dropdown-menu {
+  display: none;
+  padding: 4px 0 10px 14px;
+}
+
+.mobile-dropdown-menu a {
+  display: block;
+  padding: 10px 0;
+  color: #5f6773;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.mobile-dropdown.active .mobile-dropdown-menu {
+  display: block;
+}
+
+.mobile-dropdown.active .mobile-dropdown-toggle i {
+  transform: rotate(180deg);
+}
+
 /* Footer */
 .site-footer {
   background: #111111;
