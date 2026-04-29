@@ -3130,6 +3130,16 @@ ul {
   transform: rotate(180deg);
 }
 
+.nav-dropdown-toggle {
+  border: 0;
+  background: transparent;
+  color: #111111;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
 /* Mobile dropdowns */
 .mobile-dropdown {
   width: 100%;
