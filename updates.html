@@ -22,12 +22,56 @@
       </a>
 
       <nav class="desktop-nav">
-        <a href="/index">Home</a>
+        <a href="/">Home</a>
         <a href="/about">About Us</a>
-        <a href="/range">Our Range</a>
+
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button">
+            Our Range <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/range">View All Our Range</a>
+            <a href="/range#frozen">Frozen</a>
+            <a href="/range#everyday-essentials">Everyday Essentials</a>
+            <a href="/range#beverage">Beverage</a>
+            <a href="/range#fresh-produce">Fresh Produce</a>
+          </div>
+        </div>
+
         <a href="/locations">Our Locations</a>
-        <a href="/brand-highlights">Brand Highlights</a>
-        <a href="/updates" class="active">Latest Updates</a>
+
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button">
+            Brand <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/brand-highlights">Brand Highlights</a>
+            <a href="/updates" class="active">Latest Updates</a>
+          </div>
+        </div>
+
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button">
+            Our Services <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/services">View All Services</a>
+            <a href="/services#vending-machine-solutions">Vending Machine Solutions</a>
+            <a href="/services#fulfillment-services">Fulfillment Services</a>
+          </div>
+        </div>
+
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button">
+            Join Us <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/careers">Careers</a>
+            <a href="/careers#internship">Internship</a>
+            <a href="/careers#long-term-team-player">Long Term Team Player</a>
+          </div>
+        </div>
+
         <a href="/contact">Contact Us</a>
       </nav>
 
@@ -37,13 +81,57 @@
     </div>
 
     <div class="mobile-menu" id="mobileMenu">
-      <a href="/index">Home</a>
-        <a href="/about">About Us</a>
-        <a href="/range">Our Range</a>
-        <a href="/locations">Our Locations</a>
-        <a href="/brand-highlights">Brand Highlights</a>
-        <a href="/updates" class="active">Latest Updates</a>
-        <a href="/contact">Contact Us</a>
+      <a href="/">Home</a>
+      <a href="/about">About Us</a>
+
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-toggle" type="button">
+          Our Range <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="mobile-dropdown-menu">
+          <a href="/range">View All Our Range</a>
+          <a href="/range#frozen">Frozen</a>
+          <a href="/range#everyday-essentials">Everyday Essentials</a>
+          <a href="/range#beverage">Beverage</a>
+          <a href="/range#fresh-produce">Fresh Produce</a>
+        </div>
+      </div>
+
+      <a href="/locations">Our Locations</a>
+
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-toggle" type="button">
+          Brand <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="mobile-dropdown-menu">
+          <a href="/brand-highlights">Brand Highlights</a>
+          <a href="/updates" class="active">Latest Updates</a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-toggle" type="button">
+          Our Services <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="mobile-dropdown-menu">
+          <a href="/services">View All Services</a>
+          <a href="/services#vending-machine-solutions">Vending Machine Solutions</a>
+          <a href="/services#fulfillment-services">Fulfillment Services</a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-toggle" type="button">
+          Join Us <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="mobile-dropdown-menu">
+          <a href="/careers">Careers</a>
+          <a href="/careers#internship">Internship</a>
+          <a href="/careers#long-term-team-player">Long Term Team Player</a>
+        </div>
+      </div>
+
+      <a href="/contact">Contact Us</a>
     </div>
   </header>
 
@@ -120,7 +208,7 @@
           <div class="update-card-content">
             <span class="updates-badge">Reel</span>
             <p class="updates-meta">Water Promotion</p>
-            <h3>30% off on Celeste Wathura.</h3>
+            <h3>30% off on Celeste Ethura.</h3>
             <p>
               A promotional reel built to keep hydration offers visible, active, and commercially strong.
             </p>
@@ -218,7 +306,7 @@
         </p>
         <div class="updates-cta-actions">
           <a href="https://www.instagram.com/celestedaily.lk?igsh=MWViNm1teDk1YjZyag%3D%3D" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Follow on Instagram</a>
-          <a href="contact.html" class="btn btn-outline-dark">Contact Us</a>
+          <a href="/contact" class="btn btn-outline-dark">Contact Us</a>
         </div>
       </div>
     </div>
@@ -228,7 +316,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="footer-logo">
+          <a href="/" class="footer-logo">
             <img src="assets/images/logo.png" alt="Celeste Logo">
           </a>
           <p>
