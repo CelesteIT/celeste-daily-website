@@ -2056,6 +2056,140 @@ ul {
   margin: 0 auto;
 }
 
+/* ========================================
+   SERVICES SPLIT CARD
+======================================== */
+.service-split-card {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 40px;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e9e9e9;
+    border-radius: 28px;
+    padding: 28px;
+    margin: 50px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.service-split-media {
+    width: 100%;
+}
+
+.service-split-media video,
+.service-split-media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    border-radius: 22px;
+    background: #f5f5f5;
+}
+
+.service-split-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service-pill {
+    display: inline-block;
+    width: fit-content;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: #000;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.service-eyebrow {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.service-split-content h2 {
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    line-height: 1.1;
+    margin-bottom: 18px;
+    color: #111;
+}
+
+.service-split-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 18px;
+}
+
+.service-split-content .btn,
+.service-split-content .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 14px 24px;
+    border-radius: 999px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.service-split-content .btn:hover,
+.service-split-content .btn-dark:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+    .service-split-card {
+        grid-template-columns: 320px 1fr;
+        gap: 28px;
+        padding: 24px;
+    }
+
+    .service-split-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .service-split-content p {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .service-split-card {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .service-split-media video,
+    .service-split-media img {
+        aspect-ratio: 16 / 10;
+        border-radius: 18px;
+    }
+
+    .service-split-content h2 {
+        font-size: 1.9rem;
+    }
+
+    .service-split-content p {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+}
+
 /* About Banner */
 .about-banner {
   position: relative;
@@ -2921,6 +3055,13 @@ ul {
   .updates-cta-actions .btn,
   .updates-cta-actions .btn-outline-dark {
     width: 100%;
+  }
+
+  .upadates-featured-media video {
+    width: 100%;
+    display: block;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
   }
 }
 
@@ -4077,5 +4218,725 @@ ul {
 
   .about-growth-card {
     border-radius: 20px;
+  }
+}
+/* =========================================================
+   FINAL PATCH — SERVICES PAGE + VENDING LOCATIONS + NAV FIXES
+   Keep this at the bottom so it overrides older duplicated rules.
+========================================================= */
+
+.nav-dropdown-toggle.active {
+  color: #111111;
+  font-weight: 700;
+}
+
+.desktop-nav .nav-dropdown-toggle {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dark);
+  position: relative;
+  transition: var(--transition);
+}
+
+.desktop-nav .nav-dropdown-toggle:hover,
+.desktop-nav .nav-dropdown-toggle.active {
+  color: var(--accent);
+}
+
+.desktop-nav .nav-dropdown-toggle.active::after,
+.desktop-nav .nav-dropdown-toggle:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+.nav-dropdown-menu a.active {
+  background: #f4f4f4;
+  color: #111111;
+  font-weight: 800;
+}
+
+.mobile-dropdown-toggle.active {
+  color: #111111;
+  font-weight: 800;
+}
+
+.mobile-dropdown-menu a.active {
+  color: #111111;
+  font-weight: 800;
+}
+
+.mobile-menu a.active::after {
+  display: none;
+}
+
+.services-hero {
+  padding-bottom: 46px;
+}
+
+.services-section {
+  padding: 70px 0;
+  background: #ffffff;
+}
+
+.services-section-soft {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+}
+
+.service-split-card {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 40px;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e9e9e9;
+  border-radius: 28px;
+  padding: 28px;
+  margin: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.service-split-card-reverse {
+  grid-template-columns: 1fr 380px;
+}
+
+.service-split-card-reverse .service-split-media {
+  order: 2;
+}
+
+.service-split-card-reverse .service-split-content {
+  order: 1;
+}
+
+.service-split-media {
+  width: 100%;
+}
+
+.service-split-media video,
+.service-split-media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  border-radius: 22px;
+  background: #f5f5f5;
+}
+
+.service-split-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-pill {
+  display: inline-block;
+  width: fit-content;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #000000;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.service-eyebrow {
+  font-size: 1rem;
+  color: #666666;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.service-split-content h2 {
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1.1;
+  margin-bottom: 18px;
+  color: #111111;
+  letter-spacing: -1px;
+}
+
+.service-split-content p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #666666;
+  margin-bottom: 18px;
+}
+
+.service-split-content .btn {
+  width: fit-content;
+}
+
+.service-split-media-icon {
+  height: 100%;
+}
+
+.service-visual-card {
+  min-height: 420px;
+  border-radius: 22px;
+  background: #111111;
+  color: #ffffff;
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-visual-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 55%);
+}
+
+.service-visual-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  background: #ffffff;
+  color: #111111;
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.service-visual-card h3,
+.service-visual-card p {
+  position: relative;
+  z-index: 1;
+}
+
+.service-visual-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.service-visual-card p {
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+}
+
+.vending-locations-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.vending-location-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: 36px;
+}
+
+.vending-location-card {
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.06);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.vending-location-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.10);
+}
+
+.vending-location-video {
+  background: #000000;
+  overflow: hidden;
+}
+
+.vending-location-video video,
+.vending-location-video img {
+  width: 100%;
+  aspect-ratio: 9 / 12;
+  object-fit: cover;
+  display: block;
+  background: #000000;
+}
+
+.vending-location-content {
+  padding: 24px;
+}
+
+.vending-location-content span {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: #f1f2f4;
+  color: #111111;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.vending-location-content h3 {
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: #111111;
+  margin-bottom: 10px;
+}
+
+.vending-location-content p {
+  color: #666666;
+  line-height: 1.7;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 991px) {
+  .service-split-card,
+  .service-split-card-reverse {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 24px;
+  }
+
+  .service-split-card-reverse .service-split-media,
+  .service-split-card-reverse .service-split-content {
+    order: initial;
+  }
+
+  .service-split-media video,
+  .service-split-media img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .service-visual-card {
+    min-height: 320px;
+  }
+
+  .vending-location-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .services-hero {
+    padding-top: 70px;
+    padding-bottom: 30px;
+  }
+
+  .services-section,
+  .vending-locations-section {
+    padding: 54px 0;
+  }
+
+  .service-split-card,
+  .service-split-card-reverse {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .service-split-media video,
+  .service-split-media img {
+    aspect-ratio: 16 / 10;
+    border-radius: 18px;
+  }
+
+  .service-visual-card {
+    min-height: 280px;
+    padding: 26px;
+    border-radius: 18px;
+  }
+
+  .service-split-content h2 {
+    font-size: 1.9rem;
+  }
+
+  .service-split-content p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .service-split-content .btn {
+    width: 100%;
+  }
+
+  .vending-location-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .vending-location-video video,
+  .vending-location-video img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .vending-location-content {
+    padding: 20px;
+  }
+}
+
+/* =========================================================
+   FINAL VENDING COMPACT SPLIT LAYOUT
+   Left media, right wording
+========================================================= */
+
+.vending-locations-section {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.vending-head-compact {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.vending-split-list {
+  display: grid;
+  gap: 22px;
+  margin-top: 26px;
+}
+
+.vending-split-card {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  gap: 30px;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.055);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.vending-split-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
+}
+
+.vending-split-media {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #000000;
+}
+
+.vending-split-media video,
+.vending-split-media img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  background: #000000;
+}
+
+/* Normal vending videos */
+.vending-media-portrait video,
+.vending-media-portrait img {
+  aspect-ratio: 4 / 5;
+}
+
+/* Union Assurance landscape image */
+.vending-media-landscape img,
+.vending-media-landscape video {
+  aspect-ratio: 16 / 9;
+}
+
+.vending-split-content {
+  max-width: 640px;
+}
+
+.vending-status-pill {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.vending-split-content .service-eyebrow {
+  font-size: 0.96rem;
+  color: #666666;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.vending-split-content h3 {
+  font-size: clamp(1.65rem, 3vw, 2.45rem);
+  line-height: 1.08;
+  letter-spacing: -0.8px;
+  color: #111111;
+  margin-bottom: 14px;
+}
+
+.vending-split-content p {
+  color: #666666;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .vending-split-card {
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    padding: 20px;
+  }
+
+  .vending-split-content h3 {
+    font-size: 1.9rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .vending-locations-section {
+    padding: 48px 0;
+  }
+
+  .vending-split-list {
+    gap: 20px;
+  }
+
+  .vending-split-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .vending-split-media {
+    border-radius: 16px;
+  }
+
+  .vending-media-portrait video,
+  .vending-media-portrait img,
+  .vending-media-landscape img,
+  .vending-media-landscape video {
+    aspect-ratio: 16 / 10;
+  }
+
+  .vending-split-content h3 {
+    font-size: 1.75rem;
+  }
+
+  .vending-split-content p {
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+}
+
+/* =========================================================
+   CAREERS / JOIN US PAGE
+========================================================= */
+
+.careers-hero {
+  padding-bottom: 46px;
+}
+
+.careers-intro-section {
+  padding: 40px 0 70px;
+  background: #ffffff;
+}
+
+.careers-intro-card {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 34px;
+  align-items: center;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 28px;
+  padding: 34px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.06);
+}
+
+.careers-intro-card h2 {
+  font-size: clamp(1.9rem, 3.5vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -1px;
+}
+
+.careers-intro-card p {
+  color: #666666;
+  line-height: 1.8;
+  font-size: 1.02rem;
+}
+
+.career-paths-section {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+}
+
+.career-paths-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+}
+
+.career-path-card {
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 28px;
+  padding: 30px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.career-path-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.09);
+}
+
+.career-path-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: #111111;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 1.55rem;
+  margin-bottom: 18px;
+}
+
+.career-pill {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #f1f2f4;
+  color: #111111;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.career-path-card h3 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  margin-bottom: 14px;
+}
+
+.career-path-card p {
+  color: #666666;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.career-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.career-list li {
+  position: relative;
+  padding-left: 22px;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.career-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #111111;
+}
+
+.career-values-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.career-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.career-value-card {
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+.career-value-card h3 {
+  font-size: 1.16rem;
+  margin-bottom: 10px;
+}
+
+.career-value-card p {
+  color: #666666;
+  line-height: 1.7;
+  font-size: 0.96rem;
+}
+
+@media (max-width: 991px) {
+  .careers-intro-card {
+    grid-template-columns: 1fr;
+  }
+
+  .career-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .careers-hero {
+    padding-top: 70px;
+    padding-bottom: 30px;
+  }
+
+  .careers-intro-section,
+  .career-paths-section,
+  .career-values-section {
+    padding: 54px 0;
+  }
+
+  .careers-intro-card {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .career-paths-grid,
+  .career-values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .career-path-card {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .career-path-card .btn {
+    width: 100%;
   }
 }
