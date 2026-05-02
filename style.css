@@ -3742,7 +3742,7 @@ ul {
     position: absolute;
     left: 14px;
     bottom: 14px;
-    max-width: 170px;
+    max-width: 160px;
     padding: 0;
     background: none;
     border-radius: 0;
@@ -5025,5 +5025,528 @@ ul {
 
   .career-path-card .btn {
     width: 100%;
+  }
+}
+
+/* =========================================================
+   FINAL RANGE PAGE — PREMIUM CELESTE CATALOG
+   Paste this at the bottom of style.css
+========================================================= */
+
+/* Smooth anchor offset for sticky header */
+#celeste-wathura,
+#everyday-essentials,
+#desserts-frozen,
+#household,
+#spices-condiments,
+#fresh-produce {
+  scroll-margin-top: 110px;
+}
+
+/* Range intro */
+.range-intro-strip {
+  background: #ffffff;
+  padding: 64px 0 46px;
+  text-align: center;
+}
+
+.range-intro-strip h1 {
+  max-width: 860px;
+  margin: 0 auto 18px;
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -2px;
+  color: #0b0b0b;
+}
+
+.range-intro-strip .page-hero-text {
+  max-width: 760px;
+  margin: 0 auto;
+  color: #666666;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+/* Category pill navigation */
+.range-category-nav {
+  background: #ffffff;
+  padding: 0 0 30px;
+  position: sticky;
+  top: 76px;
+  z-index: 20;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.range-category-pills {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 14px 0;
+  scrollbar-width: none;
+}
+
+.range-category-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.range-category-pills a {
+  flex: 0 0 auto;
+  text-decoration: none;
+  color: #111111;
+  background: #f4f4f4;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.range-category-pills a:hover {
+  background: #111111;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Product sections */
+.range-products-section {
+  padding: 72px 0;
+  background: #ffffff;
+}
+
+.range-products-section-soft {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+}
+
+.range-products-head {
+  max-width: 760px;
+  margin-bottom: 34px;
+}
+
+.range-products-head h2 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -1.3px;
+  color: #0b0b0b;
+  margin-bottom: 16px;
+}
+
+.range-products-head p {
+  color: #666666;
+  font-size: 1.03rem;
+  line-height: 1.75;
+}
+
+/* Compact catalog grid */
+.celeste-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* Compact product card */
+.celeste-catalog-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 20px;
+  padding: 12px;
+  min-height: 292px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.045);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.celeste-catalog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.085);
+  border-color: rgba(17, 17, 17, 0.14);
+}
+
+/* Value wording badge */
+.celeste-value-tag {
+  position: static;
+  display: inline-flex;
+  align-self: flex-start;
+  background: #111111;
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.1px;
+  margin: 0 0 10px 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Image area — close to 137.72px compact style */
+.celeste-catalog-image {
+  width: 100%;
+  height: 170.80px;
+  border-radius: 15px;
+  background: #f7f7f7;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.celeste-catalog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.celeste-catalog-card:hover .celeste-catalog-image img {
+  transform: scale(1.04);
+}
+
+/* Product text */
+.celeste-catalog-card h4 {
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: #111111;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  margin: 0 0 5px;
+  min-height: 40px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.celeste-catalog-card p {
+  color: #777777;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+/* Just Celeste It button */
+.celeste-catalog-card .range-buy-btn,
+.range-buy-btn.just-celeste-btn {
+  margin-top: auto;
+  width: 100%;
+  min-height: 40px;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: -0.1px;
+  transition: all 0.25s ease;
+  border: 1px solid #111111;
+}
+
+.celeste-catalog-card .range-buy-btn:hover,
+.range-buy-btn.just-celeste-btn:hover {
+  background: #ffffff;
+  color: #111111;
+  transform: translateY(-2px);
+}
+
+/* Old range card compatibility — hides older category badge style if any remains */
+.range-product-category {
+  display: none;
+}
+
+/* Available platform section */
+.range-platform-section {
+  padding: 76px 0;
+  background: #ffffff;
+}
+
+.range-platform-box {
+  background: #111111;
+  color: #ffffff;
+  border-radius: 28px;
+  padding: 38px;
+  display: grid;
+  grid-template-columns: 1.4fr auto;
+  align-items: center;
+  gap: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+.range-platform-box::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 55%);
+  pointer-events: none;
+}
+
+.range-platform-text,
+.range-platform-pills {
+  position: relative;
+  z-index: 1;
+}
+
+.range-platform-text h2 {
+  color: #ffffff;
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.range-platform-text p {
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.range-platform-pills {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.range-platform-pill-dark {
+  background: #ffffff;
+  color: #111111;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+/* CTA */
+.range-cta-section {
+  padding: 0 0 80px;
+  background: #ffffff;
+}
+
+.range-cta-box {
+  background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 30px;
+  padding: 44px;
+  text-align: center;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
+}
+
+.range-cta-box h2 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: #111111;
+  margin-bottom: 14px;
+}
+
+.range-cta-box p {
+  max-width: 760px;
+  margin: 0 auto 26px;
+  color: #666666;
+  line-height: 1.75;
+}
+
+.range-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Dropdown menu width fix for more range items */
+.nav-dropdown-menu {
+  min-width: 235px;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .range-category-nav {
+    top: 70px;
+  }
+
+  .range-intro-strip {
+    padding: 54px 0 38px;
+  }
+
+  .range-products-section {
+    padding: 58px 0;
+  }
+
+  .celeste-catalog-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 18px;
+  }
+
+  .range-platform-box {
+    grid-template-columns: 1fr;
+    padding: 32px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  #celeste-wathura,
+  #everyday-essentials,
+  #desserts-frozen,
+  #household,
+  #spices-condiments,
+  #fresh-produce {
+    scroll-margin-top: 92px;
+  }
+
+  .range-intro-strip {
+    padding: 42px 0 30px;
+  }
+
+  .range-intro-strip h1 {
+    font-size: 2.35rem;
+    letter-spacing: -1px;
+  }
+
+  .range-intro-strip .page-hero-text {
+    font-size: 0.98rem;
+  }
+
+  .range-category-nav {
+    top: 64px;
+    padding-bottom: 12px;
+  }
+
+  .range-category-pills {
+    padding: 12px 0;
+  }
+
+  .range-category-pills a {
+    font-size: 0.8rem;
+    padding: 9px 13px;
+  }
+
+  .range-products-section {
+    padding: 46px 0;
+  }
+
+  .range-products-head {
+    margin-bottom: 24px;
+  }
+
+  .range-products-head h2 {
+    font-size: 2rem;
+    letter-spacing: -0.8px;
+  }
+
+  .range-products-head p {
+    font-size: 0.96rem;
+  }
+
+  .celeste-catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .celeste-catalog-card {
+    border-radius: 17px;
+    padding: 10px;
+    min-height: 272px;
+  }
+
+  .celeste-catalog-image {
+    height: 160.72px;
+    border-radius: 13px;
+    margin-bottom: 10px;
+  }
+
+  .celeste-catalog-image img {
+    padding: 7px;
+  }
+
+  .celeste-value-tag {
+  font-size: 0.58rem;
+  padding: 6px 7px;
+  margin: 0 0 8px 0;
+  max-width: 100%;
+}
+
+  .celeste-catalog-card h4 {
+    font-size: 0.84rem;
+    min-height: 38px;
+  }
+
+  .celeste-catalog-card p {
+    font-size: 0.72rem;
+    margin-bottom: 10px;
+  }
+
+  .celeste-catalog-card .range-buy-btn,
+  .range-buy-btn.just-celeste-btn {
+    min-height: 36px;
+    font-size: 0.76rem;
+  }
+
+  .range-platform-section {
+    padding: 54px 0;
+  }
+
+  .range-platform-box {
+    padding: 26px;
+    border-radius: 24px;
+  }
+
+  .range-platform-pills {
+    width: 100%;
+  }
+
+  .range-platform-pill-dark {
+    flex: 1;
+    text-align: center;
+    padding: 11px 14px;
+  }
+
+  .range-cta-section {
+    padding: 0 0 56px;
+  }
+
+  .range-cta-box {
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+
+  .range-cta-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 390px) {
+  .celeste-catalog-grid {
+    gap: 12px;
+  }
+
+  .celeste-catalog-card {
+    padding: 9px;
+    min-height: 264px;
+  }
+
+  .celeste-catalog-image {
+    height: 128px;
+  }
+
+  .celeste-catalog-card h4 {
+    font-size: 0.8rem;
+  }
+
+  .celeste-catalog-card .range-buy-btn,
+  .range-buy-btn.just-celeste-btn {
+    font-size: 0.72rem;
   }
 }
