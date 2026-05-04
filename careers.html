@@ -477,6 +477,38 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const revealItems = document.querySelectorAll(
+            ".career-intro-copy, .career-intro-stat, .career-video-box, .career-pillars-head, .career-pillar-card, .career-cta-box"
+        );
+
+        if (!("IntersectionObserver" in window)) {
+            revealItems.forEach((item) => item.classList.add("career-reveal-visible"));
+            return;
+        }
+
+        const revealObserver = new IntersectionObserver(
+            function (entries, observer) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("career-reveal-visible");
+                        observer.unobserve(entry.target);
+                     }
+                });
+            },
+            {
+                threshold: 0.16,
+                rootMargin: "0px 0px -40px 0px"
+            }
+        );
+        
+        revealItems.forEach(function (item) {
+            revealObserver.observe(item);
+        });
+     });
+    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
