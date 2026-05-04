@@ -143,7 +143,7 @@
 
   <main>
 
-    <section class="contact-hero-banner">
+    <section class="contact-hero-banner contact-hero-premium">
       <div class="contact-hero-media">
         <img src="assets/images/contact-banner.jpg" alt="Celeste Contact Banner">
         <div class="contact-hero-overlay"></div>
@@ -154,12 +154,11 @@
           <p class="section-label section-label-light">CONTACT CELESTE</p>
           <h1>Let’s connect and get it done.</h1>
           <p class="page-hero-text page-hero-text-light">
-            Reach out for customer support, service inquiries, partnerships, fulfilment
-            conversations, or general information about Celeste.
+            Reach out for customer support, service inquiries, partnerships, fulfilment conversations, or general information about Celeste.
           </p>
 
           <div class="contact-hero-actions">
-            <a href="#contactForm" class="btn btn-primary">Send a Message</a>
+            <a href="#contact-form-section" class="btn btn-primary">Send a Message</a>
             <a href="https://wa.me/94775882525" class="btn btn-outline-light" target="_blank" rel="noopener noreferrer">
               Chat on WhatsApp
             </a>
@@ -364,7 +363,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const revealItems = document.querySelectorAll(
-        ".contact-hero-content, .contact-trust-item, .contact-info-card, .contact-whatsapp-box, .contact-form-card"
+        ".contact-hero-text-box, .contact-trust-item, .contact-info-card, .contact-whatsapp-box, .contact-form-card"
       );
 
       if (!("IntersectionObserver" in window)) {
