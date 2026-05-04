@@ -7974,6 +7974,7 @@ html {
 .contact-hero-banner.contact-hero-premium {
   position: relative;
   min-height: 620px;
+  height: 620px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -7996,44 +7997,69 @@ html {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center right;
   display: block;
 }
 
+/* Lighter premium overlay — banner stays visible */
 .contact-hero-overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
-    linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.50) 42%, rgba(0,0,0,0.20) 100%),
-    linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.52) 100%);
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.58) 0%,
+      rgba(0, 0, 0, 0.38) 38%,
+      rgba(0, 0, 0, 0.16) 72%,
+      rgba(0, 0, 0, 0.08) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0.22) 100%
+    );
 }
 
+/* Left side text alignment */
 .contact-hero-content {
   position: relative;
   z-index: 2;
-  max-width: 760px;
+  height: 100%;
   color: #ffffff;
-  padding: 96px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.contact-hero-content .section-label {
-  color: rgba(255,255,255,0.78);
-  margin-bottom: 18px;
+.contact-hero-text-box {
+  max-width: 680px;
+  margin-left: 0;
+  text-align: left;
+  animation: contactHeroTextIn 0.9s cubic-bezier(.2,.85,.25,1) forwards;
 }
 
-.contact-hero-content h1 {
+.contact-hero-text-box .section-label,
+.contact-hero-text-box .section-label-light {
+  color: rgba(255, 255, 255, 0.86);
+  margin-bottom: 16px;
+}
+
+.contact-hero-text-box h1 {
   color: #ffffff;
-  font-size: clamp(3rem, 6vw, 6.4rem);
-  line-height: 0.94;
+  font-size: clamp(3rem, 5.8vw, 5.8rem);
+  line-height: 0.95;
   letter-spacing: -3px;
-  margin: 0 0 24px;
+  margin: 0 0 22px;
+  max-width: 680px;
 }
 
-.contact-hero-content p {
-  color: rgba(255,255,255,0.80);
-  font-size: 1.08rem;
-  line-height: 1.8;
-  max-width: 650px;
+.contact-hero-text-box p,
+.contact-hero-text-box .page-hero-text-light {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.05rem;
+  line-height: 1.78;
+  max-width: 600px;
   margin: 0 0 30px;
 }
 
@@ -8055,10 +8081,21 @@ html {
   white-space: nowrap;
 }
 
+.contact-hero-actions .btn-primary {
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #ffffff;
+}
+
+.contact-hero-actions .btn-primary:hover {
+  background: #f2f2f2;
+  color: #111111;
+}
+
 .btn-outline-light {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.10);
   color: #ffffff;
-  border: 1px solid rgba(255,255,255,0.42);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(12px);
 }
 
@@ -8068,11 +8105,23 @@ html {
   border-color: #ffffff;
 }
 
+@keyframes contactHeroTextIn {
+  from {
+    opacity: 0;
+    transform: translateX(-34px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* Contact Trust Strip */
 .contact-trust-strip {
   background: #ffffff;
   padding: 22px 0;
-  border-bottom: 1px solid rgba(17,17,17,0.08);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
 }
 
 .contact-trust-grid {
@@ -8083,7 +8132,7 @@ html {
 
 .contact-trust-item {
   min-height: 72px;
-  border: 1px solid rgba(17,17,17,0.08);
+  border: 1px solid rgba(17, 17, 17, 0.08);
   border-radius: 999px;
   background: #ffffff;
   display: flex;
@@ -8095,7 +8144,7 @@ html {
   font-size: 0.92rem;
   text-align: center;
   padding: 0 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
 }
 
 .contact-trust-item i {
@@ -8111,17 +8160,17 @@ html {
 .contact-section-premium {
   position: relative;
   background:
-    radial-gradient(circle at top right, rgba(198,156,76,0.11), transparent 30%),
+    radial-gradient(circle at top right, rgba(198, 156, 76, 0.11), transparent 30%),
     linear-gradient(180deg, #ffffff 0%, #f7f7f5 100%);
   padding: 88px 0;
 }
 
 .contact-shell {
   background: #ffffff;
-  border: 1px solid rgba(17,17,17,0.08);
+  border: 1px solid rgba(17, 17, 17, 0.08);
   border-radius: 38px;
   padding: 28px;
-  box-shadow: 0 26px 80px rgba(0,0,0,0.08);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.08);
 }
 
 .contact-grid {
@@ -8138,7 +8187,7 @@ html {
 
 .contact-info-card {
   background: #f8f8f8;
-  border: 1px solid rgba(17,17,17,0.07);
+  border: 1px solid rgba(17, 17, 17, 0.07);
   border-radius: 26px;
   padding: 24px;
   box-shadow: none;
@@ -8147,7 +8196,7 @@ html {
 
 .contact-info-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 48px rgba(0,0,0,0.08);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
 }
 
 .contact-info-icon {
@@ -8184,23 +8233,23 @@ html {
 /* WhatsApp Box */
 .contact-whatsapp-box {
   background:
-    radial-gradient(circle at top right, rgba(255,255,255,0.14), transparent 36%),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.14), transparent 36%),
     linear-gradient(145deg, #111111 0%, #1c1c1c 100%);
   color: #ffffff;
   border-radius: 30px;
   padding: 30px;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.14);
-  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-whatsapp-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 30px 72px rgba(0,0,0,0.18);
+  box-shadow: 0 30px 72px rgba(0, 0, 0, 0.18);
 }
 
 .contact-whatsapp-box .section-label {
-  color: rgba(255,255,255,0.72);
+  color: rgba(255, 255, 255, 0.72);
   margin-bottom: 14px;
 }
 
@@ -8213,7 +8262,7 @@ html {
 }
 
 .contact-whatsapp-box p {
-  color: rgba(255,255,255,0.72);
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.7;
   margin: 0 0 22px;
   font-size: 0.98rem;
@@ -8228,10 +8277,10 @@ html {
 /* Contact Form */
 .contact-form-card {
   background: #ffffff;
-  border: 1px solid rgba(17,17,17,0.08);
+  border: 1px solid rgba(17, 17, 17, 0.08);
   border-radius: 30px;
   padding: 34px;
-  box-shadow: 0 16px 50px rgba(0,0,0,0.055);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.055);
 }
 
 .contact-form-head {
@@ -8283,7 +8332,7 @@ html {
 .form-group textarea,
 .form-group select {
   width: 100%;
-  border: 1px solid rgba(17,17,17,0.12);
+  border: 1px solid rgba(17, 17, 17, 0.12);
   background: #f8f8f8;
   border-radius: 18px;
   padding: 15px 16px;
@@ -8317,7 +8366,7 @@ html {
 .form-group select:focus {
   background: #ffffff;
   border-color: #111111;
-  box-shadow: 0 0 0 4px rgba(17,17,17,0.08);
+  box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.08);
 }
 
 .contact-submit-btn {
@@ -8329,7 +8378,7 @@ html {
 }
 
 /* Contact Reveal Animation */
-.contact-hero-content,
+.contact-hero-text-box,
 .contact-trust-item,
 .contact-info-card,
 .contact-whatsapp-box,
@@ -8375,6 +8424,7 @@ html {
 
   .contact-hero-banner.contact-hero-premium {
     min-height: 560px;
+    height: 560px;
   }
 }
 
@@ -8384,26 +8434,57 @@ html {
   }
 
   .contact-hero-banner.contact-hero-premium {
-    min-height: 520px;
+    min-height: 500px;
+    height: 500px;
+  }
+
+  .contact-hero-media img,
+  .contact-hero-media video {
+    object-position: center center;
+  }
+
+  .contact-hero-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.62) 0%,
+        rgba(0, 0, 0, 0.44) 55%,
+        rgba(0, 0, 0, 0.22) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.08) 0%,
+        rgba(0, 0, 0, 0.34) 100%
+      );
   }
 
   .contact-hero-content {
-    padding: 72px 0;
+    align-items: center;
+    height: 100%;
   }
 
-  .contact-hero-content h1 {
-    font-size: 2.7rem;
+  .contact-hero-text-box {
+    max-width: 100%;
+  }
+
+  .contact-hero-text-box h1 {
+    font-size: 2.55rem;
     line-height: 1;
     letter-spacing: -1.4px;
+    margin-bottom: 18px;
   }
 
-  .contact-hero-content p {
-    font-size: 0.96rem;
-    line-height: 1.72;
+  .contact-hero-text-box p,
+  .contact-hero-text-box .page-hero-text-light {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 22px;
   }
 
   .contact-hero-actions {
+    width: 100%;
     flex-direction: column;
+    align-items: stretch;
   }
 
   .contact-hero-actions .btn {
@@ -8452,7 +8533,7 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .contact-hero-content,
+  .contact-hero-text-box,
   .contact-trust-item,
   .contact-info-card,
   .contact-whatsapp-box,
@@ -8460,5 +8541,6 @@ html {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+    animation: none !important;
   }
 }
