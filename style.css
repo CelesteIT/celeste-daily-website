@@ -8544,3 +8544,222 @@ html {
     animation: none !important;
   }
 }
+
+/* =========================================================
+   CAREERS / JOIN US LARGE BLANK SPACE FIX
+   Paste at bottom of style.css
+========================================================= */
+
+.career-join-cta,
+.career-application-cta,
+.career-final-cta,
+.join-final-cta {
+  margin-bottom: 0 !important;
+  padding-bottom: 56px !important;
+}
+
+.career-join-cta + .site-footer,
+.career-application-cta + .site-footer,
+.career-final-cta + .site-footer,
+.join-final-cta + .site-footer {
+  margin-top: 0 !important;
+}
+
+/* If the blank is caused by the whole page wrapper */
+.careers-page main,
+.join-page main {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Fix any oversized CTA/card wrapper */
+.career-cta-section,
+.join-cta-section {
+  padding-top: 56px !important;
+  padding-bottom: 56px !important;
+  min-height: auto !important;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .career-join-cta,
+  .career-application-cta,
+  .career-final-cta,
+  .join-final-cta,
+  .career-cta-section,
+  .join-cta-section {
+    padding-top: 38px !important;
+    padding-bottom: 38px !important;
+    margin-bottom: 0 !important;
+    min-height: auto !important;
+  }
+}
+
+/* =========================================================
+   CAREERS FINAL SECTION FIX
+   Removes dead white space and adds proper closing section
+========================================================= */
+
+.career-pathway-cta {
+  padding: 70px 0 32px !important;
+  margin: 0 !important;
+  background: #ffffff;
+}
+
+.career-final-section {
+  padding: 32px 0 76px !important;
+  margin: 0 !important;
+  background:
+    radial-gradient(circle at top right, rgba(17, 17, 17, 0.06), transparent 34%),
+    linear-gradient(180deg, #ffffff 0%, #f8f8f6 100%);
+}
+
+.career-final-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 34px;
+  padding: 50px;
+  background: #0b0b0b;
+  color: #ffffff;
+  display: grid;
+  grid-template-columns: 1.15fr auto;
+  align-items: center;
+  gap: 34px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.16);
+}
+
+.career-final-box::before {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 280px;
+  right: -120px;
+  top: -160px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 68%);
+  pointer-events: none;
+}
+
+.career-final-box::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 33px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.career-final-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.career-final-copy .section-label {
+  color: rgba(255, 255, 255, 0.66);
+  margin-bottom: 14px;
+}
+
+.career-final-copy h2 {
+  color: #ffffff;
+  font-size: clamp(2.0rem, 5vw, 4.0rem);
+  line-height: 0.98;
+  letter-spacing: -2px;
+  margin: 0 0 18px;
+}
+
+.career-final-copy p {
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 760px;
+  line-height: 1.8;
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.career-final-actions {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.career-final-actions .btn {
+  min-height: 54px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.career-final-actions .btn-primary {
+  background: #ffffff;
+  color: #111111;
+  border-color: #ffffff;
+}
+
+.career-final-actions .btn-primary:hover {
+  background: #f2f2f2;
+  color: #111111;
+}
+
+.career-final-actions .btn-outline-dark {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.career-final-actions .btn-outline-dark:hover {
+  background: #ffffff;
+  color: #111111;
+  border-color: #ffffff;
+}
+
+/* Remove accidental huge blank space before footer */
+.career-final-section + .site-footer,
+main + .site-footer {
+  margin-top: 0 !important;
+}
+
+.career-final-section .container,
+.career-pathway-cta .container {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .career-final-box {
+    grid-template-columns: 1fr;
+    padding: 38px 26px;
+  }
+
+  .career-final-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .career-pathway-cta {
+    padding: 46px 0 22px !important;
+  }
+
+  .career-final-section {
+    padding: 22px 0 52px !important;
+  }
+
+  .career-final-box {
+    border-radius: 26px;
+  }
+
+  .career-final-copy h2 {
+    font-size: 2.5rem;
+    letter-spacing: -1.2px;
+  }
+
+  .career-final-actions {
+    flex-direction: column;
+  }
+
+  .career-final-actions .btn {
+    width: 100%;
+  }
+}
