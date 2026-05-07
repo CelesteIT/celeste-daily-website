@@ -8763,3 +8763,71 @@ main + .site-footer {
     width: 100%;
   }
 }
+
+/* =========================================================
+   CAREERS HERO POSITION + BUTTON CLICK FIX ONLY
+   Paste at the very bottom of style.css
+========================================================= */
+
+/* Keep buttons clickable */
+.careers-page .career-hero-bg,
+.careers-page .career-hero-overlay,
+.careers-page .career-popup-gallery,
+.careers-page .career-popup-gallery-wrap,
+.careers-page .career-popup-image-card,
+.careers-page .career-popup-image-card img {
+  pointer-events: none !important;
+}
+
+.careers-page .career-hero-banner .container,
+.careers-page .career-hero-inner,
+.careers-page .career-hero-content,
+.careers-page .career-hero-actions {
+  position: relative;
+  z-index: 50 !important;
+}
+
+.careers-page .career-hero-actions,
+.careers-page .career-hero-actions a,
+.careers-page .career-hero-actions .btn {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Move hero text slightly to the right without changing font size */
+.careers-page .career-hero-content {
+  margin-left: clamp(24px, 4vw, 72px) !important;
+  max-width: 720px !important;
+  text-align: left !important;
+}
+
+/* Keep text tidy, but DO NOT force new font size */
+.careers-page .career-hero-content h1 {
+  max-width: 720px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: left !important;
+}
+
+.careers-page .career-hero-text {
+  max-width: 620px !important;
+  margin-left: 0 !important;
+  text-align: left !important;
+}
+
+.careers-page .career-hero-actions {
+  justify-content: flex-start !important;
+}
+
+/* Mobile: remove extra right shift */
+@media (max-width: 767px) {
+  .careers-page .career-hero-content {
+    margin-left: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .careers-page .career-hero-content h1,
+  .careers-page .career-hero-text {
+    max-width: 100% !important;
+  }
+}
