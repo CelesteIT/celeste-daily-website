@@ -1,0 +1,19 @@
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  const data = {
+    page: req.body?.page || '',
+    referrer: req.body?.referrer || 'direct',
+    screen: req.body?.screen || '',
+    language: req.body?.language || '',
+    timestamp: req.body?.timestamp || new Date().toISOString(),
+    ip: req.headers['x-forwarded-for'] || '',
+    userAgent: req.headers['user-agent'] || ''
+  };
+
+  console.log('PAGE_VIEW:', data);
+
+  return res.status(200).json({ success: true });
+}
