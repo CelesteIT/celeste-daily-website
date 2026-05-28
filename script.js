@@ -323,4 +323,22 @@ if (mobileDropdownToggles.length) {
   });
 }
 
+function trackPageView() {
+  fetch('/api/track-view', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      page: window.location.pathname,
+      referrer: document.referrer || 'direct',
+      screen: `${window.innerWidth}x${window.innerHeight}`,
+      language: navigator.language,
+      timestamp: new Date().toISOString()
+    })
+  }).catch(() => {});
+}
+
+trackPageView();
+
 
