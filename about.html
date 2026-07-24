@@ -34,12 +34,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="about-page">
 
   <header class="site-header">
     <div class="container header-wrap">
@@ -56,7 +56,7 @@
             Our Range <i class="fa-solid fa-chevron-down"></i>
           </button>
           <div class="nav-dropdown-menu">
-            <a href="/range" class="active">View All Our Range</a>
+            <a href="/range">View All Our Range</a>
             <a href="/range#celeste-wathura">Celeste වathura</a>
             <a href="/range#everyday-essentials">Everyday Essentials</a>
             <a href="/range#desserts-frozen">Desserts & Frozen</a>
@@ -117,7 +117,7 @@
           Our Range <i class="fa-solid fa-chevron-down"></i>
         </button>
         <div class="mobile-dropdown-menu">
-          <a href="/range" class="active">View All Our Range</a>
+          <a href="/range">View All Our Range</a>
           <a href="/range#celeste-wathura">Celeste වathura</a>
           <a href="/range#everyday-essentials">Everyday Essentials</a>
           <a href="/range#desserts-frozen">Desserts & Frozen</a>
@@ -165,16 +165,48 @@
     </div>
   </header>
 
-  <section class="about-banner">
-    <div class="about-banner-desktop" style="background-image: url('assets/images/about-banner-desktop.jpg');"></div>
-    <div class="about-banner-mobile" style="background-image: url('assets/images/about-banner-mobile.jpg');"></div>
+  <section class="about-banner about-video-hero">
+
+    <video
+      class="about-hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="assets/images/about-banner-desktop.jpg"
+      aria-hidden="true"
+    >
+      <source src="assets/videos/about-hero.mp4" type="video/mp4">
+    </video>
+
+    <div class="about-banner-mobile-fallback"></div>
 
     <div class="about-banner-overlay"></div>
 
-    <div class="container about-banner-content"></div>
+    <div class="container about-banner-content">
+      <div class="about-banner-copy">
+        <p class="section-label section-label-light">About Celeste</p>
+
+        <h1>
+          Modern retail, built around everyday life.
+        </h1>
+
+        <p>
+          Faster access, trusted quality, and dependable convenience
+          designed for the way Sri Lanka shops today.
+        </p>
+
+        <a href="#about-story" class="about-hero-scroll">
+          Discover our story
+          <i class="fa-solid fa-arrow-down"></i>
+        </a>
+      </div>
+    </div>
+
   </section>
 
-  <section class="about-intro-section">
+  <section class="about-intro-section scroll-reveal">
     <div class="container">
       <div class="about-intro-text">
         <p class="section-label">About Us</p>
@@ -211,7 +243,7 @@
     </div>
   </section>
 
-  <section class="founder-section">
+  <section class="founder-section scroll-reveal">
     <div class="container">
       <div class="founder-grid">
         <div class="founder-image-wrap">
@@ -232,7 +264,7 @@
     </div>
   </section>
 
-  <section class="about-growth-section">
+  <section class="about-growth-section scroll-reveal">
     <div class="container">
       <div class="about-growth-head">
         <p class="section-label">Our Journey</p>
@@ -249,7 +281,7 @@
     </div>
   </section>
 
-  <section class="about-values">
+  <section class="about-values scroll-reveal">
     <div class="container">
       <div class="about-values-head">
         <p class="section-label">Our Foundation</p>
@@ -257,21 +289,21 @@
       </div>
 
       <div class="about-values-grid">
-        <div class="about-value-card">
+        <div class="about-value-card scroll-reveal-item">
           <h3>Mission</h3>
           <p>
             To serve people with speed, care, and integrity by delivering 24/7 convenience and better value every day.
           </p>
         </div>
 
-        <div class="about-value-card">
+        <div class="about-value-card scroll-reveal-item">
           <h3>Vision</h3>
           <p>
             To give people time they never had before by redefining everyday living through trust, innovation, and Sri Lankan excellence.
           </p>
         </div>
 
-        <div class="about-value-card">
+        <div class="about-value-card scroll-reveal-item">
           <h3>Values</h3>
           <p>
             Convenience, consistency, quality, responsiveness, and a customer-first mindset remain at the center of how we grow.
@@ -281,9 +313,10 @@
     </div>
   </section>
 
-  <section class="about-cta">
+  <section class="about-cta scroll-reveal">
     <div class="container">
       <div class="about-cta-box">
+        <p class="section-label">Get In Touch</p>
         <h2>Want to connect with Celeste?</h2>
         <p>
           Get in touch with our team to learn more about our services, locations, and retail solutions.
