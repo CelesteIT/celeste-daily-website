@@ -52,7 +52,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -198,17 +198,46 @@
     <div class="container hero-content"></div>
   </section>
 
-  <section class="brand-message-section">
+
+
+  <section class="celeste-promise-strip" aria-label="Celeste highlights">
+    <div class="promise-strip-track">
+      <div class="promise-strip-group">
+        <span class="promise-stat"><strong>200K+</strong> Customers</span>
+        <span class="promise-separator" aria-hidden="true">✦</span>
+        <span class="promise-stat"><strong>3M+</strong> Orders</span>
+        <span class="promise-separator" aria-hidden="true">✦</span>
+        <span class="promise-stat"><strong>Open 24×7</strong> Every Day</span>
+        <span class="promise-separator" aria-hidden="true">✦</span>
+        <span class="promise-stat"><strong>Under 30 Minutes</strong> Delivery</span>
+        <span class="promise-separator" aria-hidden="true">✦</span>
+        <span class="promise-stat"><strong>11+</strong> Locations</span>
+        <span class="promise-separator" aria-hidden="true">✦</span>
+      </div>
+
+      <div class="promise-strip-group" aria-hidden="true">
+        <span class="promise-stat"><strong>200K+</strong> Customers</span>
+        <span class="promise-separator">✦</span>
+        <span class="promise-stat"><strong>3M+</strong> Orders</span>
+        <span class="promise-separator">✦</span>
+        <span class="promise-stat"><strong>Open 24×7</strong> Every Day</span>
+        <span class="promise-separator">✦</span>
+        <span class="promise-stat"><strong>Under 30 Minutes</strong> Delivery</span>
+        <span class="promise-separator">✦</span>
+        <span class="promise-stat"><strong>11+</strong> Locations</span>
+        <span class="promise-separator">✦</span>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="brand-message-section scroll-reveal" aria-labelledby="brand-message-heading">
     <div class="container">
       <div class="brand-message-premium">
         <div class="brand-message-topline"></div>
-
         <p class="brand-message-label">OUR BRAND MESSAGE</p>
-
-        <h2 class="brand-message-title">කඩේ ගාණට, ඔබේ ගාවට!</h2>
-
+        <h2 class="brand-message-title" id="brand-message-heading" lang="si">කඩේ ගාණට, ඔබේ ගාවට!</h2>
         <p class="brand-message-tagline">JUST CELESTE IT!</p>
-
         <p class="brand-message-description">
           Bringing everyday convenience closer to you with speed, quality, and trusted service.
         </p>
@@ -216,45 +245,7 @@
     </div>
   </section>
 
-  <section class="stats-strip">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon">
-            <i class="fa-solid fa-users"></i>
-          </div>
-          <h3>200K+</h3>
-          <p>Customers</p>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon">
-            <i class="fa-solid fa-box-open"></i>
-          </div>
-          <h3>3M+</h3>
-          <p>Orders</p>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon">
-            <i class="fa-regular fa-clock"></i>
-          </div>
-          <h3>24x7</h3>
-          <p>Open</p>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon">
-            <i class="fa-solid fa-store"></i>
-          </div>
-          <h3>11+</h3>
-          <p>Locations</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="brand-intro">
+  <section class="brand-intro scroll-reveal">
     <div class="container">
       <div class="brand-intro-grid">
         <div class="brand-intro-text">
@@ -288,7 +279,7 @@
     </div>
   </section>
 
-  <section class="why-celeste">
+  <section class="why-celeste scroll-reveal">
     <div class="container">
       <div class="why-celeste-head">
         <p class="section-label">Why Choose Celeste</p>
@@ -299,7 +290,7 @@
       </div>
 
       <div class="why-celeste-grid">
-        <div class="why-card">
+        <div class="why-card scroll-reveal-item">
           <div class="why-icon">
             <i class="fa-solid fa-bag-shopping"></i>
           </div>
@@ -309,7 +300,7 @@
           </p>
         </div>
 
-        <div class="why-card">
+        <div class="why-card scroll-reveal-item">
           <div class="why-icon">
             <i class="fa-solid fa-location-dot"></i>
           </div>
@@ -319,7 +310,7 @@
           </p>
         </div>
 
-        <div class="why-card">
+        <div class="why-card scroll-reveal-item">
           <div class="why-icon">
             <i class="fa-solid fa-clock"></i>
           </div>
@@ -332,7 +323,7 @@
     </div>
   </section>
 
-  <section class="range-showcase">
+  <section class="range-showcase scroll-reveal">
     <div class="container">
       <div class="range-showcase-head">
         <p class="section-label">Our Range</p>
@@ -341,60 +332,66 @@
           From pantry staples and beverages to household must-haves and signature Celeste picks, our range is built around convenience, quality, and everyday access.
         </p>
       </div>
-
-      <div class="range-category-grid">
-        <a href="locations.html" class="range-category-card range-card-large" style="background-image: url('assets/images/range-beverages.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
+      <div class="premium-range-grid">
+        <a href="/range" class="premium-range-card premium-range-featured premium-range-dark">
+          <img src="assets/images/category-beverages.webp" alt="Premium chilled beverage with ice and lime" loading="lazy">
+          <div class="premium-range-shade"></div>
+          <div class="premium-range-copy">
+            <span>Category</span>
             <h3>Beverages</h3>
-            <p>Refreshing drinks, hydration, and ready-to-enjoy favorites.</p>
+            <p>Refreshing drinks, hydration and ready-to-enjoy favourites for every moment.</p>
+            <strong>Explore Range <i class="fa-solid fa-arrow-right"></i></strong>
           </div>
         </a>
 
-        <a href="locations.html" class="range-category-card" style="background-image: url('assets/images/range-fresh-dairy.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
-            <h3>Fresh & Dairy</h3>
-            <p>Daily essentials including eggs, dairy alternatives, and fresh staples.</p>
+        <a href="/range#everyday-essentials" class="premium-range-card premium-range-split premium-range-light">
+          <div class="premium-range-copy">
+            <span>Category</span>
+            <h3>Fresh &amp; Dairy</h3>
+            <p>Eggs, dairy and fresh everyday staples, carefully selected for you.</p>
+            <strong>Explore Range <i class="fa-solid fa-arrow-right"></i></strong>
           </div>
+          <div class="premium-range-media"><img src="assets/images/category-fresh-dairy.webp" alt="Milk, eggs, cheese and fresh greens" loading="lazy"></div>
         </a>
 
-        <a href="locations.html" class="range-category-card" style="background-image: url('assets/images/range-pantry.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
-            <h3>Snacks & Confectionery</h3>
-            <p>Biscuits, sweets, chocolates, instant snacks, and cupboard favorites.</p>
+        <a href="/range#spices-condiments" class="premium-range-card premium-range-split premium-range-dark premium-range-spices">
+          <div class="premium-range-copy">
+            <span>Category</span>
+            <h3>Spices &amp; Condiments</h3>
+            <p>Authentic flavours and quality ingredients to elevate every meal.</p>
+            <strong>Explore Range <i class="fa-solid fa-arrow-right"></i></strong>
           </div>
+          <div class="premium-range-media"><img src="assets/images/category-spices.webp" alt="Premium spices and condiments on a dark background" loading="lazy"></div>
         </a>
 
-        <a href="locations.html" class="range-category-card" style="background-image: url('assets/images/range-desserts.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
-            <h3>Ice Cream & Desserts</h3>
-            <p>Indulgent frozen desserts, ice cream, and ready-to-enjoy sweet treats.</p>
+        <a href="/range#desserts-frozen" class="premium-range-card premium-range-compact premium-range-light">
+          <div class="premium-range-copy">
+            <span>Category</span>
+            <h3>Ice Cream &amp; Desserts</h3>
+            <p>Indulgent frozen desserts and ready-to-enjoy sweet treats.</p>
+            <strong>Explore Range <i class="fa-solid fa-arrow-right"></i></strong>
           </div>
+          <img src="assets/images/category-desserts.webp" alt="Premium ice cream tubs and dessert" loading="lazy">
         </a>
 
-        <a href="locations.html" class="range-category-card" style="background-image: url('assets/images/range-household.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
-            <h3>Household & Cleaning</h3>
+        <a href="/range#household" class="premium-range-card premium-range-compact premium-range-light">
+          <div class="premium-range-copy">
+            <span>Category</span>
+            <h3>Household &amp; Cleaning</h3>
             <p>Functional home essentials designed for everyday convenience.</p>
+            <strong>Explore Range <i class="fa-solid fa-arrow-right"></i></strong>
           </div>
+          <img src="assets/images/category-household.webp" alt="Modern household cleaning essentials" loading="lazy">
         </a>
 
-        <a href="locations.html" class="range-category-card" style="background-image: url('assets/images/range-essentials.jpg');">
-          <div class="range-card-overlay"></div>
-          <div class="range-card-content">
-            <span class="range-card-kicker">Category</span>
+        <a href="/range#fresh-produce" class="premium-range-card premium-range-compact premium-range-dark">
+          <div class="premium-range-copy">
+            <span>Category</span>
             <h3>Fresh Selections</h3>
-            <p>Fresh fish, seafood, and carefully selected daily essentials for everyday cooking.</p>
+            <p>Fresh produce and carefully selected essentials for everyday cooking.</p>
+            <strong>Explore Range <i class="fa-solid fa-arrow-right"></i></strong>
           </div>
+          <img src="assets/images/category-fresh-selections.webp" alt="Basket of fresh vegetables and produce" loading="lazy">
         </a>
       </div>
 
@@ -407,7 +404,7 @@
         <div class="range-featured-grid">
           <div class="range-feature-card">
             <div class="range-feature-image">
-              <img src="assets/images/featured-oatside.jpg" alt="Oatside oat milk">
+              <img src="assets/images/featured-tissue-paper.webp" alt="Celeste Tissue and Paper Line">
             </div>
             <div class="range-feature-content">
               <h4>Celeste Tissue & Paper Line</h4>
@@ -417,7 +414,7 @@
 
           <div class="range-feature-card">
             <div class="range-feature-image">
-              <img src="assets/images/featured-spices.jpg" alt="Celeste spice range">
+              <img src="assets/images/featured-spices-new.webp" alt="Celeste spice range">
             </div>
             <div class="range-feature-content">
               <h4>Celeste Spice Range</h4>
@@ -427,7 +424,7 @@
 
           <div class="range-feature-card">
             <div class="range-feature-image">
-              <img src="assets/images/featured-brownies.jpg" alt="Celeste brownie cups">
+              <img src="assets/images/featured-dessert-cups.webp" alt="Celeste brownie cups">
             </div>
             <div class="range-feature-content">
               <h4>Celeste Dessert Cups</h4>
@@ -437,7 +434,7 @@
 
           <div class="range-feature-card">
             <div class="range-feature-image">
-              <img src="assets/images/featured-water.jpg" alt="Celeste Ethura water">
+              <img src="assets/images/featured-wathura-new.webp" alt="Celeste Wathura bottled water range">
             </div>
             <div class="range-feature-content">
               <h4>Celeste Wathura</h4>
@@ -464,7 +461,7 @@
     </div>
   </section>
 
-  <section class="locations-preview">
+  <section class="locations-preview scroll-reveal">
     <div class="container">
       <div class="locations-preview-head">
         <p class="section-label">Our Locations</p>
@@ -475,22 +472,22 @@
       </div>
 
       <div class="locations-preview-grid">
-        <div class="location-preview-card">
+        <div class="location-preview-card scroll-reveal-item">
           <h3>Celeste Daily - Colombo 06</h3>
           <p>Convenient access for customers in the Colombo 06 area.</p>
         </div>
 
-        <div class="location-preview-card">
+        <div class="location-preview-card scroll-reveal-item">
           <h3>Celeste Daily - Attidiya</h3>
           <p>Serving the Attidiya area with reliable everyday convenience.</p>
         </div>
 
-        <div class="location-preview-card">
+        <div class="location-preview-card scroll-reveal-item">
           <h3>Celeste Daily - Ethulkotte</h3>
           <p>Supporting nearby communities with easy access and trusted service.</p>
         </div>
 
-        <div class="location-preview-card">
+        <div class="location-preview-card scroll-reveal-item">
           <h3>Celeste Daily - Pannipitiya</h3>
           <p>Built to make shopping faster and easier for customers in Pannipitiya.</p>
         </div>
@@ -502,7 +499,7 @@
     </div>
   </section>
 
-  <section class="services-showcase">
+  <section class="services-showcase scroll-reveal">
     <div class="container">
       <div class="services-showcase-head">
         <p class="section-label">Our Services</p>
@@ -510,7 +507,7 @@
       </div>
 
       <div class="services-showcase-grid">
-        <div class="service-showcase-card">
+        <div class="service-showcase-card scroll-reveal-item">
           <div class="service-showcase-logo">
             <img src="assets/images/logo-1.png" alt="Celeste Daily">
           </div>
@@ -520,7 +517,7 @@
           </p>
         </div>
 
-        <div class="service-showcase-card">
+        <div class="service-showcase-card scroll-reveal-item">
           <div class="service-showcase-logo">
             <img src="assets/images/logo-1.png" alt="Celeste Roots">
           </div>
@@ -530,7 +527,7 @@
           </p>
         </div>
 
-        <div class="service-showcase-card">
+        <div class="service-showcase-card scroll-reveal-item">
           <div class="service-showcase-logo">
             <img src="assets/images/logo-1.png" alt="Fulfilled by Celeste">
           </div>
