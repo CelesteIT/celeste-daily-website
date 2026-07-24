@@ -280,27 +280,58 @@ if (justCelesteButtons.length > 0) {
   });
 }
 
-const revealCards = document.querySelectorAll(".reveal-card");
-
-if (revealCards.length) {
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.15,
-    }
+/* Safe scroll reveal for all pages */
+document.addEventListener("DOMContentLoaded", () => {
+  const revealElements = document.querySelectorAll(
+    ".scroll-reveal, .scroll-reveal-item, .reveal-card"
   );
 
-  revealCards.forEach((card) => {
-    revealObserver.observe(card);
-  });
-}
+  if (!revealElements.length) return;
+
+  const showAllElements = () => {
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    showAllElements();
+    return;
+  }
+
+  try {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -20px 0px"
+      }
+    );
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    /* Safety fallback: never leave content hidden */
+    window.setTimeout(() => {
+      revealElements.forEach((element) => {
+        if (!element.classList.contains("is-visible")) {
+          element.classList.add("is-visible");
+        }
+      });
+    }, 1800);
+  } catch (error) {
+    console.error("Reveal animation failed:", error);
+    showAllElements();
+  }
+});
 
 /* Mobile dropdown menus */
 const mobileDropdownToggles = document.querySelectorAll(".mobile-dropdown-toggle");
