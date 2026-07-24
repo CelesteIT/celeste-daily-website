@@ -325,3 +325,33 @@ if (mobileDropdownToggles.length) {
 
 
 
+
+
+/* Homepage scroll reveal animation */
+const homepageRevealElements = document.querySelectorAll(
+  ".scroll-reveal, .scroll-reveal-item"
+);
+
+if (homepageRevealElements.length) {
+  if ("IntersectionObserver" in window) {
+    const homepageRevealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    homepageRevealElements.forEach((element) => {
+      homepageRevealObserver.observe(element);
+    });
+  } else {
+    homepageRevealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
+  }
+}
