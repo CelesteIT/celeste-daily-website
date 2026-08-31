@@ -1,7 +1,22 @@
 {
   "rewrites": [
-    { "source": "/availability-dashboard", "destination": "https://cd-br-barana.tail94e5f8.ts.net/availability-dashboard" },
-    { "source": "/availability-dashboard/:path*", "destination": "https://cd-br-barana.tail94e5f8.ts.net/availability-dashboard/:path*" },
+    {
+      "source": "/employee-portal",
+      "destination": "https://celeste-esp.vercel.app/employee-portal"
+    },
+    {
+      "source": "/employee-portal/:path*",
+      "destination": "https://celeste-esp.vercel.app/employee-portal/:path*"
+    },
+
+    {
+      "source": "/availability-dashboard",
+      "destination": "https://cd-br-barana.tail94e5f8.ts.net/availability-dashboard"
+    },
+    {
+      "source": "/availability-dashboard/:path*",
+      "destination": "https://cd-br-barana.tail94e5f8.ts.net/availability-dashboard/:path*"
+    },
 
     { "source": "/about", "destination": "/about.html" },
     { "source": "/range", "destination": "/range.html" },
