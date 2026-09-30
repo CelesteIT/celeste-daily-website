@@ -323,7 +323,7 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         view = self._view()
         if view in ("css", "js"):
-            name = "celebration.css" if view == "css" else "celebration.js"
+            name = "_celebration_style.css" if view == "css" else "_celebration_client.js"
             try:
                 data = (ASSETS / name).read_bytes()
             except OSError:
@@ -344,7 +344,7 @@ class handler(BaseHTTPRequestHandler):
                 self._login_page()
                 return
             try:
-                data = (ASSETS / "celebration.html").read_bytes()
+                data = (ASSETS / "_celebration_page.html").read_bytes()
             except OSError:
                 self._send(503, b"Celebration page unavailable", "text/plain; charset=utf-8")
                 return
