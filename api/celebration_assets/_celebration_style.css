@@ -178,3 +178,28 @@ h1{font-family:Manrope,Arial,sans-serif;font-size:clamp(35px,4.5vw,87px);font-we
 @keyframes cashProgressFlash{0%{text-shadow:none}20%{text-shadow:0 0 30px rgba(241,200,119,.9)}100%{text-shadow:none}}
 @media(max-width:740px){.kinetic-orbit{opacity:.27}.kinetic-spark{font-size:12px}.total-spark{right:-1%;font-size:12px}.cash-note{width:22px;height:14px}.cash-burst{top:42%}}
 @media(prefers-reduced-motion:reduce){.kinetic-field{display:none!important}.ambient,.total-panel::before,.track-scan,.total-spark,.cash-note,.dashboard.verified-money-event .total-amount,.dashboard.verified-money-event .progress-top strong{animation:none!important}.cash-burst{display:none!important}}
+
+/* October V1: extended celebration remains energetic, then gently festive until dismissed. */
+.celebration-overlay.is-celebrating{overflow:hidden;isolation:isolate}
+.celebration-overlay.is-celebrating .overlay-glow{animation:octoberGoalBreath 7s ease-in-out infinite alternate}
+.celebration-overlay.is-celebrating .overlay-content{animation:octoberGoalFloat 9s ease-in-out infinite alternate}
+.celebration-overlay.is-celebrating::before,.celebration-overlay.is-celebrating::after{
+  content:'✦';position:absolute;z-index:0;color:rgba(242,202,124,.40);
+  text-shadow:0 0 65px rgba(238,191,116,.45);pointer-events:none;
+  font-size:clamp(32px,6vw,94px);animation:octoberGoalSpark 15s ease-in-out infinite alternate;
+}
+.celebration-overlay.is-celebrating::before{left:8%;top:12%}
+.celebration-overlay.is-celebrating::after{right:10%;bottom:14%;animation-delay:-8s}
+@keyframes octoberGoalBreath{from{opacity:.5;transform:scale(.92);box-shadow:0 0 100px 23px rgba(218,187,120,.10)}to{opacity:1;transform:scale(1.18);box-shadow:0 0 180px 65px rgba(218,187,120,.19)}}
+@keyframes octoberGoalFloat{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+@keyframes octoberGoalSpark{from{transform:translateY(14px) rotate(-20deg) scale(.8);opacity:.28}to{transform:translateY(-29px) rotate(22deg) scale(1.24);opacity:.86}}
+@media(prefers-reduced-motion:reduce){.celebration-overlay.is-celebrating,.celebration-overlay.is-celebrating *{animation:none!important}}
+
+/* Continuous cash-paper shower, visually decorative and never a sale counter. */
+.celebration-overlay .overlay-content{z-index:2}
+.overlay-banknotes{position:absolute;z-index:1;inset:0;overflow:hidden;pointer-events:none}
+.overlay-banknote{position:absolute;top:-65px;left:var(--note-left);width:clamp(27px,3.5vw,56px);height:clamp(17px,2.15vw,34px);opacity:0;border:1px solid rgba(255,229,167,.68);border-radius:2px;background:linear-gradient(145deg,rgba(238,207,137,.30),rgba(118,85,38,.12));box-shadow:inset 0 0 0 2px rgba(228,182,103,.20),0 0 16px rgba(255,202,110,.13);animation:octoberBanknoteFall var(--note-duration) linear infinite;animation-delay:var(--note-delay)}
+.overlay-banknote::before{content:"";position:absolute;inset:22% 34%;border:1px solid rgba(253,232,178,.57);border-radius:50%}
+.overlay-banknote::after{content:"";position:absolute;inset:19% 7%;border-left:2px solid rgba(253,224,158,.30);border-right:2px solid rgba(253,224,158,.30)}
+@keyframes octoberBanknoteFall{0%{opacity:0;transform:translate3d(0,-7vh,0) rotate(-29deg)}10%{opacity:.38}65%{opacity:.53}93%{opacity:.45}100%{opacity:0;transform:translate3d(var(--note-sway),115vh,0) rotate(545deg)}}
+@media(prefers-reduced-motion:reduce){.overlay-banknotes{display:none!important}}
