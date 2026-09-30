@@ -1,4 +1,4 @@
-"""Celeste Daily private September 30, 2026 milestone display.
+"""Celeste Daily private October 2026, Rs. 265M milestone display.
 
 Vercel Python BaseHTTPRequestHandler; no third-party dependencies.
 Never expose Odoo credentials to HTML, JS, cookies, or API responses.
@@ -7,6 +7,7 @@ Never expose Odoo credentials to HTML, JS, cookies, or API responses.
 from __future__ import annotations
 
 import hashlib
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import hmac
 import json
 import logging
@@ -25,16 +26,23 @@ from urllib.parse import parse_qs, urlsplit
 LOG = logging.getLogger(__name__)
 ASSETS = Path(__file__).resolve().parent / "celebration_assets"
 TZ = timezone(timedelta(hours=5, minutes=30))
-EVENT_DAY = date(2026, 9, 30)
-EVENT_END = datetime(2026, 10, 1, tzinfo=TZ)
-TARGET = Decimal("250000000.00")
-COOKIE_NAME = "celeste_250m_event"
+EVENT_START = date(2026, 10, 1)
+EVENT_LAST_DAY = date(2026, 10, 31)
+EVENT_END = datetime(2026, 11, 1, tzinfo=TZ)
+TARGET = Decimal("265000000.00")
+EVENT_KEY = "CELESTE_OCTOBER_265_MILLION"
+COOKIE_NAME = "celeste_265m_oct_event"  # Separate from September sessions.
 COOKIE_MAX_AGE = 86400
-SOURCE_CACHE_SECONDS = 25  # Best-effort per warm Vercel instance, not shared across instances.
+SOURCE_CACHE_SECONDS = 25  # Per warm Vercel instance; today remains directly Odoo-driven.
+HISTORY_CACHE_SECONDS = 900  # Reverify completed-day sales every <=15 min per warm instance.
 MAX_SOURCE_AGE_SECONDS = 180
-_lock = threading.Lock()
+MAX_HISTORY_AGE_SECONDS = 1200
+_today_lock = threading.Lock()
+_history_lock = threading.Lock()
 _cache = None
 _cache_until = 0.0
+_history_cache = None
+_history_cache_until = 0.0
 
 
 def now_local() -> datetime:
@@ -56,14 +64,16 @@ def _access_settings() -> tuple[str, bytes]:
 
 
 def _event_open() -> bool:
-    return now_local().date() == EVENT_DAY
+    return EVENT_START <= now_local().date() <= EVENT_LAST_DAY
 
 
 def _session_token(secret: bytes) -> tuple[str, int]:
-    # Sessions automatically expire at the Colombo midnight event boundary.
-    remaining = int((EVENT_END - now_local()).total_seconds())
+    # Sessions expire at each Colombo midnight (re-login daily) and at event end.
+    now = now_local()
+    midnight = datetime.combine(now.date() + timedelta(days=1), datetime.min.time(), tzinfo=TZ)
+    remaining = int((min(EVENT_END, midnight) - now).total_seconds())
     if remaining <= 0 or not _event_open():
-        raise RuntimeError("Celebration event is not active.")
+        raise RuntimeError("October celebration campaign is not active.")
     lifetime = min(COOKIE_MAX_AGE, remaining)
     expiry = int(time.time()) + lifetime
     body = f"v1.{expiry}"
@@ -84,7 +94,8 @@ def _session_valid(header: str, secret: bytes) -> bool:
         if len(signature) != 64 or not all(ch in "0123456789abcdef" for ch in signature):
             return False
         issued_expiry = int(expiry)
-        if not (time.time() < issued_expiry <= EVENT_END.timestamp() + 1):
+        today_midnight = datetime.combine(now_local().date() + timedelta(days=1), datetime.min.time(), tzinfo=TZ)
+        if not (time.time() < issued_expiry <= min(EVENT_END, today_midnight).timestamp() + 1):
             return False
         expected = hmac.new(secret, f"v1.{expiry}".encode("ascii"), hashlib.sha256).hexdigest()
         return hmac.compare_digest(signature, expected)
@@ -100,15 +111,6 @@ def _money(value, field: str) -> Decimal:
     if not number.is_finite() or number < 0:
         raise ValueError(f"Invalid Odoo {field} value")
     return number
-
-
-def _opening_balance() -> Decimal:
-    # Confidential yesterday closing balance lives ONLY in Vercel Environment Variables.
-    raw = _required_env("CELEBRATION_YESTERDAY_CLOSING")
-    opening = _money(raw, "CELEBRATION_YESTERDAY_CLOSING")
-    if opening != opening.quantize(Decimal("0.01")):
-        raise ValueError("Celebration opening balance must have two decimal places")
-    return opening
 
 
 def _order_count(value) -> int:
@@ -148,16 +150,21 @@ def _validated_sales(dashboard: dict) -> tuple[Decimal, int]:
     return sales.quantize(Decimal("0.01")), orders
 
 
-def _read_odoo() -> tuple[Decimal, int, datetime]:
+def _fetch_dashboard(date_from: date, date_to: date) -> tuple[dict, datetime]:
+    # The upstream model is read-only, with PickMe + Uber governed sales semantics.
+    # Date range is intentionally not treated as a monthly sale_value aggregation:
+    # independently verified: today => date_to; seven_day => 8 inclusive days.
+    if not (date_from <= date_to <= EVENT_LAST_DAY):
+        raise ValueError("Invalid governed Odoo date window")
     base = _required_env("ODOO_BASE_URL").rstrip("/")
     if not base.startswith("https://"):
         raise RuntimeError("ODOO_BASE_URL must use HTTPS")
     key = _required_env("ODOO_API_KEY")
-    started = now_local()  # Conservative source timestamp: before the upstream read.
+    started = now_local()  # Conservative freshness timestamp, BEFORE upstream request.
     endpoint = base + "/json/2/celeste.management.dashboard/get_dashboard_data_for_client"
     payload = json.dumps({
-        "date_from": EVENT_DAY.isoformat(),
-        "date_to": EVENT_DAY.isoformat(),
+        "date_from": date_from.isoformat(),
+        "date_to": date_to.isoformat(),
         "sales_team_ids": [],
     }).encode("utf-8")
     request = urllib.request.Request(
@@ -166,7 +173,7 @@ def _read_odoo() -> tuple[Decimal, int, datetime]:
             "Authorization": "bearer " + key,
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "User-Agent": "CelesteDailyCelebration/1.0",
+            "User-Agent": "CelesteDailyCelebration/2.0",
         },
     )
     with urllib.request.urlopen(request, timeout=45) as response:
@@ -176,54 +183,151 @@ def _read_odoo() -> tuple[Decimal, int, datetime]:
         if len(raw) > 2_000_000:
             raise ValueError("Odoo response exceeds safe size limit")
     dashboard = json.loads(raw)
-    sales, orders = _validated_sales(dashboard)
-    return sales, orders, started
+    _validated_sales(dashboard)  # Independently verifies today's hourly/location sums.
+    return dashboard, started
+
+
+def _verified_historical_part(window: tuple[date, date]) -> Decimal:
+    start, end = window
+    length = (end - start).days + 1
+    if not 1 <= length <= 8 or start < EVENT_START:
+        raise ValueError("Historical sales window is outside the October campaign")
+    dashboard, _ = _fetch_dashboard(start, end)
+    comparison = dashboard["sales_comparison"]
+    today = _money(comparison["today"]["sale_value"], "today.sale_value")
+    if length == 1:
+        return today.quantize(Decimal("0.01"))
+    if length == 2:
+        yesterday = comparison.get("yesterday")
+        if not isinstance(yesterday, dict) or "sale_value" not in yesterday:
+            raise ValueError("Missing Odoo yesterday sale_value for two-day history")
+        return (today + _money(yesterday["sale_value"], "yesterday.sale_value")).quantize(Decimal("0.01"))
+    if length != 8:
+        raise ValueError("Only 1, 2, and 8-day Odoo historical windows are verified")
+    weekly = comparison.get("seven_day")
+    if not isinstance(weekly, dict) or "sale_value" not in weekly:
+        raise ValueError("Missing Odoo inclusive eight-day sale_value")
+    value = _money(weekly["sale_value"], "seven_day.sale_value")
+    if "pickme_value" in weekly and "uber_value" in weekly:
+        channels = (
+            _money(weekly["pickme_value"], "seven_day.pickme_value")
+            + _money(weekly["uber_value"], "seven_day.uber_value")
+        )
+        if abs(channels - value) > Decimal("0.02"):
+            raise ValueError("Eight-day Odoo channel sales failed parity validation")
+    return value.quantize(Decimal("0.01"))
+
+
+def _historical_windows(through: date) -> list[tuple[date, date]]:
+    # Disjoint October-only partitions. No September sales can enter this total.
+    # Eight-day windows are the user-verified *inclusive* Odoo seven_day contract.
+    if through < EVENT_START:
+        return []
+    if through > EVENT_LAST_DAY:
+        raise ValueError("Historical date exceeds October")
+    cursor = EVENT_START
+    windows = []
+    while (through - cursor).days + 1 >= 8:
+        end = cursor + timedelta(days=7)
+        windows.append((cursor, end))
+        cursor = end + timedelta(days=1)
+    while cursor <= through:
+        end = min(cursor + timedelta(days=1), through)
+        windows.append((cursor, end))
+        cursor = end + timedelta(days=1)
+    return windows
+
+
+def _verified_history(through: date) -> tuple[Decimal, datetime]:
+    global _history_cache, _history_cache_until
+    if through < EVENT_START:
+        return Decimal("0.00"), now_local()
+    now = now_local()
+    if (_history_cache is not None and _history_cache["through"] == through
+            and time.monotonic() < _history_cache_until
+            and 0 <= (now - _history_cache["read_at"]).total_seconds() <= MAX_HISTORY_AGE_SECONDS):
+        return _history_cache["amount"], _history_cache["read_at"]
+    with _history_lock:
+        now = now_local()
+        if (_history_cache is not None and _history_cache["through"] == through
+                and time.monotonic() < _history_cache_until
+                and 0 <= (now - _history_cache["read_at"]).total_seconds() <= MAX_HISTORY_AGE_SECONDS):
+            return _history_cache["amount"], _history_cache["read_at"]
+        windows = _historical_windows(through)
+        started = now_local()
+        # Keep each Odoo call bounded, but parallelize independent date windows
+        # so a serverless cold start does not request 30+ days sequentially.
+        with ThreadPoolExecutor(max_workers=min(4, len(windows))) as pool:
+            futures = [pool.submit(_verified_historical_part, window) for window in windows]
+            parts = [future.result() for future in futures]
+        result = sum(parts, Decimal("0.00")).quantize(Decimal("0.01"))
+        if (now_local() - started).total_seconds() > MAX_HISTORY_AGE_SECONDS:
+            raise ValueError("Historical Odoo evidence is too old")
+        _history_cache = {"through": through, "amount": result, "read_at": started}
+        _history_cache_until = time.monotonic() + HISTORY_CACHE_SECONDS
+        return result, started
+
+
+def _today_snapshot(business_day: date) -> tuple[Decimal, int, datetime]:
+    global _cache, _cache_until
+    with _today_lock:
+        now = now_local()
+        if (_cache is not None and _cache["day"] == business_day
+                and time.monotonic() < _cache_until
+                and 0 <= (now - _cache["source_time"]).total_seconds() <= MAX_SOURCE_AGE_SECONDS):
+            return _cache["today"], _cache["orders"], _cache["source_time"]
+        dashboard, started = _fetch_dashboard(business_day, business_day)
+        today, orders = _validated_sales(dashboard)
+        if (now_local() - started).total_seconds() > MAX_SOURCE_AGE_SECONDS:
+            raise ValueError("Odoo current-day response is stale")
+        _cache = {"day": business_day, "today": today, "orders": orders, "source_time": started}
+        _cache_until = time.monotonic() + SOURCE_CACHE_SECONDS
+        return today, orders, started
 
 
 def celebration_snapshot() -> dict:
-    global _cache, _cache_until
     if not _event_open():
-        raise ValueError("The September 30 celebration event has ended")
-    opening_balance = _opening_balance()
-    # One upstream request at a time *inside each warm instance*.
-    with _lock:
-        now = now_local()
-        if (_cache is not None and time.monotonic() < _cache_until
-                and 0 <= (now - _cache["source_time"]).total_seconds() <= MAX_SOURCE_AGE_SECONDS):
-            source = _cache
-        else:
-            today, orders, read_at = _read_odoo()
-            if (now_local() - read_at).total_seconds() > MAX_SOURCE_AGE_SECONDS:
-                raise ValueError("Odoo source response is stale")
-            source = {"today": today, "orders": orders, "source_time": read_at}
-            _cache, _cache_until = source, time.monotonic() + SOURCE_CACHE_SECONDS
-        current = now_local()
-        if current.date() != EVENT_DAY:
-            raise ValueError("The September 30 celebration event has ended")
-        if (current - source["source_time"]).total_seconds() > MAX_SOURCE_AGE_SECONDS:
-            raise ValueError("Odoo source response is stale")
-        today = source["today"]
-        monthly = opening_balance + today
-        remaining = max(Decimal("0.00"), TARGET - monthly)
-        above = max(Decimal("0.00"), monthly - TARGET)
-        return {
-            "event": "CELESTE_250_MILLION",
-            "business_date": EVENT_DAY.isoformat(),
-            "source": "ODOO_MANAGEMENT_DASHBOARD",
-            "status": "LIVE",
-            "yesterday_closing": float(opening_balance),
-            "today_sales": float(today),
-            "monthly_sales": float(monthly),
-            "target": float(TARGET),
-            "remaining": float(remaining),
-            "above_target": float(above),
-            "progress_percent": float(monthly / TARGET * Decimal("100")),
-            "target_achieved": monthly >= TARGET,
-            "order_count": source["orders"],
-            "live_read_at": source["source_time"].isoformat(),
-            "server_time": current.isoformat(),
-            "deadline": EVENT_END.isoformat(),
-        }
+        raise ValueError("October 2026 campaign is not active")
+    business_day = now_local().date()
+    yesterday = business_day - timedelta(days=1)
+    # Historical and current-day reads are independently protected; a history
+    # refresh cannot block a warm instance's regular today cache updates.
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        history_future = pool.submit(_verified_history, yesterday)
+        today_future = pool.submit(_today_snapshot, business_day)
+        history, history_at = history_future.result()
+        today, orders, read_at = today_future.result()
+    current = now_local()
+    if current.date() != business_day or not _event_open():
+        raise ValueError("October campaign business date changed during upstream read")
+    if (current - read_at).total_seconds() > MAX_SOURCE_AGE_SECONDS:
+        raise ValueError("Odoo current-day response is stale")
+    if (current - history_at).total_seconds() > MAX_HISTORY_AGE_SECONDS:
+        raise ValueError("Odoo historical response is stale")
+    monthly = (history + today).quantize(Decimal("0.01"))
+    remaining = max(Decimal("0.00"), TARGET - monthly)
+    above = max(Decimal("0.00"), monthly - TARGET)
+    return {
+        "event": EVENT_KEY,
+        "business_date": business_day.isoformat(),
+        "source": "ODOO_MANAGEMENT_DASHBOARD",
+        "status": "LIVE",
+        "historical_sales": float(history),
+        "history_through": yesterday.isoformat() if yesterday >= EVENT_START else None,
+        "history_verified_at": history_at.isoformat(),
+        "history_max_age_seconds": MAX_HISTORY_AGE_SECONDS,
+        "today_sales": float(today),
+        "monthly_sales": float(monthly),
+        "target": float(TARGET),
+        "remaining": float(remaining),
+        "above_target": float(above),
+        "progress_percent": float(monthly / TARGET * Decimal("100")),
+        "target_achieved": monthly >= TARGET,
+        "order_count_today": orders,
+        "live_read_at": read_at.isoformat(),
+        "server_time": current.isoformat(),
+        "deadline": EVENT_END.isoformat(),
+    }
 
 
 _LOGIN_HTML = """<!doctype html><html lang="en"><head><meta charset="utf-8">
@@ -233,9 +337,9 @@ _LOGIN_HTML = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <link rel="stylesheet" href="/celebration/celebration.css"></head>
 <body><main class="login-shell"><section class="login-card">
 <div class="login-brand-visual" aria-label="Celeste Daily"><img class="brand-emblem" src="/celebration/emblem.png" alt="" width="46" height="46"><img class="brand-wordmark" src="/celebration/wordmark.png" alt="Celeste Daily" width="208" height="49"></div>
-<div class="login-eyebrow">PRIVATE MILESTONE DISPLAY · 30 SEPTEMBER</div>
-<h1>THE ROAD TO<br>250 MILLION.</h1>
-<p>Enter your celebration access password to follow our live September milestone.</p>
+<div class="login-eyebrow">PRIVATE MILESTONE DISPLAY · OCTOBER 2026</div>
+<h1>THE ROAD TO<br>265 MILLION.</h1>
+<p>Enter your celebration access password to follow our live October milestone.</p>
 {{ERROR}}<form method="post" action="/celebration/login" autocomplete="off">
 <label for="password">ACCESS PASSWORD</label>
 <input type="password" name="password" id="password" minlength="16" maxlength="256" required autocomplete="off" autofocus>
@@ -360,7 +464,7 @@ class handler(BaseHTTPRequestHandler):
                 self._send(503, b"Celebration access has not been configured.", "text/plain; charset=utf-8")
                 return
             if not _event_open():
-                self._send(409, b"This September 30 live event has ended.", "text/plain; charset=utf-8")
+                self._send(409, b"The October 2026 campaign is not active.", "text/plain; charset=utf-8")
                 return
             if not self._authenticated():
                 self._login_page()
@@ -377,7 +481,7 @@ class handler(BaseHTTPRequestHandler):
                 self._json(401, {"detail": "Celebration sign-in required"})
                 return
             if not _event_open():
-                self._json(409, {"detail": "The September 30 live event has ended"})
+                self._json(409, {"detail": "The October 2026 campaign is not active"})
                 return
             try:
                 result = celebration_snapshot()
@@ -409,7 +513,7 @@ class handler(BaseHTTPRequestHandler):
             })
             return
         if not _event_open():
-            self._json(409, {"detail": "The September 30 live event has ended"})
+            self._json(409, {"detail": "The October 2026 campaign is not active"})
             return
         try:
             length = int(self.headers.get("Content-Length", "0"))
@@ -433,7 +537,7 @@ class handler(BaseHTTPRequestHandler):
         try:
             token, lifetime = _session_token(secret)
         except RuntimeError:
-            self._json(409, {"detail": "The September 30 live event has ended"})
+            self._json(409, {"detail": "The October 2026 campaign is not active"})
             return
         self._send(303, b"", "text/plain; charset=utf-8", {
             "Location": "/celebration",

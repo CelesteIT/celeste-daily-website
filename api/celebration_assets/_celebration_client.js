@@ -1,4 +1,4 @@
-/* Celeste Daily: Sep 30, 2026 milestone screen.
+/* Celeste Daily: October 2026 milestone screen.
  * No sales arithmetic is independently sourced from the browser:
  * all figures come from the authenticated, governed celebration endpoint.
  */
@@ -9,8 +9,10 @@
   const REFRESH_MS = 30000;
   const REQUEST_TIMEOUT_MS = 75000;
   const MAX_CLIENT_SOURCE_AGE_MS = 180000;
-  const EVENT_DATE = '2026-09-30';
-  const ACHIEVEMENT_KEY = `celeste-celebration-${EVENT_DATE}-250m-seen`;
+  const EVENT_START = '2026-10-01';
+  const EVENT_LAST_DAY = '2026-10-31';
+  const DEADLINE = Date.parse('2026-11-01T00:00:00+05:30');
+  const ACHIEVEMENT_KEY = 'celeste-celebration-october-2026-265m-seen';
   const moneyFormat = new Intl.NumberFormat('en-LK', {
     minimumFractionDigits: 2, maximumFractionDigits: 2,
   });
@@ -24,8 +26,8 @@
     progress: $('progress-percent'), progressFill: $('progress-fill'),
     progressTrack: $('progress-track'), status: $('live-status'),
     statusLabel: $('status-label'), meta: $('total-meta'), lastSync: $('last-sync'),
-    countdown: $('countdown'), achieved: $('achievement-banner'),
-    overlay: $('celebration-overlay'), notice: $('notice'), noticeText: $('notice-text'),
+    countdown: $('countdown'), achieved: $('achievement-banner'), historySync: $('history-sync'),
+    overlay: $('celebration-overlay'), overlayBanknotes: $('overlay-banknotes'), notice: $('notice'), noticeText: $('notice-text'),
     loginLink: $('login-link'), returnButton: $('return-button'),
     soundButton: $('sound-button'), soundLabel: $('sound-label'), canvas: $('fx-canvas'),
     changeChip: $('sales-change-chip'), totalPanel: document.querySelector('.total-panel'),
@@ -49,6 +51,8 @@
   let confetti = [];
   let effectFrame = 0;
   let effectUntil = 0;
+  let celebrationTimer = 0;
+  let celebrationStartedAt = 0;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function setStatus(label, state) {
@@ -105,7 +109,7 @@
   }
 
   function updateCountdown() {
-    const deadline = Date.parse('2026-10-01T00:00:00+05:30');
+    const deadline = DEADLINE;
     const now = currentServerNow();
     if (now === null) return;
     const remaining = Math.max(0, deadline - now);
@@ -115,7 +119,7 @@
     el.countdown.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     if (remaining === 0) {
       el.countdown.textContent = '00:00:00';
-      if (lastSnapshot) { setStatus('EVENT ENDED', 'error'); el.meta.textContent = 'SEPTEMBER 30 HAS ENDED · THIS DISPLAY IS A PREVIOUS SNAPSHOT'; }
+      if (lastSnapshot) { setStatus('EVENT ENDED', 'error'); el.meta.textContent = 'OCTOBER HAS ENDED · THIS DISPLAY IS A PREVIOUS SNAPSHOT'; }
     }
     if (lastSnapshot && now - Date.parse(lastSnapshot.live_read_at) > MAX_CLIENT_SOURCE_AGE_MS) {
       if (!disconnected) {
@@ -142,6 +146,7 @@
     el.achieved.hidden = true;
     el.lastSync.textContent = 'VERIFIED LIVE DATA UNAVAILABLE';
     el.meta.textContent = 'PRIVATE LIVE SALES REQUIRE CELEBRATION ACCESS';
+    el.historySync.textContent = 'OCTOBER HISTORY UNAVAILABLE';
     window.clearTimeout(changeTimer);
     el.changeChip.hidden = true;
     el.totalPanel.classList.remove('sales-changed');
@@ -152,15 +157,27 @@
   }
 
   function validateSnapshot(data) {
-    if (!data || data.event !== 'CELESTE_250_MILLION' || data.business_date !== EVENT_DATE || data.status !== 'LIVE') return false;
-    for (const k of ['monthly_sales', 'today_sales', 'yesterday_closing', 'target', 'remaining', 'above_target', 'progress_percent']) {
+    if (!data || data.event !== 'CELESTE_OCTOBER_265_MILLION' || data.status !== 'LIVE') return false;
+    if (typeof data.business_date !== 'string' || data.business_date < EVENT_START || data.business_date > EVENT_LAST_DAY) return false;
+    if (typeof data.server_time !== 'string' || data.server_time.slice(0, 10) !== data.business_date) return false;
+    for (const k of ['monthly_sales', 'today_sales', 'historical_sales', 'target', 'remaining', 'above_target', 'progress_percent']) {
       if (!safeNumber(data[k])) return false;
     }
-    if (data.target !== 250000000 || Math.abs((data.yesterday_closing + data.today_sales) - data.monthly_sales) > 0.015) return false;
+    if (data.target !== 265000000 || Math.abs((data.historical_sales + data.today_sales) - data.monthly_sales) > 0.015) return false;
     if (typeof data.target_achieved !== 'boolean' || data.target_achieved !== (data.monthly_sales >= data.target)) return false;
+    const expectedHistory = data.business_date === EVENT_START ? null : (() => {
+      const day = new Date(data.business_date + 'T12:00:00Z');
+      day.setUTCDate(day.getUTCDate() - 1);
+      return day.toISOString().slice(0, 10);
+    })();
+    if (data.history_through !== expectedHistory) return false;
+    if (data.business_date === EVENT_START && data.historical_sales !== 0) return false;
     const source = Date.parse(data.live_read_at);
+    const history = Date.parse(data.history_verified_at);
     const server = Date.parse(data.server_time);
-    if (!Number.isFinite(source) || !Number.isFinite(server) || server - source > MAX_CLIENT_SOURCE_AGE_MS || source - server > 60000) return false;
+    if (!Number.isFinite(source) || !Number.isFinite(history) || !Number.isFinite(server)) return false;
+    if (server - source > MAX_CLIENT_SOURCE_AGE_MS || source - server > 60000) return false;
+    if (server - history > 1200000 || history - server > 60000) return false;
     return true;
   }
 
@@ -204,7 +221,8 @@
 
   function displaySnapshot(data) {
     const first = lastSnapshot === null;
-    const previousMonthly = lastSnapshot ? lastSnapshot.monthly_sales : null;
+    const previousToday = lastSnapshot && lastSnapshot.business_date === data.business_date ? lastSnapshot.today_sales : null;
+    const previousHistory = lastSnapshot && lastSnapshot.business_date === data.business_date ? lastSnapshot.historical_sales : null;
     lastSnapshot = data;
     disconnected = false;
     serverNowAtReceipt = Date.parse(data.server_time);
@@ -213,15 +231,23 @@
     setStatus('LIVE · AUTO UPDATING', 'live');
     animateMonthly(data.monthly_sales);
     el.today.textContent = fmtMoney(data.today_sales);
-    if (previousMonthly !== null) {
-      const centsChanged = Math.round(data.monthly_sales * 100) - Math.round(previousMonthly * 100);
+    if (previousToday !== null) {
+      const centsChanged = Math.round(data.today_sales * 100) - Math.round(previousToday * 100);
       if (centsChanged !== 0) flashVerifiedChange(centsChanged / 100);
+    }
+    // Historical corrections can change the monthly total; never play a false
+    // live-sale cash sound for the separate historical re-verification.
+    if (previousHistory !== null && Math.round(data.historical_sales * 100) !== Math.round(previousHistory * 100)) {
+      el.meta.textContent = 'HISTORICAL SALES REVERIFIED · SEE COMPLETED-DAY FIGURES';
     }
     el.progress.textContent = percentFormat.format(data.progress_percent) + '%';
     el.progressFill.style.width = Math.min(100, data.progress_percent) + '%';
     el.progressTrack.setAttribute('aria-valuenow', String(Math.min(100, data.progress_percent)));
-    el.lastSync.textContent = 'ODOO VERIFIED · ' + fmtTime(data.live_read_at);
-    el.meta.textContent = 'YESTERDAY’S CLOSING + TODAY’S VERIFIED LIVE PICKME & UBER SALES';
+    el.lastSync.textContent = 'TODAY ODOO VERIFIED · ' + fmtTime(data.live_read_at);
+    el.historySync.textContent = 'HISTORY VERIFIED · ' + fmtTime(data.history_verified_at);
+    if (!(previousHistory !== null && Math.round(data.historical_sales * 100) !== Math.round(previousHistory * 100))) {
+      el.meta.textContent = 'OCTOBER COMPLETED DAYS (VERIFIED) + TODAY’S LIVE PICKME & UBER';
+    }
     if (data.target_achieved) {
       el.remainingLabel.innerHTML = 'ABOVE OUR GOAL <span>✦</span>';
       el.remaining.textContent = fmtMoney(data.above_target);
@@ -251,15 +277,17 @@
         headers: { Accept: 'application/json' }, signal: abort.signal,
       });
       if (response.status === 401 || response.status === 403) {
+        if (!el.overlay.hidden) stopCelebration();
         clearPrivateData();
         setStatus('SIGN IN REQUIRED', 'error');
         showNotice('Your celebration access has expired. Sign in to continue.', true);
         return; // Do not continuously hammer the protected endpoint.
       }
       if (response.status === 409) {
+        if (!el.overlay.hidden) stopCelebration();
         setStatus('EVENT ENDED', 'error');
-        el.meta.textContent = 'THE SEPTEMBER 30 LIVE EVENT HAS ENDED';
-        showNotice('The September 30 event has ended. A new verified closing balance is required for a new day.');
+        el.meta.textContent = 'OCTOBER CAMPAIGN IS NOT ACTIVE';
+        showNotice('The October campaign is not active; figures cannot be presented as LIVE.');
         return;
       }
       if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -449,6 +477,7 @@ function launchCashBurst() {
 
   function spawnBurst(x, y, count, spread = 1) {
     if (!ctx) return;
+    count = Math.max(0, Math.min(count, (window.innerWidth < 740 ? 220 : 460) - confetti.length));
     for (let i = 0; i < count; i++) {
       const a = Math.random() * Math.PI * 2;
       const speed = (2 + Math.random() * 8) * spread;
@@ -464,10 +493,10 @@ function launchCashBurst() {
     if (!ctx) return;
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     const now = performance.now();
-    if (now < effectUntil && Math.random() > .77) {
+    if (now < effectUntil && confetti.length < 380 && Math.random() > .945) {
       const x = window.innerWidth * (.15 + Math.random() * .70);
       const y = window.innerHeight * (.12 + Math.random() * .48);
-      spawnBurst(x, y, 22, .70);
+      spawnBurst(x, y, 7, .70);
     }
     confetti = confetti.filter(p => p.life > 0);
     for (const p of confetti) {
@@ -481,11 +510,48 @@ function launchCashBurst() {
     if (confetti.length || performance.now() < effectUntil) effectFrame = requestAnimationFrame(tickFx);
     else { effectFrame = 0; ctx.clearRect(0, 0, window.innerWidth, window.innerHeight); }
   }
+  function stopCelebration() {
+    window.clearInterval(celebrationTimer);
+    celebrationTimer = 0;
+    celebrationStartedAt = 0;
+    effectUntil = 0;
+    confetti = [];
+    if (el.overlayBanknotes) el.overlayBanknotes.replaceChildren();
+    if (effectFrame) { cancelAnimationFrame(effectFrame); effectFrame = 0; }
+    if (ctx) ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    el.overlay.classList.remove('is-celebrating');
+    el.overlay.hidden = true;
+  }
+  function persistentCelebrationPulse() {
+    if (el.overlay.hidden || reduceMotion || document.hidden || !ctx) return;
+    const elapsed = (performance.now() - celebrationStartedAt) / 1000;
+    // Spectacular opening 30s, sustained for 2.5min, gentle ambient thereafter.
+    const count = elapsed < 30 ? 60 : elapsed < 180 ? 36 : 14;
+    spawnBurst(window.innerWidth * (.18 + Math.random() * .64), window.innerHeight * .22, count, elapsed < 30 ? 1 : .66);
+    effectUntil = performance.now() + (elapsed < 30 ? 2200 : elapsed < 180 ? 4000 : 10000);
+    if (!effectFrame) effectFrame = requestAnimationFrame(tickFx);
+  }
   function startCelebration() {
     if (!lastSnapshot || !lastSnapshot.target_achieved || !el.overlay.hidden) return;
     el.overlay.hidden = false;
+    el.overlay.classList.add('is-celebrating');
     el.returnButton.focus({ preventScroll: true });
-    playMilestoneSound();
+    playMilestoneSound(); // Once on opening; no repetitive loud fanfare.
+    celebrationStartedAt = performance.now();
+    if (!reduceMotion && el.overlayBanknotes) {
+      const notes = document.createDocumentFragment();
+      const count = window.innerWidth < 741 ? 12 : 21;
+      for (let i = 0; i < count; i++) {
+        const banknote = document.createElement('span');
+        banknote.className = 'overlay-banknote';
+        banknote.style.setProperty('--note-left', ((i * 43.3 + 8) % 96) + '%');
+        banknote.style.setProperty('--note-duration', (9 + (i % 6) * 1.3) + 's');
+        banknote.style.setProperty('--note-delay', (-(i * 1.27 % 15)) + 's');
+        banknote.style.setProperty('--note-sway', ((i % 2 ? 1 : -1) * (70 + (i % 4) * 24)) + 'px');
+        notes.appendChild(banknote);
+      }
+      el.overlayBanknotes.replaceChildren(notes);
+    }
     if (!reduceMotion && ctx) {
       const w = window.innerWidth, h = window.innerHeight;
       spawnBurst(w * .20, h * .28, 180);
@@ -493,11 +559,12 @@ function launchCashBurst() {
       spawnBurst(w * .50, h * .25, 100);
       effectUntil = performance.now() + 9500;
       if (!effectFrame) effectFrame = requestAnimationFrame(tickFx);
+      celebrationTimer = window.setInterval(persistentCelebrationPulse, 4000);
     }
   }
-  el.returnButton.addEventListener('click', () => { el.overlay.hidden = true; });
+  el.returnButton.addEventListener('click', stopCelebration);
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !el.overlay.hidden) el.overlay.hidden = true;
+    if (event.key === 'Escape' && !el.overlay.hidden) stopCelebration();
   });
   el.soundButton.addEventListener('click', async () => {
     soundEnabled = !soundEnabled;
