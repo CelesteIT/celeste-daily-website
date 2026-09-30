@@ -306,8 +306,19 @@ class handler(BaseHTTPRequestHandler):
         if fetch_site and fetch_site not in ("same-origin", "none"):
             return False
         origin = self.headers.get("Origin", "")
+
+        if origin.strip().lower() == "null":
+            # Permit only browser-confirmed same-origin form navigation.
+            # Cross-site and ambiguous fetch metadata remain rejected.
+            return (
+                fetch_site == "same-origin"
+                and self.headers.get("Sec-Fetch-Mode", "").lower() == "navigate"
+                and self.headers.get("Sec-Fetch-Dest", "").lower() == "document"
+            )
+
         if not origin:
             return True
+
         uri = urlsplit(origin)
         if uri.scheme != "https":
             return False
