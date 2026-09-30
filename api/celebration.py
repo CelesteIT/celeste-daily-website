@@ -232,7 +232,7 @@ _LOGIN_HTML = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <title>Celeste Daily | Celebration Access</title>
 <link rel="stylesheet" href="/celebration/celebration.css"></head>
 <body><main class="login-shell"><section class="login-card">
-<div class="login-brand">✦ CELESTE <span>DAILY</span></div>
+<div class="login-brand-visual" aria-label="Celeste Daily"><img class="brand-emblem" src="/celebration/emblem.png" alt="" width="46" height="46"><img class="brand-wordmark" src="/celebration/wordmark.png" alt="Celeste Daily" width="208" height="49"></div>
 <div class="login-eyebrow">PRIVATE MILESTONE DISPLAY · 30 SEPTEMBER</div>
 <h1>THE ROAD TO<br>250 MILLION.</h1>
 <p>Enter your celebration access password to follow our live September milestone.</p>
@@ -276,12 +276,13 @@ class handler(BaseHTTPRequestHandler):
     def _view(self) -> str:
         parts = urlsplit(self.path)
         selection = parse_qs(parts.query).get("view", [])
-        if len(selection) == 1 and selection[0] in {"page", "css", "js", "data", "login", "logout"}:
+        if len(selection) == 1 and selection[0] in {"page", "css", "js", "data", "login", "logout", "emblem", "wordmark"}:
             return selection[0]
         # Local smoke tests / local direct invocation of this function.
         return {
             "/celebration": "page", "/celebration/": "page",
             "/celebration/celebration.css": "css", "/celebration/celebration.js": "js",
+            "/celebration/emblem.png": "emblem", "/celebration/wordmark.png": "wordmark",
             "/celebration/api/sales": "data", "/celebration/login": "login",
             "/celebration/logout": "logout",
         }.get(parts.path, "unknown")
@@ -333,6 +334,16 @@ class handler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:
         view = self._view()
+        if view in ("emblem", "wordmark"):
+            # These static logos contain no private financial information.
+            name = "_celeste_emblem.png" if view == "emblem" else "_celeste_wordmark.png"
+            try:
+                data = (ASSETS / name).read_bytes()
+            except OSError:
+                self._send(503, b"Logo unavailable", "text/plain; charset=utf-8")
+                return
+            self._send(200, data, "image/png")
+            return
         if view in ("css", "js"):
             name = "_celebration_style.css" if view == "css" else "_celebration_client.js"
             try:

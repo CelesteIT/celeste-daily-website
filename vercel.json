@@ -7,6 +7,8 @@
   "rewrites": [
     { "source": "/celebration", "destination": "/api/celebration?view=page" },
     { "source": "/celebration/", "destination": "/api/celebration?view=page" },
+    { "source": "/celebration/emblem.png", "destination": "/api/celebration?view=emblem" },
+    { "source": "/celebration/wordmark.png", "destination": "/api/celebration?view=wordmark" },
     { "source": "/celebration/celebration.css", "destination": "/api/celebration?view=css" },
     { "source": "/celebration/celebration.js", "destination": "/api/celebration?view=js" },
     { "source": "/celebration/api/sales", "destination": "/api/celebration?view=data" },

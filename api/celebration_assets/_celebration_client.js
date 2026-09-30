@@ -28,6 +28,7 @@
     overlay: $('celebration-overlay'), notice: $('notice'), noticeText: $('notice-text'),
     loginLink: $('login-link'), returnButton: $('return-button'),
     soundButton: $('sound-button'), soundLabel: $('sound-label'), canvas: $('fx-canvas'),
+    changeChip: $('sales-change-chip'), totalPanel: document.querySelector('.total-panel'),
   };
 
   let lastSnapshot = null;
@@ -39,6 +40,9 @@
   let disconnected = false;
   let soundEnabled = false;
   let audioContext = null;
+  let lastCoinPlayedAt = 0;
+  let changeTimer = 0;
+  let glowTimer = 0;
   let confetti = [];
   let effectFrame = 0;
   let effectUntil = 0;
@@ -135,6 +139,10 @@
     el.achieved.hidden = true;
     el.lastSync.textContent = 'VERIFIED LIVE DATA UNAVAILABLE';
     el.meta.textContent = 'PRIVATE LIVE SALES REQUIRE CELEBRATION ACCESS';
+    window.clearTimeout(changeTimer);
+    el.changeChip.hidden = true;
+    el.totalPanel.classList.remove('sales-changed');
+    el.today.classList.remove('sales-changed');
   }
 
   function validateSnapshot(data) {
@@ -160,8 +168,34 @@
     catch (_) { /* private mode: suppress repeats for this tab */ }
   }
 
+  function flashVerifiedChange(amount) {
+    // Never announce fake increments while the number is just animating.
+    // This is called once per distinct, successfully validated backend snapshot.
+    window.clearTimeout(changeTimer);
+    window.clearTimeout(glowTimer);
+    const increase = amount > 0;
+    el.changeChip.textContent = increase
+      ? '✦  VERIFIED NEW SALES  + ' + fmtMoney(amount)
+      : '✦  VERIFIED SALES ADJUSTMENT  ' + fmtMoney(Math.abs(amount));
+    el.changeChip.classList.toggle('adjustment', !increase);
+    el.changeChip.hidden = false;
+    el.totalPanel.classList.remove('sales-changed');
+    el.today.classList.remove('sales-changed');
+    // Restart visual cue for a subsequent update.
+    void el.totalPanel.offsetWidth;
+    el.totalPanel.classList.add('sales-changed');
+    el.today.classList.add('sales-changed');
+    changeTimer = window.setTimeout(() => { el.changeChip.hidden = true; }, 10000);
+    glowTimer = window.setTimeout(() => {
+      el.totalPanel.classList.remove('sales-changed');
+      el.today.classList.remove('sales-changed');
+    }, 1900);
+    if (increase) playCoinSound();
+  }
+
   function displaySnapshot(data) {
     const first = lastSnapshot === null;
+    const previousMonthly = lastSnapshot ? lastSnapshot.monthly_sales : null;
     lastSnapshot = data;
     disconnected = false;
     serverNowAtReceipt = Date.parse(data.server_time);
@@ -170,6 +204,10 @@
     setStatus('LIVE · AUTO UPDATING', 'live');
     animateMonthly(data.monthly_sales);
     el.today.textContent = fmtMoney(data.today_sales);
+    if (previousMonthly !== null) {
+      const centsChanged = Math.round(data.monthly_sales * 100) - Math.round(previousMonthly * 100);
+      if (centsChanged !== 0) flashVerifiedChange(centsChanged / 100);
+    }
     el.progress.textContent = percentFormat.format(data.progress_percent) + '%';
     el.progressFill.style.width = Math.min(100, data.progress_percent) + '%';
     el.progressTrack.setAttribute('aria-valuenow', String(Math.min(100, data.progress_percent)));
@@ -235,6 +273,34 @@
         pollTimer = window.setTimeout(poll, Math.max(0, REFRESH_MS - (Date.now() - startedAt)));
       }
     }
+  }
+
+  function playCoinSound() {
+    // Browser audio requires a user gesture: the ENABLE COINS button unlocks it.
+    // At most one short coin chime per verified update (never per animation frame).
+    if (!soundEnabled || !audioContext || audioContext.state !== 'running') return;
+    const nowMs = Date.now();
+    if (nowMs - lastCoinPlayedAt < 4500) return;
+    lastCoinPlayedAt = nowMs;
+    try {
+      const now = audioContext.currentTime + 0.015;
+      // Two metallic coins; high harmonics decay much faster than the bell body.
+      [0, 0.105].forEach((delay, i) => {
+        [1, 2.72, 4.17].forEach((ratio, partial) => {
+          const oscillator = audioContext.createOscillator();
+          const envelope = audioContext.createGain();
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime((i ? 1318.5 : 1046.5) * ratio, now + delay);
+          envelope.gain.setValueAtTime(0.0001, now + delay);
+          envelope.gain.exponentialRampToValueAtTime(partial ? 0.011 : 0.043, now + delay + 0.004);
+          envelope.gain.exponentialRampToValueAtTime(0.0001, now + delay + (partial ? 0.10 : 0.29));
+          oscillator.connect(envelope);
+          envelope.connect(audioContext.destination);
+          oscillator.start(now + delay);
+          oscillator.stop(now + delay + 0.31);
+        });
+      });
+    } catch (_) { /* Visual update stays active when audio is unavailable. */ }
   }
 
   function playMilestoneSound() {
@@ -324,7 +390,7 @@
   el.soundButton.addEventListener('click', async () => {
     soundEnabled = !soundEnabled;
     el.soundButton.setAttribute('aria-pressed', String(soundEnabled));
-    el.soundLabel.textContent = soundEnabled ? 'SOUND ENABLED' : 'ENABLE SOUND';
+    el.soundLabel.textContent = soundEnabled ? 'COINS ENABLED' : 'ENABLE COINS';
     if (soundEnabled) {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;

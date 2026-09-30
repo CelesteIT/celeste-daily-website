@@ -18,14 +18,17 @@
   <div class="dashboard" id="dashboard">
     <header class="masthead">
       <div class="brand" aria-label="Celeste Daily">
-        <span class="brand-mark" aria-hidden="true"><span>✦</span></span>
-        <span class="brand-words"><strong>CELESTE</strong><small>DAILY</small></span>
+        <img class="brand-emblem" src="/celebration/emblem.png" alt="" aria-hidden="true" width="58" height="58">
+        <img class="brand-wordmark" src="/celebration/wordmark.png" alt="Celeste Daily" width="240" height="56">
       </div>
       <div class="masthead-right">
         <span class="event-date" id="event-date">30 SEPTEMBER 2026</span>
         <span class="divider" aria-hidden="true"></span>
         <div class="live-status" id="live-status" role="status" aria-live="polite">
           <span class="status-pulse"></span><span id="status-label">CONNECTING</span>
+        </div>
+        <div class="sound-control">
+          <button id="sound-button" type="button" aria-pressed="false" aria-label="Enable coin sounds for verified live sales updates">♫ <span id="sound-label">ENABLE COINS</span></button>
         </div>
       </div>
     </header>
@@ -39,6 +42,7 @@
         <div class="total-panel">
           <div class="total-label"><span class="label-spark">✦</span> OUR MONTHLY SALES <span class="label-spark">✦</span></div>
           <div class="total-amount" aria-live="off"><span class="currency">Rs.</span><span id="monthly-total" class="amount">—</span></div>
+          <div class="change-chip-row" role="status" aria-live="polite"><span id="sales-change-chip" class="sales-change-chip" hidden></span></div>
           <div class="total-meta" id="total-meta">VERIFYING TODAY'S LIVE PICKME + UBER SALES</div>
         </div>
 
@@ -88,14 +92,11 @@
     <a href="/celebration" id="login-link" hidden>SIGN IN</a>
   </div>
 
-  <div class="sound-control">
-    <button id="sound-button" type="button" aria-pressed="false" aria-label="Enable milestone sound">♫ <span id="sound-label">ENABLE SOUND</span></button>
-  </div>
 
   <div class="celebration-overlay" id="celebration-overlay" role="dialog" aria-modal="true" aria-labelledby="celebration-headline" hidden>
     <div class="overlay-glow" aria-hidden="true"></div>
     <div class="overlay-content">
-      <div class="overlay-kicker">✦ &nbsp; CELESTE DAILY &nbsp; ✦</div>
+      <div class="overlay-kicker"><img src="/celebration/emblem.png" alt="" class="overlay-emblem"><img src="/celebration/wordmark.png" alt="Celeste Daily" class="overlay-wordmark"></div>
       <div class="overlay-pretitle">TOGETHER, WE DID IT.</div>
       <h2 id="celebration-headline">250 <span>MILLION!</span></h2>
       <p>AN EXTRAORDINARY MILESTONE.<br>AN EVEN MORE EXTRAORDINARY TEAM.</p>
