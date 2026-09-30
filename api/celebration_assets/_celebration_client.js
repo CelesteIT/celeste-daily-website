@@ -29,6 +29,7 @@
     loginLink: $('login-link'), returnButton: $('return-button'),
     soundButton: $('sound-button'), soundLabel: $('sound-label'), canvas: $('fx-canvas'),
     changeChip: $('sales-change-chip'), totalPanel: document.querySelector('.total-panel'),
+    cashBurst: $('cash-burst'), dashboard: $('dashboard'),
   };
 
   let lastSnapshot = null;
@@ -40,7 +41,9 @@
   let disconnected = false;
   let soundEnabled = false;
   let audioContext = null;
-  let lastCoinPlayedAt = 0;
+  let lastCashPlayedAt = 0;
+  let cashNoiseBuffer = null;
+  let burstCleanup = 0;
   let changeTimer = 0;
   let glowTimer = 0;
   let confetti = [];
@@ -143,6 +146,9 @@
     el.changeChip.hidden = true;
     el.totalPanel.classList.remove('sales-changed');
     el.today.classList.remove('sales-changed');
+    el.dashboard.classList.remove('verified-money-event');
+    el.cashBurst.replaceChildren();
+    window.clearTimeout(burstCleanup);
   }
 
   function validateSnapshot(data) {
@@ -181,16 +187,19 @@
     el.changeChip.hidden = false;
     el.totalPanel.classList.remove('sales-changed');
     el.today.classList.remove('sales-changed');
+    el.dashboard.classList.remove('verified-money-event');
     // Restart visual cue for a subsequent update.
     void el.totalPanel.offsetWidth;
     el.totalPanel.classList.add('sales-changed');
     el.today.classList.add('sales-changed');
+    if (increase) el.dashboard.classList.add('verified-money-event');
     changeTimer = window.setTimeout(() => { el.changeChip.hidden = true; }, 10000);
     glowTimer = window.setTimeout(() => {
       el.totalPanel.classList.remove('sales-changed');
       el.today.classList.remove('sales-changed');
-    }, 1900);
-    if (increase) playCoinSound();
+      el.dashboard.classList.remove('verified-money-event');
+    }, 2300);
+    if (increase) { playCashSound(); launchCashBurst(); }
   }
 
   function displaySnapshot(data) {
@@ -275,33 +284,136 @@
     }
   }
 
-  function playCoinSound() {
-    // Browser audio requires a user gesture: the ENABLE COINS button unlocks it.
-    // At most one short coin chime per verified update (never per animation frame).
-    if (!soundEnabled || !audioContext || audioContext.state !== 'running') return;
-    const nowMs = Date.now();
-    if (nowMs - lastCoinPlayedAt < 4500) return;
-    lastCoinPlayedAt = nowMs;
-    try {
-      const now = audioContext.currentTime + 0.015;
-      // Two metallic coins; high harmonics decay much faster than the bell body.
-      [0, 0.105].forEach((delay, i) => {
-        [1, 2.72, 4.17].forEach((ratio, partial) => {
-          const oscillator = audioContext.createOscillator();
-          const envelope = audioContext.createGain();
-          oscillator.type = 'sine';
-          oscillator.frequency.setValueAtTime((i ? 1318.5 : 1046.5) * ratio, now + delay);
-          envelope.gain.setValueAtTime(0.0001, now + delay);
-          envelope.gain.exponentialRampToValueAtTime(partial ? 0.011 : 0.043, now + delay + 0.004);
-          envelope.gain.exponentialRampToValueAtTime(0.0001, now + delay + (partial ? 0.10 : 0.29));
-          oscillator.connect(envelope);
-          envelope.connect(audioContext.destination);
-          oscillator.start(now + delay);
-          oscillator.stop(now + delay + 0.31);
-        });
-      });
-    } catch (_) { /* Visual update stays active when audio is unavailable. */ }
+
+function ensureCashNoise() {
+  if (!audioContext || cashNoiseBuffer) return;
+  // Original browser-generated sound, not an external audio file or third-party asset.
+  const rate = audioContext.sampleRate;
+  const buffer = audioContext.createBuffer(1, Math.ceil(rate * 0.13), rate);
+  const signal = buffer.getChannelData(0);
+  let previous = 0;
+  for (let i = 0; i < signal.length; i++) {
+    const white = Math.random() * 2 - 1;
+    previous = 0.72 * previous + 0.28 * white;
+    signal[i] = (white * 0.67 + previous * 0.33) * (1 - i / signal.length * 0.18);
   }
+  cashNoiseBuffer = buffer;
+}
+
+function playCashSound(preview = false) {
+  // An ATM-note-dispensing sound: motor start, fast paper flutters and two firm end clicks.
+  // Only a VERIFIED increase (or the explicit enable-button preview) triggers audio.
+  if (!soundEnabled || !audioContext || audioContext.state !== 'running') return;
+  const current = Date.now();
+  if (!preview && current - lastCashPlayedAt < 2900) return;
+  lastCashPlayedAt = current;
+  try {
+    ensureCashNoise();
+    const now = audioContext.currentTime + 0.022;
+    const compressor = audioContext.createDynamicsCompressor();
+    compressor.threshold.value = -19;
+    compressor.knee.value = 17;
+    compressor.ratio.value = 5;
+    compressor.attack.value = 0.004;
+    compressor.release.value = 0.12;
+    compressor.connect(audioContext.destination);
+    const master = audioContext.createGain();
+    master.gain.setValueAtTime(preview ? 0.33 : 0.76, now);
+    master.connect(compressor);
+    const output = master;
+    const flutterCount = preview ? 5 : 12;
+    const flutterInterval = preview ? 0.075 : 0.073;
+
+    // The low motor hum gives the sequence a physical ATM dispenser character.
+    const motor = audioContext.createOscillator();
+    const motorGain = audioContext.createGain();
+    motor.type = 'sawtooth';
+    motor.frequency.setValueAtTime(94, now);
+    motor.frequency.linearRampToValueAtTime(123, now + 0.23);
+    motor.frequency.linearRampToValueAtTime(102, now + flutterCount * flutterInterval + 0.16);
+    motorGain.gain.setValueAtTime(0.0001, now);
+    motorGain.gain.exponentialRampToValueAtTime(0.060, now + 0.065);
+    motorGain.gain.setValueAtTime(0.055, now + flutterCount * flutterInterval);
+    motorGain.gain.exponentialRampToValueAtTime(0.0001, now + flutterCount * flutterInterval + 0.20);
+    const motorFilter = audioContext.createBiquadFilter();
+    motorFilter.type = 'lowpass';
+    motorFilter.frequency.value = 385;
+    motor.connect(motorFilter);
+    motorFilter.connect(motorGain);
+    motorGain.connect(output);
+    motor.start(now);
+    motor.stop(now + flutterCount * flutterInterval + 0.22);
+
+    for (let i = 0; i < flutterCount; i++) {
+      const at = now + 0.065 + i * flutterInterval;
+      const paper = audioContext.createBufferSource();
+      paper.buffer = cashNoiseBuffer;
+      paper.playbackRate.value = 0.88 + (i % 4) * 0.13;
+      const paperFilter = audioContext.createBiquadFilter();
+      paperFilter.type = 'bandpass';
+      paperFilter.frequency.value = 1480 + (i % 3) * 270;
+      paperFilter.Q.value = 0.55;
+      const paperGain = audioContext.createGain();
+      paperGain.gain.setValueAtTime(0.0001, at);
+      paperGain.gain.exponentialRampToValueAtTime(0.19 + (i % 3) * 0.024, at + 0.004);
+      paperGain.gain.exponentialRampToValueAtTime(0.0001, at + 0.065);
+      paper.connect(paperFilter);
+      paperFilter.connect(paperGain);
+      paperGain.connect(output);
+      paper.start(at);
+      paper.stop(at + 0.071);
+      const mechanism = audioContext.createOscillator();
+      const clickGain = audioContext.createGain();
+      mechanism.type = 'square';
+      mechanism.frequency.setValueAtTime(510 + (i % 2) * 165, at);
+      clickGain.gain.setValueAtTime(0.0001, at);
+      clickGain.gain.exponentialRampToValueAtTime(0.044, at + 0.002);
+      clickGain.gain.exponentialRampToValueAtTime(0.0001, at + 0.021);
+      mechanism.connect(clickGain);
+      clickGain.connect(output);
+      mechanism.start(at);
+      mechanism.stop(at + 0.026);
+    }
+    // A brief double-clack at the end sounds like the tray opening.
+    [0, 0.092].forEach((delay) => {
+      const at = now + flutterCount * flutterInterval + 0.105 + delay;
+      const clack = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      clack.type = 'triangle';
+      clack.frequency.setValueAtTime(225, at);
+      clack.frequency.exponentialRampToValueAtTime(113, at + 0.075);
+      gain.gain.setValueAtTime(0.0001, at);
+      gain.gain.exponentialRampToValueAtTime(0.18, at + 0.005);
+      gain.gain.exponentialRampToValueAtTime(0.0001, at + 0.074);
+      clack.connect(gain);
+      gain.connect(output);
+      clack.start(at);
+      clack.stop(at + 0.082);
+    });
+  } catch (_) { /* The verified visual animation still works if sound is unavailable. */ }
+}
+
+function launchCashBurst() {
+  if (reduceMotion || document.hidden || !el.cashBurst) return;
+  window.clearTimeout(burstCleanup);
+  el.cashBurst.replaceChildren();
+  // Decorative note shapes only; they are NOT individual transactions or fabricated sales.
+  const count = window.innerWidth < 900 ? 8 : 15;
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < count; i++) {
+    const note = document.createElement('span');
+    note.className = 'cash-note';
+    const angle = (i / count) * Math.PI * 2;
+    const distance = (window.innerWidth < 900 ? 115 : 200) + (i % 5) * 31;
+    note.style.setProperty('--cash-x', `${Math.round(Math.cos(angle) * distance)}px`);
+    note.style.setProperty('--cash-y', `${Math.round(Math.sin(angle) * distance * .52 - 95)}px`);
+    note.style.setProperty('--cash-rot', `${(i * 71) % 280 - 140}deg`);
+    note.style.setProperty('--cash-delay', `${(i % 5) * 45}ms`);
+    fragment.appendChild(note);
+  }
+  el.cashBurst.appendChild(fragment);
+  burstCleanup = window.setTimeout(() => { el.cashBurst.replaceChildren(); }, 2450);
+}
 
   function playMilestoneSound() {
     if (!soundEnabled) return;
@@ -390,11 +502,11 @@
   el.soundButton.addEventListener('click', async () => {
     soundEnabled = !soundEnabled;
     el.soundButton.setAttribute('aria-pressed', String(soundEnabled));
-    el.soundLabel.textContent = soundEnabled ? 'COINS ENABLED' : 'ENABLE COINS';
+    el.soundLabel.textContent = soundEnabled ? 'ATM SOUND ON' : 'ENABLE CASH AUDIO';
     if (soundEnabled) {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (AudioCtx) { audioContext = audioContext || new AudioCtx(); await audioContext.resume(); }
+        if (AudioCtx) { audioContext = audioContext || new AudioCtx(); await audioContext.resume(); if (audioContext.state === 'running') playCashSound(true); }
       } catch (_) { /* Visual celebration works regardless of audio permission. */ }
     }
   });
