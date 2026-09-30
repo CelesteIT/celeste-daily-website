@@ -1,5 +1,19 @@
 {
+  "functions": {
+    "api/celebration.py": {
+      "excludeFiles": "{assets/**,ai-assistance/**,celeste-hope/**,registerUSA/**,vendor-price-portal/**}"
+    }
+  },
   "rewrites": [
+    { "source": "/celebration", "destination": "/api/celebration?view=page" },
+    { "source": "/celebration/", "destination": "/api/celebration?view=page" },
+    { "source": "/celebration/emblem.png", "destination": "/api/celebration?view=emblem" },
+    { "source": "/celebration/wordmark.png", "destination": "/api/celebration?view=wordmark" },
+    { "source": "/celebration/celebration.css", "destination": "/api/celebration?view=css" },
+    { "source": "/celebration/celebration.js", "destination": "/api/celebration?view=js" },
+    { "source": "/celebration/api/sales", "destination": "/api/celebration?view=data" },
+    { "source": "/celebration/login", "destination": "/api/celebration?view=login" },
+    { "source": "/celebration/logout", "destination": "/api/celebration?view=logout" },
     {
       "source": "/employee-portal",
       "destination": "https://celeste-esp.vercel.app/employee-portal"
