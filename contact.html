@@ -17,7 +17,7 @@
 
   gtag('config', 'G-FML2066RSW');
 </script>
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Celeste | Contact Us</title>
@@ -30,6 +30,28 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* List Now is now a page link instead of a button */
+
+    .product-listing-cta a.product-listing-main-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 600px) {
+      .product-listing-cta a.product-listing-main-btn {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -309,6 +331,56 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- ========================================
+         LIST WITH CELESTE - REDIRECT CTA
+    ========================================= -->
+
+    <section
+      class="product-listing-section"
+      id="product-listing-section"
+    >
+
+      <div class="container">
+
+        <div class="product-listing-cta">
+
+          <div class="product-listing-cta-copy">
+
+            <p class="product-listing-eyebrow">
+              LIST WITH CELESTE
+            </p>
+
+            <h2>
+              Want to list your products with Celeste?
+            </h2>
+
+            <p>
+              Share your product details with our team
+              for review and potential listing across Celeste.
+            </p>
+
+          </div>
+
+
+          <!-- Opens dedicated listing page -->
+
+          <a
+            href="/list-with-celeste.html"
+            class="product-listing-main-btn"
+          >
+
+            List Now
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </a>
+
+        </div>
+
+      </div>
+
     </section>
 
   </main>
