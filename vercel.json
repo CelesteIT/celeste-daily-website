@@ -5,6 +5,12 @@
     }
   },
   "rewrites": [
+    { "source": "/commercial/admin", "destination": "/commercial/admin.html" },
+    { "source": "/commercial/admin/", "destination": "/commercial/admin.html" },
+    { "source": "/commercial/api/login", "destination": "https://celeste-property-registration.twilight-surf-2796.workers.dev/api/login" },
+    { "source": "/commercial/api/logout", "destination": "https://celeste-property-registration.twilight-surf-2796.workers.dev/api/logout" },
+    { "source": "/commercial/api/submissions", "destination": "https://celeste-property-registration.twilight-surf-2796.workers.dev/api/submissions" },
+    { "source": "/commercial/api/status", "destination": "https://celeste-property-registration.twilight-surf-2796.workers.dev/api/status" },
     { "source": "/commercial", "destination": "/commercial/index.html" },
     { "source": "/commercial/", "destination": "/commercial/index.html" },
     { "source": "/commercial/api/submit", "destination": "https://celeste-property-registration.twilight-surf-2796.workers.dev/api/submit" },
