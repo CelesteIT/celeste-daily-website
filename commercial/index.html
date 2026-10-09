@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101010" />
+  <meta name="description" content="Submit details about your building, warehouse or land for commercial consideration." />
+  <title>Property Registration | Celeste Commercial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/commercial/assets/styles.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="/commercial/assets/main.js" defer></script>
+</head>
+<body class="form-page">
+  <div class="page-banner"><span class="banner-dot"></span> COMMERCIAL PROPERTY REGISTRATION <span class="banner-divider">/</span> SRI LANKA</div>
+  <header class="site-header frame">
+    <a class="brand brand-with-logo" href="/commercial" aria-label="Celeste Commercial home"><img class="brand-wordmark" src="/commercial/assets/images/celeste-wordmark.png" alt="Celeste" width="210" height="49" /><span class="brand-brandline">COMMERCIAL</span></a>
+    <a class="header-contact" href="mailto:Koshitha@celeste.lk"><span class="header-contact-icon">↗</span><span>Koshitha@celeste.lk</span></a>
+  </header>
+  <main>
+    <section class="hero frame">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> PROPERTY OPPORTUNITIES</div>
+        <h1>Your property.<br><em>Our next opportunity.</em></h1>
+        <p>Have a commercial space, warehouse, or land to offer? Share the details below and our commercial team can review your property.</p>
+        <div class="hero-chips"><span><b>01</b> Complete details</span><span><b>02</b> Pin location</span><span><b>03</b> Submit</span></div>
+      </div>
+      <aside class="hero-card" aria-label="Registration summary">
+        <div class="hero-card-top"><span>OPEN REGISTRATION</span><span class="live-indicator"><i></i> NOW ACCEPTING</span></div>
+        <div class="hero-seal" aria-hidden="true"><img src="/commercial/assets/images/celeste-emblem.png" alt="" width="70" height="70" /></div>
+        <div class="large-number">03<span class="large-number-spark">✳</span></div>
+        <div class="hero-card-label">Property categories</div>
+        <div class="hero-card-list"><div><span>01</span> Building <b>↗</b></div><div><span>02</span> Warehouse <b>↗</b></div><div><span>03</span> Empty Land <b>↗</b></div></div>
+        <div class="hero-card-bottom">Across Sri Lanka <span>◉</span></div>
+      </aside>
+    </section>
+    <section class="registration-layout frame" id="register">
+      <aside class="process-aside">
+        <div class="aside-sticky"><p class="section-kicker">THE PROCESS</p><h2>Tell us about<br>your property.</h2><p>Only a few details are needed to register your property for review.</p>
+          <ol class="vertical-steps"><li class="active"><span>01</span><div>Contact details<small>How we can reach you</small></div></li><li><span>02</span><div>Property details<small>What space is available</small></div></li><li><span>03</span><div>Exact location<small>Pin your property on the map</small></div></li></ol>
+          <div class="aside-note">Need help? <a href="mailto:Koshitha@celeste.lk">Email our Commercial team ↗</a></div>
+        </div>
+      </aside>
+      <div class="form-shell">
+        <form id="propertyForm" novalidate>
+          <div class="form-section" id="contact-section"><div class="section-heading"><div class="section-icon">01</div><div><span>STEP ONE</span><h2>Contact information</h2><p>Please share how we can get in touch.</p></div></div>
+            <div class="fields-grid"><label class="field full"><span>Full name <i>*</i></span><input name="full_name" autocomplete="name" required maxlength="120" placeholder="Enter your full name" /></label>
+              <label class="field"><span>Contact number <i>*</i></span><input name="phone" type="tel" autocomplete="tel" required maxlength="24" placeholder="e.g. 077 123 4567" /></label>
+              <label class="field"><span>WhatsApp number <small>(optional)</small></span><input name="whatsapp" type="tel" maxlength="24" placeholder="e.g. 077 123 4567" /></label>
+              <label class="field full"><span>Email address <i>*</i></span><input name="email" type="email" autocomplete="email" required maxlength="180" placeholder="name@example.com" /></label>
+            </div>
+          </div>
+          <div class="form-section"><div class="section-heading"><div class="section-icon">02</div><div><span>STEP TWO</span><h2>Property information</h2><p>Select the category and describe the space.</p></div></div>
+            <p class="label-heading">Property type <i>*</i></p>
+            <div class="property-options" role="radiogroup" aria-label="Property type">
+              <label class="property-option"><input type="radio" name="property_type" value="Building" required /><span class="property-option-illustration" aria-hidden="true">▥</span><strong>Building</strong><small>Retail / commercial</small><span class="radio-circle"></span></label>
+              <label class="property-option"><input type="radio" name="property_type" value="Warehouse" /><span class="property-option-illustration" aria-hidden="true">▤</span><strong>Warehouse</strong><small>Storage / logistics</small><span class="radio-circle"></span></label>
+              <label class="property-option"><input type="radio" name="property_type" value="Empty Land" /><span class="property-option-illustration" aria-hidden="true">▱</span><strong>Empty land</strong><small>Development space</small><span class="radio-circle"></span></label>
+            </div>
+            <div class="fields-grid field-gap"><label class="field full"><span>Property address <i>*</i></span><input name="address" required maxlength="300" placeholder="Street address, building number or nearby landmark" /></label>
+              <label class="field"><span>District <i>*</i></span><select name="district" id="district" required><option value="">Select district</option><option>Ampara</option><option>Anuradhapura</option><option>Badulla</option><option>Batticaloa</option><option>Colombo</option><option>Galle</option><option>Gampaha</option><option>Hambantota</option><option>Jaffna</option><option>Kalutara</option><option>Kandy</option><option>Kegalle</option><option>Kilinochchi</option><option>Kurunegala</option><option>Mannar</option><option>Matale</option><option>Matara</option><option>Monaragala</option><option>Mullaitivu</option><option>Nuwara Eliya</option><option>Polonnaruwa</option><option>Puttalam</option><option>Ratnapura</option><option>Trincomalee</option><option>Vavuniya</option></select></label>
+              <label class="field"><span>City / town <i>*</i></span><input name="city" required maxlength="100" placeholder="e.g. Nugegoda" /></label>
+              <label class="field"><span>Property size <small>(optional)</small></span><input name="property_size" type="number" min="0.01" step="any" placeholder="e.g. 5000" /></label>
+              <label class="field"><span>Size unit <small>(optional)</small></span><select name="size_unit"><option value="sq ft">Square feet</option><option value="perches">Perches</option><option value="acres">Acres</option><option value="sq m">Square metres</option></select></label>
+              <label class="field full"><span>Additional information <small>(optional)</small></span><textarea name="description" maxlength="1000" rows="3" placeholder="Any other relevant details about the property"></textarea></label>
+            </div>
+          </div>
+          <div class="form-section map-section"><div class="section-heading"><div class="section-icon">03</div><div><span>STEP THREE</span><h2>Pin the exact location</h2><p>Click the map to place a pin at your property, then drag to fine-tune.</p></div></div>
+            <div class="map-toolbar"><span class="map-tag">◉ &nbsp; INTERACTIVE LOCATION MAP</span><button class="location-button" type="button" id="locateBtn">⌾ &nbsp; Use my current location</button></div>
+            <div id="propertyMap" role="application" aria-label="Click on the map to choose your property location"></div>
+            <div class="location-selected" id="locationSelected" aria-live="polite"><span class="location-selected-icon">⌾</span><div><strong id="locationStatus">No location selected yet</strong><p id="coords">Click anywhere on the map to place a property pin.</p></div><a id="mapsLink" href="#" target="_blank" rel="noopener noreferrer" hidden>View on Google Maps ↗</a></div>
+          </div>
+          <div class="form-bottom"><label class="consent-row"><input type="checkbox" name="consent" required /><span>I confirm the information is accurate and agree that Celeste's Commercial team may store these details and contact me about this property. <i>*</i></span></label>
+            <div class="spam-field" aria-hidden="true"><label>Company website<input name="company_website" tabindex="-1" autocomplete="off" /></label></div>
+            <div class="form-message" id="formMessage" role="alert" aria-live="polite" hidden></div>
+            <button type="submit" class="submit-button" id="submitBtn"><span>Submit property registration</span><span class="button-arrow">↗</span></button>
+            <p class="form-disclaimer">This is an expression of interest only. Submission does not guarantee property selection or a commercial agreement.</p>
+          </div>
+        </form>
+        <div class="success-panel" id="successPanel" hidden role="status"><div class="success-icon">✓</div><span>SUBMISSION RECEIVED</span><h2>Thank you for sharing your property.</h2><p>Your property details have been registered for our Commercial team to review.</p><div class="success-reference">Registration reference <strong id="referenceId">—</strong></div><button id="registerAnother" type="button" class="restart-button">Register another property ↗</button></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer frame"><div class="footer-brand">CELESTE<span>.</span><small>COMMERCIAL PROPERTY REGISTRATION</small></div><p>For property registration enquiries: <a href="mailto:Koshitha@celeste.lk">Koshitha@celeste.lk</a></p><small>Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a></small></footer>
+</body>
+</html>

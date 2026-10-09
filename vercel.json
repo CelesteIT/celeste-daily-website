@@ -5,6 +5,9 @@
     }
   },
   "rewrites": [
+    { "source": "/commercial", "destination": "/commercial/index.html" },
+    { "source": "/commercial/", "destination": "/commercial/index.html" },
+    { "source": "/commercial/api/submit", "destination": "https://celeste-property-registration.twilight-surf-2796.workers.dev/api/submit" },
     { "source": "/celebration", "destination": "/api/celebration?view=page" },
     { "source": "/celebration/", "destination": "/api/celebration?view=page" },
     { "source": "/celebration/emblem.png", "destination": "/api/celebration?view=emblem" },
