@@ -40,6 +40,7 @@
     { "source": "/services", "destination": "/services.html" },
     { "source": "/careers", "destination": "/careers.html" },
     { "source": "/join-us", "destination": "/join-us.html" },
+    { "source": "/list-with-celeste", "destination": "/list-with-celeste.html" },
     { "source": "/contact", "destination": "/contact.html" }
   ]
 }
