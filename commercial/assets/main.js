@@ -65,7 +65,8 @@
       ['full_name', 'Enter your full name.'], ['phone', 'Enter your contact number.'],
       ['email', 'Enter your email address.'], ['property_type', 'Select a property type.'],
       ['address', 'Enter the full property address.'], ['district', 'Select a district.'],
-      ['city', 'Enter the city or town.']
+      ['city', 'Enter the city or town.'],
+      ['property_size', 'Enter the property size.'], ['price_lkr', 'Enter the property price in LKR.']
     ];
     for (const [name, error] of required) {
       if (!data[name]) { const input = form.elements.namedItem(name); input?.focus?.(); return error; }
@@ -74,7 +75,8 @@
     if (data.whatsapp && (!/^\+?[\d\s().-]{9,22}$/.test(data.whatsapp) || (data.whatsapp.match(/\d/g) || []).length < 9)) return 'Enter a valid WhatsApp number.';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) return 'Enter a valid email address.';
     if (data.full_name.length < 2 || data.address.length < 5 || data.city.length < 2) return 'Please add more detail to the name and address fields.';
-    if (data.property_size && !(Number(data.property_size) > 0)) return 'Enter a positive property size.';
+    if (!Number.isFinite(Number(data.property_size)) || Number(data.property_size) <= 0 || Number(data.property_size) > 1e10) return 'Enter a valid positive property size.';
+    if (!/^\d+(?:\.\d{1,2})?$/.test(data.price_lkr) || Number(data.price_lkr) <= 0 || Number(data.price_lkr) > 999999999999.99) return 'Enter a valid price in LKR (up to two decimal places).';
     if (!location) { mapHost.scrollIntoView({ behavior: 'smooth', block: 'center' }); return 'Click the map to place a pin at the property location.'; }
     if (!form.elements.namedItem('consent').checked) return 'Please confirm the details and agree to the contact notice.';
     return '';

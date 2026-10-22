@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
-  const statuses = ['New','Under Review','Contacted','Approved','Rejected'];
+  const statuses = ['New','Under Review','Contacted','Approved','Selected','Rejected'];
   let rows = [], page = 1, total = 0, limit = 30, debounce;
   function el(tag, className, text) { const n = document.createElement(tag); if (className) n.className = className; if (text !== undefined) n.textContent = String(text); return n; }
   function shortDate(text) { return new Date(text).toLocaleDateString('en-LK', { year:'numeric',month:'short',day:'numeric' }); }
@@ -47,14 +47,15 @@
       const tr = el('tr');
       textCell(tr, `CP-${String(item.id).padStart(5,'0')}`,shortDate(item.submitted_at));
       textCell(tr,item.full_name,item.phone);
-      textCell(tr,item.property_type,item.property_size ? `${item.property_size} ${item.size_unit}` : 'Size not provided');
+      textCell(tr,item.property_type, `${item.property_size ? `${item.property_size} ${item.size_unit}` : 'Size not provided'} · ${item.price_lkr != null ? `LKR ${Number(item.price_lkr).toLocaleString('en-LK')}` : 'Price not recorded'}`);
       const loc = textCell(tr,item.city,item.district);
       const maps = el('a','map-small','View map ↗');maps.href=item.maps_url;maps.target='_blank';maps.rel='noopener noreferrer';loc.append(maps);
       const statusTd=el('td');const select=el('select','status-select');select.setAttribute('aria-label',`Update status for CP-${item.id}`);
       for(const status of statuses){const o=el('option','',status);o.value=status;o.selected=item.status===status;select.append(o);}
       select.addEventListener('change',async () => {
         const old=item.status;select.disabled=true;
-        try { await request('/commercial/api/status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:item.id,status:select.value})});item.status=select.value; }
+        try { const result = await request('/commercial/api/status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:item.id,status:select.value})});item.status=select.value;
+          $('tableError').textContent = result.changed && !result.email_sent ? 'Status saved, but applicant email was not sent. Check Resend logs and follow up manually.' : ''; }
         catch(e){select.value=old;$('tableError').textContent=e.message;}
         finally{select.disabled=false;}
       });
@@ -69,6 +70,7 @@
       ['Full name',item.full_name],['Contact',item.phone],['WhatsApp',item.whatsapp||'—'],['Email',item.email],
       ['Property type',item.property_type],['Address',item.address],['City / town',item.city],['District',item.district],
       ['Property size',item.property_size?`${item.property_size} ${item.size_unit}`:'—'],
+      ['Price (LKR)',item.price_lkr != null ? `LKR ${Number(item.price_lkr).toLocaleString('en-LK')}` : 'Not recorded'],
       ['Coordinates',`${item.latitude}, ${item.longitude}`],['Additional information',item.description||'—'],
       ['Email notification',item.notification_sent?'Sent':'Not sent / not configured']
     ];
@@ -79,7 +81,7 @@
   }
   function exportCsv() {
     if (!rows.length) return;
-    const columns=[['id','Reference'],['submitted_at','Submitted At'],['full_name','Name'],['phone','Phone'],['whatsapp','WhatsApp'],['email','Email'],['property_type','Type'],['address','Address'],['city','City'],['district','District'],['property_size','Size'],['size_unit','Unit'],['latitude','Latitude'],['longitude','Longitude'],['maps_url','Google Maps Link'],['status','Status'],['notification_sent','Email Sent'],['description','Notes']];
+    const columns=[['id','Reference'],['submitted_at','Submitted At'],['full_name','Name'],['phone','Phone'],['whatsapp','WhatsApp'],['email','Email'],['property_type','Type'],['address','Address'],['city','City'],['district','District'],['property_size','Size'],['size_unit','Unit'],['price_lkr','Price (LKR)'],['latitude','Latitude'],['longitude','Longitude'],['maps_url','Google Maps Link'],['status','Status'],['notification_sent','Email Sent'],['description','Notes']];
     const csvCell=value=>{
       let s=String(value??'');
       // Prevent spreadsheet formula injection from user-supplied fields.
